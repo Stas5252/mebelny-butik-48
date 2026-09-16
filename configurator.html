@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3D-Конструктор гардеробных КДМ — Мебельный Бутик 48</title>
+<script src="js/three.min.js"></script>
+<script src="js/OrbitControls.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0f0e0c;--bg2:#181614;--bg3:#1f1d1a;--bg4:#282520;
+  --text:#f4f1eb;--text2:#b0a89a;--text3:#7a7268;
+  --accent:#c8a87a;--accent2:#a07844;
+  --success:#4caf50;--danger:#e53935;
+  --sidebar-w:260px;--panel-w:320px;--topbar-h:56px;
+  --radius:10px;--radius-sm:6px;
+}
+html,body{height:100%;overflow:hidden;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text)}
+button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
+input[type=range]{-webkit-appearance:none;width:100%;height:4px;background:var(--bg4);border-radius:2px;outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:var(--accent);cursor:grab}
+
+/* === LAYOUT === */
+.app{display:flex;height:100vh;width:100vw;flex-direction:column}
+
+/* TOPBAR */
+.topbar{height:var(--topbar-h);background:var(--bg2);border-bottom:1px solid var(--bg4);display:flex;align-items:center;padding:0 20px;gap:16px;flex-shrink:0;z-index:10}
+.topbar__logo{font-size:15px;font-weight:700;letter-spacing:-.02em;display:flex;align-items:center;gap:8px}
+.topbar__logo span{color:var(--accent)}
+.topbar__sep{width:1px;height:28px;background:var(--bg4)}
+.topbar__actions{display:flex;gap:8px;margin-left:auto}
+.topbar__btn{padding:8px 16px;border-radius:var(--radius-sm);font-size:13px;font-weight:600;transition:all .2s}
+.topbar__btn--ghost{border:1px solid var(--bg4);color:var(--text2)}
+.topbar__btn--ghost:hover{border-color:var(--accent);color:var(--accent)}
+.topbar__btn--accent{background:var(--accent);color:#0f0e0c}
+.topbar__btn--accent:hover{background:var(--accent2)}
+.topbar__btn--back{color:var(--text2);font-size:13px;display:flex;align-items:center;gap:6px}
+.topbar__btn--back:hover{color:var(--accent)}
+.topbar__cam-group{display:flex;gap:4px;background:var(--bg);border-radius:var(--radius-sm);padding:3px}
+.topbar__cam{padding:6px 14px;border-radius:4px;font-size:12px;font-weight:600;color:var(--text3);transition:all .2s}
+.topbar__cam.on{background:var(--bg3);color:var(--text)}
+.topbar__cam:hover:not(.on){color:var(--text2)}
+
+/* MAIN AREA */
+.main{display:flex;flex:1;overflow:hidden}
+
+/* SIDEBAR */
+.sidebar{width:var(--sidebar-w);background:var(--bg2);border-right:1px solid var(--bg4);display:flex;flex-direction:column;overflow-y:auto;flex-shrink:0;z-index:5}
+.sidebar__title{padding:16px 16px 8px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text3)}
+.sidebar__section{padding:0 12px 12px}
+.mod-btn{width:100%;padding:10px 12px;border-radius:var(--radius-sm);background:var(--bg);border:1px solid transparent;text-align:left;transition:all .2s;margin-bottom:6px;display:flex;align-items:center;gap:10px}
+.mod-btn:hover{border-color:var(--accent);background:var(--bg3)}
+.mod-btn.active{border-color:var(--accent);background:rgba(200,168,122,.1)}
+.mod-btn__icon{width:36px;height:36px;border-radius:6px;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.mod-btn__info{display:flex;flex-direction:column;gap:2px}
+.mod-btn__name{font-size:13px;font-weight:600}
+.mod-btn__desc{font-size:11px;color:var(--text3)}
+.sidebar__hint{padding:12px 16px;font-size:11px;color:var(--text3);line-height:1.5;border-top:1px solid var(--bg4);margin-top:auto}
+
+/* Room size controls in sidebar */
+.room-ctrl{padding:12px 16px}
+.room-ctrl__row{margin-bottom:12px}
+.room-ctrl__label{display:flex;justify-content:space-between;font-size:12px;color:var(--text2);margin-bottom:6px}
+.room-ctrl__val{font-weight:700;color:var(--accent)}
+
+/* VIEWPORT */
+.viewport{flex:1;position:relative;background:#0a0908;overflow:hidden}
+.viewport canvas{display:block}
+.viewport__hint{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.7);padding:8px 16px;border-radius:20px;font-size:12px;color:var(--text3);pointer-events:none;white-space:nowrap;transition:opacity .4s}
+.viewport__hint.hidden{opacity:0}
+.viewport__status{position:absolute;top:12px;left:12px;background:rgba(0,0,0,.7);padding:6px 12px;border-radius:var(--radius-sm);font-size:12px;color:var(--accent);font-weight:600;pointer-events:none}
+
+/* RIGHT PANEL */
+.panel{width:var(--panel-w);background:var(--bg2);border-left:1px solid var(--bg4);overflow-y:auto;flex-shrink:0;z-index:5}
+.panel__section{padding:16px;border-bottom:1px solid var(--bg4)}
+.panel__title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);margin-bottom:12px}
+.swatch-grid{display:flex;flex-wrap:wrap;gap:8px}
+.swatch{width:calc(50% - 4px);padding:8px;border-radius:var(--radius-sm);background:var(--bg);border:2px solid transparent;cursor:pointer;display:flex;align-items:center;gap:8px;transition:all .2s}
+.swatch:hover{border-color:var(--bg4)}
+.swatch.on{border-color:var(--accent)}
+.swatch__dot{width:24px;height:24px;border-radius:50%;flex-shrink:0;border:1px solid rgba(255,255,255,.1)}
+.swatch__label{font-size:11px;font-weight:600;line-height:1.3}
+
+/* COST PANEL */
+.cost{padding:16px;background:var(--bg3);border-top:1px solid var(--bg4)}
+.cost__price{font-size:28px;font-weight:800;font-variant-numeric:tabular-nums;margin-bottom:4px}
+.cost__inst{font-size:12px;color:var(--text2);margin-bottom:12px}
+.cost__specs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.cost__spec{background:var(--bg);padding:4px 10px;border-radius:4px;font-size:11px;color:var(--text2)}
+.cost__spec b{color:var(--text);font-weight:700}
+.cost__btn{width:100%;padding:14px;border-radius:var(--radius);background:var(--accent);color:#0f0e0c;font-weight:700;font-size:14px;transition:all .2s;margin-bottom:8px}
+.cost__btn:hover{background:var(--accent2)}
+.cost__btn--ghost{background:none;border:1px solid var(--bg4);color:var(--text2)}
+.cost__btn--ghost:hover{border-color:var(--accent);color:var(--accent)}
+
+/* Selected module info bar */
+.sel-info{position:absolute;bottom:60px;left:50%;transform:translateX(-50%);background:rgba(24,22,20,.95);border:1px solid var(--bg4);padding:10px 20px;border-radius:var(--radius);display:flex;align-items:center;gap:16px;font-size:13px;z-index:10;white-space:nowrap;display:none}
+.sel-info.show{display:flex}
+.sel-info__name{font-weight:700}
+.sel-info__btn{padding:6px 14px;border-radius:var(--radius-sm);font-size:12px;font-weight:600}
+.sel-info__btn--move{background:var(--bg4);color:var(--text)}
+.sel-info__btn--del{background:rgba(229,57,53,.15);color:var(--danger)}
+.sel-info__btn--del:hover{background:rgba(229,57,53,.3)}
+
+/* Toast notification */
+.toast{position:fixed;bottom:24px;right:24px;background:var(--bg3);border:1px solid var(--accent);padding:12px 20px;border-radius:var(--radius);font-size:13px;color:var(--accent);font-weight:600;z-index:100;transform:translateY(80px);opacity:0;transition:all .4s ease}
+.toast.show{transform:translateY(0);opacity:1}
+
+/* Responsive */
+@media(max-width:900px){
+  .sidebar{width:200px}
+  .panel{width:260px}
+}
+@media(max-width:700px){
+  .main{flex-direction:column}
+  .sidebar,.panel{width:100%;max-height:200px}
+  .sidebar{border-right:none;border-bottom:1px solid var(--bg4);flex-direction:row;overflow-x:auto}
+  .sidebar__section{display:flex;gap:8px;flex-wrap:nowrap}
+  .mod-btn{min-width:140px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <a href="index.html" class="topbar__btn topbar__btn--back">← На сайт</a>
+    <div class="topbar__sep"></div>
+    <div class="topbar__logo"><span>◆</span> 3D-Конструктор гардеробных КДМ</div>
+    <div class="topbar__cam-group">
+      <button class="topbar__cam on" data-cam="3d">3D Перспектива</button>
+      <button class="topbar__cam" data-cam="front">Фронт</button>
+      <button class="topbar__cam" data-cam="top">Сверху</button>
+    </div>
+    <div class="topbar__actions">
+      <button class="topbar__btn topbar__btn--ghost" id="btnResetCam">⟲ Ракурс</button>
+      <button class="topbar__btn topbar__btn--ghost" id="btnClearAll">Очистить всё</button>
+      <button class="topbar__btn topbar__btn--accent" id="btnOrder">Заказать замер →</button>
+    </div>
+  </header>
+
+  <div class="main">
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar__title">Размеры комнаты</div>
+      <div class="room-ctrl">
+        <div class="room-ctrl__row">
+          <div class="room-ctrl__label"><span>Ширина</span><span class="room-ctrl__val" id="roomWVal">3,0 м</span></div>
+          <input type="range" id="roomW" min="1.5" max="5" step="0.1" value="3.0">
+        </div>
+        <div class="room-ctrl__row">
+          <div class="room-ctrl__label"><span>Глубина</span><span class="room-ctrl__val" id="roomDVal">2,0 м</span></div>
+          <input type="range" id="roomD" min="1.2" max="4" step="0.1" value="2.0">
+        </div>
+        <div class="room-ctrl__row">
+          <div class="room-ctrl__label"><span>Высота</span><span class="room-ctrl__val" id="roomHVal">2,5 м</span></div>
+          <input type="range" id="roomH" min="2.2" max="3.0" step="0.05" value="2.5">
+        </div>
+      </div>
+
+      <div class="sidebar__title">Модули — нажмите для размещения</div>
+      <div class="sidebar__section">
+        <button class="mod-btn" data-module="upright">
+          <div class="mod-btn__icon">┃</div>
+          <div class="mod-btn__info">
+            <span class="mod-btn__name">Стойка КДМ</span>
+            <span class="mod-btn__desc">Вертикальный профиль</span>
+          </div>
+        </button>
+        <button class="mod-btn" data-module="shelf">
+          <div class="mod-btn__icon">━</div>
+          <div class="mod-btn__info">
+            <span class="mod-btn__name">Полка ЛДСП</span>
+            <span class="mod-btn__desc">18 мм, между стойками</span>
+          </div>
+        </button>
+        <button class="mod-btn" data-module="rail">
+          <div class="mod-btn__icon">─○</div>
+          <div class="mod-btn__info">
+            <span class="mod-btn__name">Штанга хром</span>
+            <span class="mod-btn__desc">Для вешалок</span>
+          </div>
+        </button>
+        <button class="mod-btn" data-module="basket">
+          <div class="mod-btn__icon">▦</div>
+          <div class="mod-btn__info">
+            <span class="mod-btn__name">Корзина сетчатая</span>
+            <span class="mod-btn__desc">Выдвижная, с направл.</span>
+          </div>
+        </button>
+        <button class="mod-btn" data-module="shoe_rack">
+          <div class="mod-btn__icon">⌒</div>
+          <div class="mod-btn__info">
+            <span class="mod-btn__name">Обувница</span>
+            <span class="mod-btn__desc">Наклонная сетчатая полка</span>
+          </div>
+        </button>
+        <button class="mod-btn" data-module="drawer">
+          <div class="mod-btn__icon">▭</div>
+          <div class="mod-btn__info">
+            <span class="mod-btn__name">Ящик ЛДСП</span>
+            <span class="mod-btn__desc">С доводчиком</span>
+          </div>
+        </button>
+      </div>
+      <div class="sidebar__hint">
+        💡 Нажмите на модуль, затем кликните в 3D-сцену для размещения. Правый клик — отмена. Клик по элементу в сцене — выбор.
+      </div>
+    </aside>
+
+    <!-- 3D VIEWPORT -->
+    <div class="viewport" id="viewport">
+      <div class="viewport__hint" id="viewHint">🖱 Левая кнопка: вращение • Колёсико: зум • Правая: панорама</div>
+      <div class="viewport__status" id="viewStatus" style="display:none"></div>
+      <div class="sel-info" id="selInfo">
+        <span class="sel-info__name" id="selName">—</span>
+        <button class="sel-info__btn sel-info__btn--del" id="selDelete">✕ Удалить</button>
+      </div>
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <aside class="panel">
+      <div class="panel__section">
+        <div class="panel__title">Цвет каркаса</div>
+        <div class="swatch-grid" id="frameSwatches">
+          <button class="swatch on" data-v="black"><span class="swatch__dot" style="background:#1d1c1a"></span><span class="swatch__label">Чёрный муар</span></button>
+          <button class="swatch" data-v="titanium"><span class="swatch__dot" style="background:#3d3a36"></span><span class="swatch__label">Тёмный титан</span></button>
+          <button class="swatch" data-v="white"><span class="swatch__dot" style="background:#f0eee8"></span><span class="swatch__label">Белый шёлк</span></button>
+          <button class="swatch" data-v="champagne"><span class="swatch__dot" style="background:#a38c70"></span><span class="swatch__label">Шампань браш</span></button>
+        </div>
+      </div>
+      <div class="panel__section">
+        <div class="panel__title">Материал полок</div>
+        <div class="swatch-grid" id="shelfSwatches">
+          <button class="swatch on" data-v="halifax"><span class="swatch__dot" style="background:#a5825a"></span><span class="swatch__label">Дуб Галифакс</span></button>
+          <button class="swatch" data-v="walnut"><span class="swatch__dot" style="background:#523927"></span><span class="swatch__label">Орех благородный</span></button>
+          <button class="swatch" data-v="graphite"><span class="swatch__dot" style="background:#282624"></span><span class="swatch__label">Графит софт-тач</span></button>
+          <button class="swatch" data-v="cashmere"><span class="swatch__dot" style="background:#c9bfb2"></span><span class="swatch__label">Кашемир светлый</span></button>
+        </div>
+      </div>
+      <div class="panel__section">
+        <div class="panel__title">Пресеты (быстрая сборка)</div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <button class="mod-btn" data-preset="family"><div class="mod-btn__icon">👨‍👩‍👦</div><div class="mod-btn__info"><span class="mod-btn__name">Для семейной пары</span><span class="mod-btn__desc">Штанги + корзины + полки</span></div></button>
+          <button class="mod-btn" data-preset="max_hang"><div class="mod-btn__icon">👔</div><div class="mod-btn__info"><span class="mod-btn__name">Максимум вешалок</span><span class="mod-btn__desc">Двойные штанги в каждой секции</span></div></button>
+          <button class="mod-btn" data-preset="storage"><div class="mod-btn__icon">📦</div><div class="mod-btn__info"><span class="mod-btn__name">Хранение и бельё</span><span class="mod-btn__desc">Корзины, ящики, полки</span></div></button>
+        </div>
+      </div>
+
+      <!-- Cost panel at bottom -->
+      <div class="cost" id="costPanel">
+        <div class="panel__title">Расчёт стоимости</div>
+        <div class="cost__price" id="costPrice">0 ₽</div>
+        <div class="cost__inst" id="costInst">Рассрочка 0% — от 0 ₽/мес</div>
+        <div class="cost__specs" id="costSpecs"></div>
+        <button class="cost__btn" id="costOrder">Заказать замер с этим проектом →</button>
+        <button class="cost__btn cost__btn--ghost" id="costCopy">Скопировать спецификацию</button>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<div class="toast" id="toast">Спецификация скопирована!</div>
+
+<script>
+(function(){
+"use strict";
+
+/* ========== HELPERS ========== */
+var $ = function(sel,p){ return (p||document).querySelector(sel); };
+var $$ = function(sel,p){ return [].slice.call((p||document).querySelectorAll(sel)); };
+var NB = "\u00A0";
+function fmt(n){ return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, NB); }
+function fmtDec(n){ return n.toFixed(1).replace(".",","); }
+function fmtDec2(n){ return n.toFixed(2).replace(".",","); }
+
+/* ========== STATE ========== */
+var state = {
+  room: { width: 3.0, depth: 2.0, height: 2.5 },
+  frameColor: "black",
+  shelfColor: "halifax",
+  placedModules: [],    // { type, x, y, z, meshGroup, id }
+  nextId: 1,
+  placementMode: null,  // null or module type string
+  ghostMesh: null,
+  selectedId: null,
+  uprightPositions: []  // sorted array of x-positions of placed uprights
+};
+
+/* ========== PALETTES ========== */
+var framePalettes = {
+  black:     { hex: 0x1a1918, rough: 0.35, metal: 0.85 },
+  titanium:  { hex: 0x3d3934, rough: 0.32, metal: 0.88 },
+  white:     { hex: 0xf0eee8, rough: 0.45, metal: 0.15 },
+  champagne: { hex: 0xa38c70, rough: 0.30, metal: 0.82 }
+};
+var shelfPalettes = {
+  halifax:   { hex: 0xaa855a, rough: 0.65, base: "#aa855a", dark: "#775936" },
+  walnut:    { hex: 0x543a27, rough: 0.62, base: "#543a27", dark: "#342013" },
+  graphite:  { hex: 0x272523, rough: 0.70, base: "#272523", dark: "#181615" },
+  cashmere:  { hex: 0xcdc2b5, rough: 0.72, base: "#cdc2b5", dark: "#9c8f80" }
+};
+var moduleLabels = {
+  upright: "Стойка КДМ", shelf: "Полка ЛДСП", rail: "Штанга хром",
+  basket: "Корзина сетчатая", shoe_rack: "Обувница", drawer: "Ящик ЛДСП"
+};
+var modulePrices = {
+  upright: 3200, shelf: 1800, rail: 1200, basket: 3400, shoe_rack: 1600, drawer: 2800
+};
+var moduleHeights = {
+  upright: 0, shelf: 0.022, rail: 0.022, basket: 0.18, shoe_rack: 0.12, drawer: 0.22
+};
+
+/* ========== THREE.JS INIT ========== */
+if(!window.THREE){
+  document.body.innerHTML = "<h1 style='color:#fff;padding:40px'>Ошибка: Three.js не загружен. Проверьте файл js/three.min.js</h1>";
+  return;
+}
+
+var viewport = $("#viewport");
+var vpRect = viewport.getBoundingClientRect();
+
+var scene = new THREE.Scene();
+scene.background = new THREE.Color(0x0d0c0a);
+
+var camera = new THREE.PerspectiveCamera(50, vpRect.width / vpRect.height, 0.05, 50);
+camera.position.set(1.5, 2.2, 4.5);
+
+var renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: "high-performance" });
+renderer.setSize(vpRect.width, vpRect.height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.1;
+viewport.insertBefore(renderer.domElement, viewport.firstChild);
+
+var controls = new THREE.OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.dampingFactor = 0.06;
+controls.minDistance = 1.0;
+controls.maxDistance = 10.0;
+controls.minPolarAngle = 0.1;
+controls.maxPolarAngle = Math.PI * 0.48;
+controls.target.set(1.5, 1.0, 0);
+controls.mouseButtons = { LEFT: THREE.MOUSE.ROTATE, MIDDLE: THREE.MOUSE.PAN, RIGHT: THREE.MOUSE.PAN };
+controls.update();
+
+/* ========== MATERIALS ========== */
+function makeFrameMat(){
+  var c = framePalettes[state.frameColor];
+  return new THREE.MeshStandardMaterial({ color: c.hex, roughness: c.rough, metalness: c.metal });
+}
+var chromeMat = new THREE.MeshStandardMaterial({ color: 0xe0e6ed, roughness: 0.12, metalness: 0.96 });
+
+function makeWoodTexture(key){
+  var cv = document.createElement("canvas"); cv.width = 512; cv.height = 512;
+  var cx = cv.getContext("2d");
+  var pal = shelfPalettes[key];
+  cx.fillStyle = pal.base; cx.fillRect(0,0,512,512);
+  cx.fillStyle = pal.dark;
+  for(var i=0;i<500;i++){
+    cx.globalAlpha = 0.04 + Math.random()*0.08;
+    cx.fillRect(Math.random()*512, Math.random()*512, 80+Math.random()*350, 1+Math.random()*2);
+  }
+  for(var r=0;r<15;r++){
+    cx.globalAlpha = 0.03 + Math.random()*0.05;
+    cx.fillRect(0, Math.random()*512, 512, 3+Math.random()*10);
+  }
+  cx.globalAlpha = 1;
+  var tex = new THREE.CanvasTexture(cv);
+  tex.wrapS = THREE.RepeatWrapping; tex.wrapT = THREE.RepeatWrapping;
+  tex.repeat.set(2,1);
+  return tex;
+}
+
+function makeShelfMat(){
+  var c = shelfPalettes[state.shelfColor];
+  return new THREE.MeshStandardMaterial({
+    map: makeWoodTexture(state.shelfColor),
+    color: c.hex, roughness: c.rough, metalness: 0.04
+  });
+}
+
+/* Floor texture */
+function makeFloorTexture(){
+  var cv = document.createElement("canvas"); cv.width = 512; cv.height = 512;
+  var cx = cv.getContext("2d");
+  cx.fillStyle = "#2a2520"; cx.fillRect(0,0,512,512);
+  /* Laminate plank pattern */
+  for(var row=0; row<8; row++){
+    var py = row * 64;
+    for(var col=0; col<4; col++){
+      var px = col * 128 + (row % 2) * 64;
+      cx.fillStyle = ["#2e2822","#302a24","#2b2520","#332d26"][Math.floor(Math.random()*4)];
+      cx.fillRect(px, py, 126, 62);
+      /* Grain */
+      cx.fillStyle = "rgba(0,0,0,0.15)";
+      for(var g=0;g<20;g++){
+        cx.fillRect(px+Math.random()*126, py+Math.random()*62, 30+Math.random()*80, 1);
+      }
+      /* Plank gap */
+      cx.fillStyle = "#1a1612";
+      cx.fillRect(px+126, py, 2, 62);
+      cx.fillRect(px, py+62, 128, 2);
+    }
+  }
+  var tex = new THREE.CanvasTexture(cv);
+  tex.wrapS = THREE.RepeatWrapping; tex.wrapT = THREE.RepeatWrapping;
+  tex.repeat.set(3,3);
+  return tex;
+}
+
+/* ========== BUILD ROOM ========== */
+var roomGroup = new THREE.Group();
+scene.add(roomGroup);
+
+var wardrobeGroup = new THREE.Group();
+scene.add(wardrobeGroup);
+
+/* Raycaster planes for placement */
+var raycaster = new THREE.Raycaster();
+var mouse = new THREE.Vector2();
+var floorPlane, backWallPlane;
+
+function buildRoom(){
+  /* Clear room */
+  while(roomGroup.children.length > 0) roomGroup.remove(roomGroup.children[0]);
+
+  var w = state.room.width;
+  var d = state.room.depth;
+  var h = state.room.height;
+
+  /* Floor */
+  var floorGeo = new THREE.PlaneGeometry(w, d);
+  var floorMat = new THREE.MeshStandardMaterial({ map: makeFloorTexture(), roughness: 0.8, metalness: 0.05 });
+  var floor = new THREE.Mesh(floorGeo, floorMat);
+  floor.rotation.x = -Math.PI/2;
+  floor.position.set(w/2, 0, d/2);
+  floor.receiveShadow = true;
+  floor.userData.isFloor = true;
+  roomGroup.add(floor);
+
+  /* Ceiling */
+  var ceilGeo = new THREE.PlaneGeometry(w, d);
+  var ceilMat = new THREE.MeshStandardMaterial({ color: 0xf5f2ec, roughness: 0.9, metalness: 0 });
+  var ceil = new THREE.Mesh(ceilGeo, ceilMat);
+  ceil.rotation.x = Math.PI/2;
+  ceil.position.set(w/2, h, d/2);
+  roomGroup.add(ceil);
+
+  /* Back wall (Z=0) */
+  var bwGeo = new THREE.PlaneGeometry(w, h);
+  var wallMat = new THREE.MeshStandardMaterial({ color: 0xd6d0c6, roughness: 0.92, metalness: 0.01 });
+  var bw = new THREE.Mesh(bwGeo, wallMat);
+  bw.position.set(w/2, h/2, 0.001);
+  bw.receiveShadow = true;
+  bw.userData.isBackWall = true;
+  roomGroup.add(bw);
+
+  /* Left wall (X=0) */
+  var lwGeo = new THREE.PlaneGeometry(d, h);
+  var lw = new THREE.Mesh(lwGeo, wallMat.clone());
+  lw.rotation.y = Math.PI/2;
+  lw.position.set(0.001, h/2, d/2);
+  lw.receiveShadow = true;
+  roomGroup.add(lw);
+
+  /* Right wall (X=w) */
+  var rwGeo = new THREE.PlaneGeometry(d, h);
+  var rw = new THREE.Mesh(rwGeo, wallMat.clone());
+  rw.rotation.y = -Math.PI/2;
+  rw.position.set(w - 0.001, h/2, d/2);
+  rw.receiveShadow = true;
+  roomGroup.add(rw);
+
+  /* Front wall — transparent so user can see inside, or absent */
+  /* We skip front wall for visibility */
+
+  /* Baseboard / Плинтус */
+  var bbMat = new THREE.MeshStandardMaterial({ color: 0xf0ece4, roughness: 0.6 });
+  var bbH = 0.07, bbD = 0.012;
+  /* Back baseboard */
+  var bbBack = new THREE.Mesh(new THREE.BoxGeometry(w, bbH, bbD), bbMat);
+  bbBack.position.set(w/2, bbH/2, bbD/2);
+  roomGroup.add(bbBack);
+  /* Left baseboard */
+  var bbLeft = new THREE.Mesh(new THREE.BoxGeometry(bbD, bbH, d), bbMat);
+  bbLeft.position.set(bbD/2, bbH/2, d/2);
+  roomGroup.add(bbLeft);
+  /* Right baseboard */
+  var bbRight = new THREE.Mesh(new THREE.BoxGeometry(bbD, bbH, d), bbMat);
+  bbRight.position.set(w - bbD/2, bbH/2, d/2);
+  roomGroup.add(bbRight);
+
+  /* Invisible raycaster planes */
+  floorPlane = new THREE.Plane(new THREE.Vector3(0,1,0), 0);
+  backWallPlane = new THREE.Plane(new THREE.Vector3(0,0,1), 0);
+
+  /* Update OrbitControls target */
+  controls.target.set(w/2, h*0.4, d*0.3);
+  camera.position.set(w/2, h*0.7, d + 2.5);
+  controls.update();
+}
+
+/* ========== LIGHTING ========== */
+function buildLighting(){
+  /* Remove old lights */
+  scene.children.forEach(function(c){
+    if(c.isLight) scene.remove(c);
+  });
+  /* Re-add lights (simpler: just add once and don't rebuild) */
+}
+
+/* Static lighting — added once */
+var ambLight = new THREE.AmbientLight(0xfff8f0, 0.5);
+scene.add(ambLight);
+
+var keyLight = new THREE.DirectionalLight(0xfff3e3, 1.2);
+keyLight.position.set(4, 6, 5);
+keyLight.castShadow = true;
+keyLight.shadow.mapSize.width = 2048;
+keyLight.shadow.mapSize.height = 2048;
+keyLight.shadow.camera.near = 0.5;
+keyLight.shadow.camera.far = 20;
+keyLight.shadow.camera.left = -6;
+keyLight.shadow.camera.right = 6;
+keyLight.shadow.camera.top = 6;
+keyLight.shadow.camera.bottom = -1;
+keyLight.shadow.bias = -0.001;
+scene.add(keyLight);
+
+var fillLight = new THREE.DirectionalLight(0xaad0f0, 0.35);
+fillLight.position.set(-3, 4, 3);
+scene.add(fillLight);
+
+/* Ceiling spot lights — repositioned when room rebuilds */
+var spots = [];
+function buildSpots(){
+  spots.forEach(function(s){ scene.remove(s); });
+  spots = [];
+  var w = state.room.width, d = state.room.depth, h = state.room.height;
+  var cols = Math.max(2, Math.round(w / 1.2));
+  for(var i = 0; i < cols; i++){
+    var sp = new THREE.PointLight(0xffeedd, 0.8, h * 2, 1.5);
+    sp.position.set(w * (i + 0.5) / cols, h - 0.05, d * 0.4);
+    scene.add(sp);
+    spots.push(sp);
+  }
+}
+
+/* ========== MODULE BUILDERS ========== */
+function createModuleMesh(type, sectionWidth){
+  var group = new THREE.Group();
+  var sw = sectionWidth || 0.8;
+  var depth = 0.55;
+  var h = state.room.height;
+  var frameMat = makeFrameMat();
+  var shelfMat = makeShelfMat();
+
+  if(type === "upright"){
+    /* Vertical profile - full height */
+    var upGeo = new THREE.BoxGeometry(0.024, h, 0.045);
+    var up = new THREE.Mesh(upGeo, frameMat);
+    up.position.set(0, h/2, depth/2);
+    up.castShadow = true;
+    up.receiveShadow = true;
+    group.add(up);
+    /* Foot */
+    var footGeo = new THREE.CylinderGeometry(0.02, 0.02, 0.01, 12);
+    var foot = new THREE.Mesh(footGeo, chromeMat);
+    foot.position.set(0, 0.005, depth/2);
+    group.add(foot);
+    /* Wall bracket top */
+    var brGeo = new THREE.BoxGeometry(0.024, 0.035, 0.08);
+    var brTop = new THREE.Mesh(brGeo, frameMat);
+    brTop.position.set(0, h*0.92, 0.01);
+    group.add(brTop);
+    /* Wall bracket mid */
+    var brMid = new THREE.Mesh(brGeo, frameMat);
+    brMid.position.set(0, h*0.45, 0.01);
+    group.add(brMid);
+  }
+  else if(type === "shelf"){
+    var shGeo = new THREE.BoxGeometry(sw, 0.022, depth);
+    var sh = new THREE.Mesh(shGeo, shelfMat);
+    sh.position.set(0, 0, depth/2);
+    sh.castShadow = true;
+    sh.receiveShadow = true;
+    group.add(sh);
+  }
+  else if(type === "rail"){
+    var railGeo = new THREE.CylinderGeometry(0.012, 0.012, sw, 16);
+    var rail = new THREE.Mesh(railGeo, chromeMat);
+    rail.rotation.z = Math.PI/2;
+    rail.position.set(0, 0, depth*0.5);
+    rail.castShadow = true;
+    group.add(rail);
+    /* Flanges */
+    var flGeo = new THREE.CylinderGeometry(0.018, 0.018, 0.008, 12);
+    var flL = new THREE.Mesh(flGeo, chromeMat);
+    flL.rotation.z = Math.PI/2;
+    flL.position.set(-sw/2 + 0.004, 0, depth*0.5);
+    group.add(flL);
+    var flR = new THREE.Mesh(flGeo, chromeMat);
+    flR.rotation.z = Math.PI/2;
+    flR.position.set(sw/2 - 0.004, 0, depth*0.5);
+    group.add(flR);
+    /* Hangers */
+    var hangerColors = [0x2f3742, 0x4a433d, 0x736354, 0x1f2226, 0x5a4a3c];
+    var hCount = Math.max(2, Math.floor(sw / 0.06));
+    for(var hi = 0; hi < hCount; hi++){
+      var hx = -sw/2 + 0.05 + hi * ((sw - 0.1) / (hCount - 1));
+      /* Hook */
+      var hookGeo = new THREE.CylinderGeometry(0.002, 0.002, 0.03, 6);
+      var hook = new THREE.Mesh(hookGeo, chromeMat);
+      hook.position.set(hx, -0.015, depth*0.5);
+      group.add(hook);
+      /* Garment */
+      var gCol = hangerColors[hi % hangerColors.length];
+      var gMat = new THREE.MeshStandardMaterial({ color: gCol, roughness: 0.85, metalness: 0.05 });
+      var gLen = 0.30 + Math.random() * 0.12;
+      var gGeo = new THREE.BoxGeometry(0.04, gLen, 0.22);
+      var garment = new THREE.Mesh(gGeo, gMat);
+      garment.position.set(hx, -0.03 - gLen/2, depth*0.5);
+      garment.castShadow = true;
+      group.add(garment);
+    }
+  }
+  else if(type === "basket"){
+    var bw = sw - 0.02;
+    var bh = 0.16;
+    var bd = depth * 0.85;
+    /* Wire frame mesh */
+    var boxGeo = new THREE.BoxGeometry(bw, bh, bd);
+    var wireGeo = new THREE.WireframeGeometry(boxGeo);
+    var wire = new THREE.LineSegments(wireGeo, new THREE.LineBasicMaterial({
+      color: framePalettes[state.frameColor].hex, opacity: 0.7, transparent: true
+    }));
+    wire.position.set(0, bh/2, depth/2);
+    group.add(wire);
+    /* Handle */
+    var hdl = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.012, 0.018), chromeMat);
+    hdl.position.set(0, bh*0.7, depth*0.95);
+    group.add(hdl);
+    /* Runners */
+    var runGeo = new THREE.BoxGeometry(0.008, 0.012, depth);
+    var runL = new THREE.Mesh(runGeo, chromeMat);
+    runL.position.set(-bw/2 - 0.005, bh/2, depth/2);
+    group.add(runL);
+    var runR = new THREE.Mesh(runGeo, chromeMat);
+    runR.position.set(bw/2 + 0.005, bh/2, depth/2);
+    group.add(runR);
+  }
+  else if(type === "shoe_rack"){
+    var srW = sw - 0.02;
+    var srGeo = new THREE.BoxGeometry(srW, 0.008, depth*0.75);
+    var srMesh = new THREE.Mesh(srGeo, frameMat);
+    srMesh.rotation.x = Math.PI * 0.12;
+    srMesh.position.set(0, 0.04, depth*0.45);
+    srMesh.castShadow = true;
+    group.add(srMesh);
+    /* Lip */
+    var lip = new THREE.Mesh(new THREE.BoxGeometry(srW, 0.018, 0.006), chromeMat);
+    lip.position.set(0, 0.055, depth*0.82);
+    group.add(lip);
+    /* Shoes */
+    var shoeMat = new THREE.MeshStandardMaterial({ color: 0x1f1e1c, roughness: 0.5 });
+    var shoeGeo = new THREE.BoxGeometry(0.065, 0.04, 0.16);
+    for(var si = 0; si < 2; si++){
+      var sx = (si === 0) ? -srW*0.25 : srW*0.25;
+      var sL = new THREE.Mesh(shoeGeo, shoeMat);
+      sL.position.set(sx - 0.04, 0.05, depth*0.5);
+      sL.rotation.x = 0.12;
+      sL.castShadow = true;
+      group.add(sL);
+      var sR = new THREE.Mesh(shoeGeo, shoeMat);
+      sR.position.set(sx + 0.04, 0.05, depth*0.5);
+      sR.rotation.x = 0.12;
+      sR.castShadow = true;
+      group.add(sR);
+    }
+  }
+  else if(type === "drawer"){
+    var dw = sw - 0.02;
+    var dh = 0.20;
+    var dd = depth * 0.9;
+    var drawerMat = makeShelfMat();
+    var dBox = new THREE.Mesh(new THREE.BoxGeometry(dw, dh, dd), drawerMat);
+    dBox.position.set(0, dh/2, depth/2);
+    dBox.castShadow = true;
+    group.add(dBox);
+    /* Handle */
+    var hndl = new THREE.Mesh(new THREE.BoxGeometry(dw*0.3, 0.012, 0.02), chromeMat);
+    hndl.position.set(0, dh*0.5, depth*0.97);
+    group.add(hndl);
+    /* Runners */
+    var rnGeo = new THREE.BoxGeometry(0.008, 0.01, depth);
+    var rnL = new THREE.Mesh(rnGeo, chromeMat);
+    rnL.position.set(-dw/2 - 0.005, dh/2, depth/2);
+    group.add(rnL);
+    var rnR = new THREE.Mesh(rnGeo, chromeMat);
+    rnR.position.set(dw/2 + 0.005, dh/2, depth/2);
+    group.add(rnR);
+  }
+
+  return group;
+}
+
+/* ========== PLACEMENT SYSTEM ========== */
+function enterPlacementMode(type){
+  cancelPlacement();
+  state.placementMode = type;
+  $$(".mod-btn[data-module]").forEach(function(b){
+    b.classList.toggle("active", b.getAttribute("data-module") === type);
+  });
+  showStatus("Размещение: " + moduleLabels[type] + " — кликните в сцену");
+
+  /* Create ghost mesh */
+  var sw = findNearestSectionWidth(state.room.width / 2);
+  var ghost = createModuleMesh(type, sw);
+  ghost.traverse(function(child){
+    if(child.isMesh){
+      child.material = child.material.clone();
+      child.material.transparent = true;
+      child.material.opacity = 0.5;
+    }
+    if(child.isLineSegments){
+      child.material = child.material.clone();
+      child.material.opacity = 0.3;
+    }
+  });
+  scene.add(ghost);
+  state.ghostMesh = ghost;
+
+  renderer.domElement.style.cursor = "crosshair";
+}
+
+function cancelPlacement(){
+  state.placementMode = null;
+  if(state.ghostMesh){
+    scene.remove(state.ghostMesh);
+    state.ghostMesh = null;
+  }
+  $$(".mod-btn[data-module]").forEach(function(b){ b.classList.remove("active"); });
+  hideStatus();
+  renderer.domElement.style.cursor = "grab";
+}
+
+function findNearestSectionWidth(x){
+  if(state.uprightPositions.length < 2) return 0.8;
+  var sorted = state.uprightPositions.slice().sort(function(a,b){ return a-b; });
+  for(var i = 0; i < sorted.length - 1; i++){
+    if(x >= sorted[i] && x <= sorted[i+1]){
+      return sorted[i+1] - sorted[i];
+    }
+  }
+  return 0.8;
+}
+
+function findSectionBounds(x){
+  if(state.uprightPositions.length < 2) return null;
+  var sorted = state.uprightPositions.slice().sort(function(a,b){ return a-b; });
+  for(var i = 0; i < sorted.length - 1; i++){
+    if(x >= sorted[i] && x <= sorted[i+1]){
+      return { left: sorted[i], right: sorted[i+1] };
+    }
+  }
+  return null;
+}
+
+function snapY(y, type){
+  /* Snap to 5cm grid */
+  var snap = Math.round(y / 0.05) * 0.05;
+  return Math.max(0.05, Math.min(snap, state.room.height - 0.15));
+}
+
+function snapX(x){
+  /* Snap to 5cm grid along back wall */
+  var snap = Math.round(x / 0.05) * 0.05;
+  return Math.max(0.05, Math.min(snap, state.room.width - 0.05));
+}
+
+function placeModule(type, x, y){
+  var sw = 0.8;
+  var depth = 0.55;
+
+  if(type === "upright"){
+    x = snapX(x);
+    y = 0;
+    /* Add upright position */
+    if(state.uprightPositions.indexOf(x) === -1){
+      state.uprightPositions.push(x);
+      state.uprightPositions.sort(function(a,b){ return a-b; });
+    }
+  } else {
+    /* Must be between two uprights */
+    var bounds = findSectionBounds(x);
+    if(!bounds){
+      showToast("Сначала расставьте стойки КДМ! Модули размещаются между двумя стойками.");
+      return;
+    }
+    sw = bounds.right - bounds.left;
+    x = (bounds.left + bounds.right) / 2;
+    y = snapY(y, type);
+  }
+
+  var meshGroup = createModuleMesh(type, sw);
+  meshGroup.position.set(x, y, 0);
+  meshGroup.userData.moduleType = type;
+  meshGroup.userData.moduleId = state.nextId;
+  wardrobeGroup.add(meshGroup);
+
+  state.placedModules.push({
+    type: type, x: x, y: y, z: 0,
+    id: state.nextId, meshGroup: meshGroup, sectionWidth: sw
+  });
+  state.nextId++;
+  updateCost();
+}
+
+function removeModule(id){
+  var idx = -1;
+  state.placedModules.forEach(function(m, i){
+    if(m.id === id) idx = i;
+  });
+  if(idx === -1) return;
+  var mod = state.placedModules[idx];
+  wardrobeGroup.remove(mod.meshGroup);
+
+  /* If upright, remove from upright positions */
+  if(mod.type === "upright"){
+    var uIdx = state.uprightPositions.indexOf(mod.x);
+    if(uIdx !== -1) state.uprightPositions.splice(uIdx, 1);
+  }
+
+  state.placedModules.splice(idx, 1);
+  state.selectedId = null;
+  hideSelInfo();
+  updateCost();
+}
+
+/* ========== SELECTION ========== */
+var selOutline = null;
+function selectModule(id){
+  deselectAll();
+  state.selectedId = id;
+  var mod = null;
+  state.placedModules.forEach(function(m){ if(m.id === id) mod = m; });
+  if(!mod) return;
+
+  /* Create outline */
+  var box = new THREE.Box3().setFromObject(mod.meshGroup);
+  var size = new THREE.Vector3();
+  box.getSize(size);
+  var center = new THREE.Vector3();
+  box.getCenter(center);
+
+  var outGeo = new THREE.BoxGeometry(size.x + 0.03, size.y + 0.03, size.z + 0.03);
+  var outMat = new THREE.MeshBasicMaterial({ color: 0xc8a87a, wireframe: true, transparent: true, opacity: 0.6 });
+  selOutline = new THREE.Mesh(outGeo, outMat);
+  selOutline.position.copy(center);
+  scene.add(selOutline);
+
+  /* Show info bar */
+  $("#selName").textContent = moduleLabels[mod.type] || mod.type;
+  $("#selInfo").classList.add("show");
+}
+
+function deselectAll(){
+  state.selectedId = null;
+  if(selOutline){ scene.remove(selOutline); selOutline = null; }
+  hideSelInfo();
+}
+
+function hideSelInfo(){ $("#selInfo").classList.remove("show"); }
+
+/* ========== PRESETS ========== */
+function applyPreset(presetName){
+  /* Clear everything */
+  clearAll();
+
+  var w = state.room.width;
+  var h = state.room.height;
+  var sectionCount = Math.max(2, Math.round(w / 0.8));
+  var secW = w / sectionCount;
+
+  /* Place uprights */
+  for(var i = 0; i <= sectionCount; i++){
+    var ux = i * secW;
+    placeModule("upright", ux, 0);
+  }
+
+  /* Place modules based on preset */
+  var patterns = {
+    family: function(secIdx, cx){
+      if(secIdx % 3 === 0){
+        placeModule("rail", cx, h * 0.78);
+        placeModule("rail", cx, h * 0.42);
+        placeModule("shelf", cx, h * 0.82);
+      } else if(secIdx % 3 === 1){
+        placeModule("rail", cx, h * 0.78);
+        placeModule("shelf", cx, h * 0.36);
+        placeModule("shoe_rack", cx, 0.08);
+      } else {
+        placeModule("shelf", cx, h * 0.72);
+        placeModule("shelf", cx, h * 0.50);
+        placeModule("basket", cx, h * 0.28);
+        placeModule("basket", cx, 0.08);
+      }
+      /* Mezzanine shelf */
+      placeModule("shelf", cx, h * 0.85);
+    },
+    max_hang: function(secIdx, cx){
+      placeModule("rail", cx, h * 0.78);
+      placeModule("shelf", cx, h * 0.82);
+      placeModule("rail", cx, h * 0.40);
+      placeModule("shelf", cx, h * 0.44);
+      placeModule("shelf", cx, h * 0.85);
+    },
+    storage: function(secIdx, cx){
+      placeModule("shelf", cx, h * 0.85);
+      placeModule("shelf", cx, h * 0.72);
+      placeModule("shelf", cx, h * 0.55);
+      if(secIdx % 2 === 0){
+        placeModule("basket", cx, h * 0.34);
+        placeModule("basket", cx, h * 0.14);
+      } else {
+        placeModule("drawer", cx, h * 0.32);
+        placeModule("drawer", cx, h * 0.08);
+      }
+    }
+  };
+
+  var fn = patterns[presetName];
+  if(!fn) return;
+
+  for(var s = 0; s < sectionCount; s++){
+    var cx = (s + 0.5) * secW;
+    fn(s, cx);
+  }
+}
+
+function clearAll(){
+  /* Remove all placed modules */
+  while(state.placedModules.length > 0){
+    var mod = state.placedModules[0];
+    wardrobeGroup.remove(mod.meshGroup);
+    state.placedModules.shift();
+  }
+  state.uprightPositions = [];
+  state.selectedId = null;
+  deselectAll();
+  updateCost();
+}
+
+/* ========== COST CALCULATION ========== */
+function updateCost(){
+  var counts = {};
+  var total = 0;
+  state.placedModules.forEach(function(m){
+    if(!counts[m.type]) counts[m.type] = 0;
+    counts[m.type]++;
+    total += (modulePrices[m.type] || 0);
+  });
+
+  /* Surcharges */
+  if(state.shelfColor === "walnut" || state.shelfColor === "graphite") total += 3000;
+  if(state.frameColor === "champagne") total += 4000;
+
+  var low = Math.round((total * 0.94) / 1000) * 1000;
+  var high = Math.round((total * 1.08) / 1000) * 1000;
+
+  $("#costPrice").textContent = (total > 0) ? (fmt(low) + " — " + fmt(high) + NB + "₽") : "0 ₽";
+  var inst = Math.round(low / 6);
+  $("#costInst").textContent = (total > 0) ? ("Рассрочка 0% — от " + fmt(inst) + NB + "₽/мес") : "";
+
+  /* Specs */
+  var specsHtml = "";
+  Object.keys(counts).forEach(function(type){
+    specsHtml += '<span class="cost__spec">' + moduleLabels[type] + ': <b>' + counts[type] + ' шт</b></span>';
+  });
+  $("#costSpecs").innerHTML = specsHtml;
+}
+
+function getSpecText(){
+  var counts = {};
+  var total = 0;
+  state.placedModules.forEach(function(m){
+    if(!counts[m.type]) counts[m.type] = 0;
+    counts[m.type]++;
+    total += (modulePrices[m.type] || 0);
+  });
+  var low = Math.round((total * 0.94) / 1000) * 1000;
+  var high = Math.round((total * 1.08) / 1000) * 1000;
+
+  var r = state.room;
+  var text = "Гардеробная система КДМ (комната " + fmtDec(r.width) + "×" + fmtDec(r.depth) + "×" + fmtDec2(r.height) + " м). ";
+  text += "Каркас: " + state.frameColor + ", полки: " + state.shelfColor + ". ";
+  text += "Модули: ";
+  Object.keys(counts).forEach(function(type){
+    text += moduleLabels[type] + " " + counts[type] + " шт, ";
+  });
+  text += "Расчёт: " + fmt(low) + "–" + fmt(high) + NB + "₽";
+  return text;
+}
+
+/* ========== UI HELPERS ========== */
+function showStatus(msg){
+  var el = $("#viewStatus");
+  el.textContent = msg;
+  el.style.display = "block";
+}
+function hideStatus(){
+  var el = $("#viewStatus");
+  el.style.display = "none";
+}
+function showToast(msg){
+  var t = $("#toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  setTimeout(function(){ t.classList.remove("show"); }, 3000);
+}
+
+/* ========== EVENT HANDLERS ========== */
+
+/* Module buttons */
+$$(".mod-btn[data-module]").forEach(function(btn){
+  btn.addEventListener("click", function(){
+    var type = btn.getAttribute("data-module");
+    if(state.placementMode === type){
+      cancelPlacement();
+    } else {
+      enterPlacementMode(type);
+    }
+  });
+});
+
+/* Preset buttons */
+$$("[data-preset]").forEach(function(btn){
+  btn.addEventListener("click", function(){
+    var preset = btn.getAttribute("data-preset");
+    applyPreset(preset);
+  });
+});
+
+/* Frame color swatches */
+$$("#frameSwatches .swatch").forEach(function(btn){
+  btn.addEventListener("click", function(){
+    $$("#frameSwatches .swatch").forEach(function(b){ b.classList.remove("on"); });
+    btn.classList.add("on");
+    state.frameColor = btn.getAttribute("data-v");
+    rebuildAllModules();
+    updateCost();
+  });
+});
+
+/* Shelf color swatches */
+$$("#shelfSwatches .swatch").forEach(function(btn){
+  btn.addEventListener("click", function(){
+    $$("#shelfSwatches .swatch").forEach(function(b){ b.classList.remove("on"); });
+    btn.classList.add("on");
+    state.shelfColor = btn.getAttribute("data-v");
+    rebuildAllModules();
+    updateCost();
+  });
+});
+
+/* Room dimension sliders */
+$("#roomW").addEventListener("input", function(){
+  state.room.width = parseFloat(this.value);
+  $("#roomWVal").textContent = fmtDec(state.room.width) + " м";
+  clearAll();
+  buildRoom();
+  buildSpots();
+});
+$("#roomD").addEventListener("input", function(){
+  state.room.depth = parseFloat(this.value);
+  $("#roomDVal").textContent = fmtDec(state.room.depth) + " м";
+  clearAll();
+  buildRoom();
+  buildSpots();
+});
+$("#roomH").addEventListener("input", function(){
+  state.room.height = parseFloat(this.value);
+  $("#roomHVal").textContent = fmtDec2(state.room.height) + " м";
+  clearAll();
+  buildRoom();
+  buildSpots();
+});
+
+/* Camera modes */
+$$(".topbar__cam").forEach(function(btn){
+  btn.addEventListener("click", function(){
+    $$(".topbar__cam").forEach(function(b){ b.classList.remove("on"); });
+    btn.classList.add("on");
+    var mode = btn.getAttribute("data-cam");
+    var w = state.room.width, d = state.room.depth, h = state.room.height;
+    if(mode === "3d"){
+      camera.position.set(w/2, h*0.7, d + 2.5);
+      controls.target.set(w/2, h*0.4, d*0.3);
+      controls.enableRotate = true;
+    } else if(mode === "front"){
+      camera.position.set(w/2, h/2, d + 3);
+      controls.target.set(w/2, h/2, 0);
+      controls.enableRotate = false;
+    } else if(mode === "top"){
+      camera.position.set(w/2, h + 3, d/2);
+      controls.target.set(w/2, 0, d/2);
+      controls.enableRotate = false;
+    }
+    controls.update();
+  });
+});
+
+/* Reset camera */
+$("#btnResetCam").addEventListener("click", function(){
+  var w = state.room.width, d = state.room.depth, h = state.room.height;
+  camera.position.set(w/2, h*0.7, d + 2.5);
+  controls.target.set(w/2, h*0.4, d*0.3);
+  controls.enableRotate = true;
+  controls.update();
+  $$(".topbar__cam").forEach(function(b){ b.classList.remove("on"); });
+  $(".topbar__cam[data-cam='3d']").classList.add("on");
+});
+
+/* Clear all */
+$("#btnClearAll").addEventListener("click", function(){ clearAll(); });
+
+/* Order button */
+function doOrder(){
+  var text = getSpecText();
+  if(window.opener && window.opener.document){
+    var commentInput = window.opener.document.querySelector('textarea[name="comment"]');
+    if(commentInput){
+      commentInput.value = text;
+    }
+    var cta = window.opener.document.querySelector("#cta");
+    if(cta) cta.scrollIntoView({ behavior: "smooth" });
+    showToast("Проект передан на главную страницу!");
+  } else {
+    /* Fallback: copy to clipboard */
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){
+        showToast("Спецификация скопирована! Вставьте в WhatsApp/Telegram");
+      });
+    }
+  }
+}
+$("#btnOrder").addEventListener("click", doOrder);
+$("#costOrder").addEventListener("click", doOrder);
+
+/* Copy spec */
+$("#costCopy").addEventListener("click", function(){
+  var text = getSpecText();
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(function(){
+      showToast("Спецификация скопирована!");
+    });
+  }
+});
+
+/* Delete selected */
+$("#selDelete").addEventListener("click", function(){
+  if(state.selectedId !== null){
+    removeModule(state.selectedId);
+  }
+});
+
+/* ========== MOUSE INTERACTION ========== */
+var mouseNDC = new THREE.Vector2(-999, -999);
+var mouseClient = { x: 0, y: 0 };
+
+renderer.domElement.addEventListener("mousemove", function(e){
+  var rect = renderer.domElement.getBoundingClientRect();
+  mouseNDC.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+  mouseNDC.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+  mouseClient.x = e.clientX;
+  mouseClient.y = e.clientY;
+
+  if(state.placementMode && state.ghostMesh){
+    moveGhost();
+  }
+});
+
+renderer.domElement.addEventListener("click", function(e){
+  var rect = renderer.domElement.getBoundingClientRect();
+  mouseNDC.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+  mouseNDC.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+
+  if(state.placementMode){
+    /* Place module */
+    var pos = getPlacementPosition();
+    if(pos){
+      placeModule(state.placementMode, pos.x, pos.y);
+      /* Stay in placement mode for quick repeated placement */
+    }
+    return;
+  }
+
+  /* Check if clicked on a module */
+  raycaster.setFromCamera(mouseNDC, camera);
+  var allMeshes = [];
+  state.placedModules.forEach(function(m){
+    m.meshGroup.traverse(function(child){
+      if(child.isMesh){
+        child.userData.parentModuleId = m.id;
+        allMeshes.push(child);
+      }
+    });
+  });
+  var hits = raycaster.intersectObjects(allMeshes);
+  if(hits.length > 0){
+    var hitId = hits[0].object.userData.parentModuleId;
+    if(hitId !== undefined){
+      selectModule(hitId);
+      return;
+    }
+  }
+  deselectAll();
+});
+
+/* Right click to cancel placement */
+renderer.domElement.addEventListener("contextmenu", function(e){
+  if(state.placementMode){
+    e.preventDefault();
+    cancelPlacement();
+  }
+});
+
+/* ESC to cancel */
+document.addEventListener("keydown", function(e){
+  if(e.key === "Escape"){
+    cancelPlacement();
+    deselectAll();
+  }
+  if(e.key === "Delete" && state.selectedId !== null){
+    removeModule(state.selectedId);
+  }
+});
+
+function getPlacementPosition(){
+  raycaster.setFromCamera(mouseNDC, camera);
+
+  if(state.placementMode === "upright"){
+    /* Place on floor, along back wall */
+    var target = new THREE.Vector3();
+    raycaster.ray.intersectPlane(new THREE.Plane(new THREE.Vector3(0,0,1), 0), target);
+    if(target){
+      return { x: snapX(target.x), y: 0 };
+    }
+  } else {
+    /* Place on back wall (XY plane Z=0) */
+    var target2 = new THREE.Vector3();
+    raycaster.ray.intersectPlane(new THREE.Plane(new THREE.Vector3(0,0,1), 0), target2);
+    if(target2){
+      return { x: target2.x, y: snapY(target2.y, state.placementMode) };
+    }
+  }
+  return null;
+}
+
+function moveGhost(){
+  var pos = getPlacementPosition();
+  if(!pos || !state.ghostMesh) return;
+
+  if(state.placementMode === "upright"){
+    state.ghostMesh.position.set(pos.x, 0, 0);
+  } else {
+    var bounds = findSectionBounds(pos.x);
+    if(bounds){
+      var cx = (bounds.left + bounds.right) / 2;
+      state.ghostMesh.position.set(cx, pos.y, 0);
+    } else {
+      state.ghostMesh.position.set(pos.x, pos.y, 0);
+    }
+  }
+}
+
+/* ========== REBUILD MODULES (material change) ========== */
+function rebuildAllModules(){
+  var saved = state.placedModules.map(function(m){
+    return { type: m.type, x: m.x, y: m.y, id: m.id, sectionWidth: m.sectionWidth };
+  });
+
+  /* Clear meshes only */
+  state.placedModules.forEach(function(m){
+    wardrobeGroup.remove(m.meshGroup);
+  });
+  state.placedModules = [];
+
+  /* Rebuild */
+  saved.forEach(function(s){
+    var meshGroup = createModuleMesh(s.type, s.sectionWidth);
+    meshGroup.position.set(s.x, s.y, 0);
+    meshGroup.userData.moduleType = s.type;
+    meshGroup.userData.moduleId = s.id;
+    wardrobeGroup.add(meshGroup);
+    state.placedModules.push({
+      type: s.type, x: s.x, y: s.y, z: 0,
+      id: s.id, meshGroup: meshGroup, sectionWidth: s.sectionWidth
+    });
+  });
+
+  deselectAll();
+}
+
+/* ========== RESIZE ========== */
+window.addEventListener("resize", function(){
+  var rect = viewport.getBoundingClientRect();
+  camera.aspect = rect.width / rect.height;
+  camera.updateProjectionMatrix();
+  renderer.setSize(rect.width, rect.height);
+});
+
+/* ========== ANIMATION LOOP ========== */
+function animate(){
+  requestAnimationFrame(animate);
+  controls.update();
+  renderer.render(scene, camera);
+}
+
+/* ========== INIT ========== */
+buildRoom();
+buildSpots();
+updateCost();
+/* Auto-apply "family" preset for first-time demo */
+applyPreset("family");
+animate();
+
+/* Hide hint after 5 seconds */
+setTimeout(function(){
+  var hint = $("#viewHint");
+  if(hint) hint.classList.add("hidden");
+}, 5000);
+
+})();
+</script>
+</body>
+</html>
