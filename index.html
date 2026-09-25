@@ -461,9 +461,19 @@ em, i{font-style:normal}
 .pnl__ins b{color:#F3DFBF; font-weight:600}
 
 /* ========== Hero promo badge & accents ========== */
-.hero__promo{display:inline-flex; align-items:center; gap:12px; margin-top:20px; padding:10px 18px; background:rgba(200,168,122,.12); border:1px solid rgba(200,168,122,.35); border-radius:999px; font-size:13.5px; color:var(--paper); width:fit-content; backdrop-filter:blur(8px)}
-.hero__promo .promo-tag{background:#C8A87A; color:#0E0D0B; font:700 11px/1 var(--sans); text-transform:uppercase; letter-spacing:.08em; padding:4px 9px; border-radius:999px}
-.hero__promo b{color:#F3DFBF; font-weight:600}
+.hero__promo{
+  display:inline-flex; align-items:center; gap:12px; margin-top:20px; padding:10px 18px;
+  background:transparent;
+  border:1px solid rgba(255,255,255,.24);
+  border-radius:999px; font-size:13.5px; color:#FFFFFF;
+  width:fit-content; backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+}
+.hero__promo .promo-tag{
+  background:#FFFFFF; color:#0E0D0B; font:700 11px/1 var(--sans);
+  text-transform:uppercase; letter-spacing:.08em; padding:4px 10px; border-radius:999px;
+  flex-shrink:0;
+}
+.hero__promo b{color:#FFFFFF; font-weight:700}
 
 /* ========== Proprietary Wardrobe Configurator ========== */
 .cfg-sec{background:#0e0d0c; color:var(--paper); border-top:1px solid var(--line-d); border-bottom:1px solid var(--line-d); overflow:hidden}
@@ -898,6 +908,7 @@ em, i{font-style:normal}
   .hero__v{display:none}
   .hero__act{flex-direction:column; width:100%}
   .hero__act .b{width:100%; justify-content:center}
+  .hero__promo{border-radius:14px; font-size:12.5px; line-height:1.45; padding:10px 14px}
   .sw{display:flex; width:100%}
   .sw button{flex:1; padding:0 10px; font-size:13px}
   .flt{flex-wrap:nowrap; overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none; gap:16px; padding-bottom:12px}
