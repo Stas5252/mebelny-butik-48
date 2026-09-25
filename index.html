@@ -505,13 +505,39 @@ em, i{font-style:normal}
 .pl span{display:block; margin-top:8px; font-size:14px; line-height:1.55; color:rgba(255,255,255,.85)}
 
 /* ========== 14. materials & steps ========== */
-.mt{display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid var(--line); margin-top:clamp(28px,3.5vw,48px)}
-.mt__i{padding:clamp(20px,2.4vw,30px) clamp(14px,1.8vw,24px) clamp(24px,2.6vw,34px) 0; border-right:1px solid var(--line); transition:background .5s var(--e)}
-.mt__i:last-child{border-right:0}
-.mt__i:hover{background:rgba(20,19,16,.03)}
-.mt__n{font:400 20px/1.2 var(--serif); letter-spacing:-.015em}
-.mt__p{margin-top:10px; font:500 11px/1 var(--sans); letter-spacing:.14em; text-transform:uppercase; color:var(--clay)}
-.mt__d{margin-top:12px; font-size:13.5px; line-height:1.55; color:var(--ink-3)}
+.mt{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(12px,1.6vw,24px);
+  margin-top:clamp(32px,4vw,56px);
+}
+.mt__card{
+  background:#FFFFFF;
+  border:1px solid rgba(28,19,14,.09);
+  border-radius:6px;
+  padding:clamp(24px,2.2vw,34px) clamp(20px,1.8vw,28px);
+  display:flex; flex-direction:column; justify-content:space-between;
+  min-height:220px;
+  box-shadow:0 4px 18px rgba(28,19,14,.03);
+  transition:transform .4s var(--e), box-shadow .4s var(--e), border-color .4s var(--e);
+  position:relative;
+  overflow:hidden;
+}
+.mt__card::before{
+  content:""; position:absolute; top:0; left:0; width:100%; height:2px;
+  background:linear-gradient(90deg, var(--clay) 0%, transparent 100%);
+  opacity:0; transition:opacity .4s var(--e);
+}
+.mt__card:hover{
+  transform:translateY(-3px);
+  border-color:rgba(82,52,34,.25);
+  box-shadow:0 12px 30px rgba(28,19,14,.07);
+}
+.mt__card:hover::before{opacity:1}
+.mt__top{display:flex; align-items:center; justify-content:space-between; margin-bottom:14px}
+.mt__tag{font:600 10.5px/1 var(--sans); letter-spacing:.16em; text-transform:uppercase; color:var(--clay)}
+.mt__dot{width:4px; height:4px; border-radius:50%; background:var(--clay); opacity:.75}
+.mt__n{font:400 clamp(20px,1.8vw,25px)/1.2 var(--serif); letter-spacing:-.015em; color:var(--ink); margin-bottom:6px}
+.mt__p{font:500 12px/1.3 var(--sans); letter-spacing:.04em; color:var(--clay-2); margin-bottom:12px}
+.mt__d{font-size:13.5px; line-height:1.55; color:var(--ink-2); margin:0}
 .sp2{margin-top:clamp(40px,5vw,72px); border-top:1px solid var(--line)}
 .sp2 li{display:grid; grid-template-columns:74px minmax(0,.9fr) minmax(0,1.3fr); gap:clamp(14px,2vw,34px); align-items:baseline; padding:clamp(18px,2.2vw,28px) 0; border-bottom:1px solid var(--line); transition:padding-left .5s var(--e)}
 .sp2 li:hover{padding-left:10px}
@@ -525,19 +551,31 @@ em, i{font-style:normal}
 .rt__v{font:400 clamp(36px,4vw,58px)/1 var(--serif); letter-spacing:-.03em}
 .rt__s{display:flex; gap:3px; color:#C79A4B}
 .rt__c{font-size:13px; color:var(--ink-3); margin-top:6px}
-.rvs{display:grid; grid-template-columns:repeat(3,1fr); gap:0; margin-top:clamp(30px,4vw,52px); border-top:1px solid var(--line)}
-.rv{padding:clamp(24px,2.6vw,36px) clamp(18px,2.2vw,32px) clamp(28px,3vw,40px) 0; border-right:1px solid var(--line)}
-.rv:last-child{border-right:0}
-.rv__q{font:400 clamp(17px,1.5vw,21px)/1.5 var(--serif); letter-spacing:-.012em}
+.rvs{display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(14px,1.8vw,24px); margin-top:clamp(30px,4vw,52px)}
+.rv{
+  background:#FFFFFF;
+  border:1px solid rgba(28,19,14,.09);
+  border-radius:6px;
+  padding:clamp(24px,2.4vw,34px) clamp(20px,2vw,28px);
+  display:flex; flex-direction:column; justify-content:space-between;
+  box-shadow:0 4px 18px rgba(28,19,14,.03);
+  transition:transform .4s var(--e), box-shadow .4s var(--e), border-color .4s var(--e);
+}
+.rv:hover{
+  transform:translateY(-3px);
+  border-color:rgba(82,52,34,.25);
+  box-shadow:0 12px 30px rgba(28,19,14,.07);
+}
+.rv__q{font:400 clamp(16px,1.4vw,19px)/1.55 var(--serif); letter-spacing:-.012em; color:var(--ink)}
 .rv__q::before{content:"«"}
 .rv__q::after{content:"»"}
-.rv__b{display:flex; align-items:center; gap:12px; margin-top:22px}
+.rv__b{display:flex; align-items:center; gap:12px; margin-top:22px; padding-top:16px; border-top:1px solid rgba(28,19,14,.07)}
 .rv__av{width:38px; height:38px; border-radius:50%; background:var(--paper-3); display:grid; place-items:center; font:400 15px/1 var(--serif); color:var(--ink-2); flex:none}
-.rv__nm{font-size:14px}
-.rv__dt{font-size:12px; color:var(--ink-3); margin-top:3px}
+.rv__nm{font-size:14px; font-weight:600; color:var(--ink)}
+.rv__dt{font-size:12px; color:var(--ink-3); margin-top:2px}
 .ya{width:17px; height:17px; border-radius:50%; background:#FC3F1D; color:#fff; font:700 10px/17px var(--sans); text-align:center; flex:none}
-.yabar{display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap; margin-top:clamp(26px,3vw,40px); padding:22px 26px; border:1px solid var(--line); background:#fff}
-.yabar b{font-weight:400; font-size:15px}
+.yabar{display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap; margin-top:clamp(26px,3vw,40px); padding:22px 26px; border:1px solid rgba(28,19,14,.09); border-radius:6px; background:#fff; box-shadow:0 4px 18px rgba(28,19,14,.03)}
+.yabar b{font-weight:600; font-size:15px; color:var(--ink)}
 .yabar span{display:block; font-size:13px; color:var(--ink-3); margin-top:5px}
 
 /* ========== 16. contacts & map ========== */
@@ -589,11 +627,7 @@ em, i{font-style:normal}
   .pr__m{aspect-ratio:16/10; order:-1}
   .st{grid-template-columns:repeat(2,1fr)}
   .mt{grid-template-columns:repeat(2,1fr)}
-  .mt__i:nth-child(2){border-right:0}
-  .mt__i:nth-child(3),.mt__i:nth-child(4){border-top:1px solid var(--line)}
   .rvs{grid-template-columns:1fr}
-  .rv{border-right:0; border-bottom:1px solid var(--line); padding-right:0}
-  .rv:last-child{border-bottom:0}
   .ft__in{grid-template-columns:repeat(2,1fr); gap:30px}
 }
 @media (max-width:1040px){
@@ -617,8 +651,7 @@ em, i{font-style:normal}
   .wk,.wk--w{grid-column:span 12}
   .st{grid-template-columns:1fr}
   .mt{grid-template-columns:1fr}
-  .mt__i{border-right:0; border-top:1px solid var(--line); padding-right:0}
-  .mt__i:first-child{border-top:0}
+  .rvs{grid-template-columns:1fr}
   .opts,.qz__opts,.frm{grid-template-columns:1fr}
   .ci__r{grid-template-columns:1fr; gap:6px}
   .ft__in{grid-template-columns:1fr}
@@ -1281,10 +1314,53 @@ em, i{font-style:normal}
     </div>
 
     <div class="mt">
-      <div class="mt__i r"><div class="mt__n">ЛДСП</div><div class="mt__p">базовый</div><div class="mt__d">Egger и Kronospan, кромка 1&nbsp;мм. Оптимально для шкафов и съёмных квартир.</div></div>
-      <div class="mt__i r" style="--d:.06s"><div class="mt__n">Плёнка МДФ</div><div class="mt__p">самый частый</div><div class="mt__d">Фрезеровка, матовые и суперматовые фактуры, устойчивость к пару.</div></div>
-      <div class="mt__i r" style="--d:.12s"><div class="mt__n">Эмаль</div><div class="mt__p">любой цвет RAL</div><div class="mt__d">Глубокий матовый цвет, ремонтопригодность, аккуратные торцы.</div></div>
-      <div class="mt__i r" style="--d:.18s"><div class="mt__n">Пластик Eterno & AGT</div><div class="mt__p">премиум-матовый</div><div class="mt__d">Сверхстойкий итальянский пластик Eterno и плиты AGT: защита от царапин, бархатный soft-touch.</div></div>
+      <div class="mt__card r" style="--d:.06s">
+        <div>
+          <div class="mt__top">
+            <span class="mt__tag">01 / Базовый</span>
+            <span class="mt__dot"></span>
+          </div>
+          <div class="mt__n">ЛДСП</div>
+          <div class="mt__p">Egger & Kronospan &middot; кромка 1 мм</div>
+        </div>
+        <p class="mt__d">Оптимально для надёжных шкафов, гардеробных зон и практичных решений без переплат.</p>
+      </div>
+
+      <div class="mt__card r" style="--d:.12s">
+        <div>
+          <div class="mt__top">
+            <span class="mt__tag">02 / Самый частый</span>
+            <span class="mt__dot"></span>
+          </div>
+          <div class="mt__n">Плёнка МДФ</div>
+          <div class="mt__p">Фрезеровка &middot; матовые фактуры</div>
+        </div>
+        <p class="mt__d">Любые формы фрезеровок, стойкость к кухонному пару, матовые и суперматовые декоры.</p>
+      </div>
+
+      <div class="mt__card r" style="--d:.18s">
+        <div>
+          <div class="mt__top">
+            <span class="mt__tag">03 / Индивидуальный</span>
+            <span class="mt__dot"></span>
+          </div>
+          <div class="mt__n">Эмаль RAL/NCS</div>
+          <div class="mt__p">Глубокий матовый &middot; без швов</div>
+        </div>
+        <p class="mt__d">Идеальная гладкость торцов без стыков кромки, покраска в любой из 2000+ оттенков палитры RAL.</p>
+      </div>
+
+      <div class="mt__card r" style="--d:.24s">
+        <div>
+          <div class="mt__top">
+            <span class="mt__tag">04 / Премиум</span>
+            <span class="mt__dot"></span>
+          </div>
+          <div class="mt__n">Пластик Eterno & AGT</div>
+          <div class="mt__p">Soft-touch &middot; сверхстойкость</div>
+        </div>
+        <p class="mt__d">Итальянский пластик Eterno и турецкие плиты AGT: защита от микроцарапин и следов пальцев.</p>
+      </div>
     </div>
 
     <ul class="sp2">
