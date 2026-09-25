@@ -703,39 +703,7 @@ em, i{font-style:normal}
   .r,.ir,.sp .w > i{opacity:1 !important; transform:none !important; clip-path:none !important}
 }
 
-/* ================= PRICE LIST MODAL ================= */
-.pm-modal{position:fixed; inset:0; z-index:150; background:rgba(14,13,11,.85); backdrop-filter:blur(10px); display:none; align-items:center; justify-content:center; padding:clamp(12px,3vw,30px)}
-.pm-modal.on{display:flex; animation:qin .35s var(--e) both}
-.pm-win{max-width:960px; width:100%; max-height:88vh; background:#FFFFFF; color:#121110; border:1px solid rgba(18,17,16,.12); border-radius:6px; display:flex; flex-direction:column; box-shadow:0 30px 80px rgba(0,0,0,.5); position:relative; overflow:hidden}
-.pm-head{padding:clamp(20px,2.5vw,28px) clamp(22px,3vw,36px) 18px; border-bottom:1px solid rgba(18,17,16,.08); display:flex; justify-content:space-between; align-items:flex-start; gap:16px; background:#FAF9F6}
-.pm-head__l{font:600 11px/1 var(--sans); letter-spacing:.18em; text-transform:uppercase; color:#A6824E}
-.pm-head__h{font:400 clamp(20px,2.2vw,28px)/1.2 var(--serif); margin-top:6px; letter-spacing:-.015em; color:#121110}
-.pm-head__sub{font-size:13px; color:#756F68; margin-top:4px}
-.pm-x{width:38px; height:38px; border-radius:50%; border:1px solid rgba(18,17,16,.15); background:#FFFFFF; color:#121110; cursor:pointer; font-size:22px; display:inline-flex; align-items:center; justify-content:center; line-height:1; transition:all .25s var(--e); flex-shrink:0}
-.pm-x:hover{background:#121110; border-color:#C8A87A; color:#C8A87A; transform:rotate(90deg)}
-.pm-tabs{padding:0 clamp(18px,2.5vw,32px); background:#F3F1EC; border-bottom:1px solid rgba(18,17,16,.08); display:flex; gap:4px; overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none}
-.pm-tabs::-webkit-scrollbar{display:none}
-.pm-tab{background:none; border:none; border-bottom:2px solid transparent; color:#756F68; padding:13px 18px; font:600 13px/1 var(--sans); letter-spacing:.02em; cursor:pointer; white-space:nowrap; transition:all .25s ease}
-.pm-tab:hover{color:#121110; background:rgba(255,255,255,.6)}
-.pm-tab.on{color:#121110; border-bottom:2px solid #C8A87A; background:#FFFFFF; font-weight:700}
-.pm-body{padding:clamp(16px,2.5vw,24px) clamp(22px,3vw,36px); overflow-y:auto; flex:1; background:#FFFFFF}
-.pm-body::-webkit-scrollbar{width:5px}
-.pm-body::-webkit-scrollbar-track{background:#FAF9F6}
-.pm-body::-webkit-scrollbar-thumb{background:#C8A87A; border-radius:3px}
-.pm-pane{display:none}
-.pm-pane.on{display:block; animation:qin .3s var(--e) both}
-.pm-table{width:100%; border-collapse:collapse; font-size:13.5px; text-align:left}
-.pm-table th{font:600 11px/1.2 var(--sans); letter-spacing:.14em; text-transform:uppercase; color:#A6824E; padding:12px 14px; border-bottom:1px solid rgba(18,17,16,.1); background:#FAF9F6}
-.pm-table td{padding:14px 14px; border-bottom:1px solid rgba(18,17,16,.06); vertical-align:middle; line-height:1.45}
-.pm-table tr:hover td{background:#FAF9F6}
-.pm-table .td-name{font-weight:600; color:#121110; font-size:14px}
-.pm-table .td-desc{font-size:12px; color:#756F68; margin-top:3px}
-.pm-table .td-price{font-weight:700; color:#A6824E; font-family:var(--sans); font-size:14px; white-space:nowrap; text-align:right}
-.pm-foot{padding:16px clamp(22px,3vw,36px); border-top:1px solid rgba(18,17,16,.08); display:flex; justify-content:space-between; align-items:center; gap:16px; font-size:12.5px; color:#756F68; background:#FAF9F6}
-@media (max-width:768px){
-  .pm-table th:nth-child(2), .pm-table td:nth-child(2){display:none}
-  .pm-foot{flex-direction:column; align-items:flex-start}
-}
+
 
 </style>
   </head>
@@ -970,7 +938,7 @@ em, i{font-style:normal}
         <span class="lab r"><b>03</b> Расчёт</span>
         <h2 class="d2 r" style="--d:.06s">Предварительная<br>стоимость за 30 секунд</h2>
       </div>
-      <p class="lead r" style="--d:.12s">Цены в калькуляторе &mdash; по нашим закрытым заказам за последний год. Цены откалиброваны по официальному фабричному прайсу 2026 года. Точную смету фиксируем в договоре после замера геометрии.</p>
+      <p class="lead r" style="--d:.12s">Цены в калькуляторе откалиброваны строго по официальному фабричному прайсу 2026 года без скрытых наценок. Итоговую смету фиксируем в договоре после бесплатного замера геометрии.</p>
     </div>
 
     <div class="cl">
@@ -1088,7 +1056,6 @@ em, i{font-style:normal}
         <div class="pnl__rows" id="rows"></div>
         <div class="pnl__ins">Рассрочка <b id="instal">от 13 800 ₽/мес</b> &mdash; 6 месяцев, 0% и без переплаты</div>
         <a class="b b--paper b--full" href="#cta" id="calcToForm">Получить точный расчёт <span class="ar">&rarr;</span></a>
-        <button type="button" class="b b--lined b--full b--sm" id="btnPriceModal" style="margin-top:12px;justify-content:center;display:flex;align-items:center;gap:8px;font-size:13.5px"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2.5" y="2" width="11" height="12" rx="1.5"/><path d="M5.5 5h5M5.5 8h5M5.5 11h2.5"/></svg> Официальный прайс-лист 2026</button>
         <p class="sm" style="margin-top:16px">Замерщик снимет точные размеры, а выбрать материалы и фурнитуру приглашаем в наш салон с сотнями живых образцов.</p>
       </aside>
     </div>
@@ -1639,171 +1606,6 @@ em, i{font-style:normal}
 
 <!-- ============ LIGHTBOX ============ -->
 
-<!-- ============ FACTORY PRICELIST MODAL ============ -->
-<div class="pm-modal" id="priceModal" role="dialog" aria-modal="true" aria-label="Фабричный прайс-лист 2026">
-  <div class="pm-win">
-    <div class="pm-head">
-      <div>
-        <span class="pm-head__l">Открытый прейскурант 2026</span>
-        <h3 class="pm-head__h">Фабричные цены на материалы и комплектующие</h3>
-        <p class="pm-head__sub">ИП Котлярова Т.В. &middot; Мебельный Бутик 48, г. Липецк &middot; Прямой фабричный расчёт без посредников</p>
-      </div>
-      <button type="button" class="pm-x" id="priceModalClose" aria-label="Закрыть">&times;</button>
-    </div>
-
-    <div class="pm-tabs" id="pmTabs">
-      <button type="button" class="pm-tab on" data-tab="facades">Фасады и плиты</button>
-      <button type="button" class="pm-tab" data-tab="tops">Столешницы</button>
-      <button type="button" class="pm-tab" data-tab="hardware">Фурнитура и механизмы</button>
-      <button type="button" class="pm-tab" data-tab="org">Наполнение и LED</button>
-      <button type="button" class="pm-tab" data-tab="services">Монтаж и услуги</button>
-    </div>
-
-    <div class="pm-body">
-      <!-- Tab 1: Фасады и плиты -->
-      <div class="pm-pane on" id="pm-facades">
-        <table class="pm-table">
-          <thead>
-            <tr><th>Материал / Бренд</th><th>Характеристики и применение</th><th style="text-align:right">Цена (клиент)</th></tr>
-          </thead>
-          <tbody>
-            <tr><td><div class="td-name">ЛДСП Egger 16 мм (Австрия / РФ)</div><div class="td-desc">Корпуса и фасады высшего эко-класса E0.5</div></td><td>Премиальная плита, деликатные древесные и матовые текстуры</td><td class="td-price">19 125 ₽ / лист</td></tr>
-            <tr><td><div class="td-name">ЛДСП Кострома / BYSPAN 16 мм</div><div class="td-desc">Базовые корпуса кухонь и шкафов</div></td><td>Прочные износостойкие плиты для долговечного каркаса</td><td class="td-price">16 650 ₽ / лист</td></tr>
-            <tr><td><div class="td-name">ЛДСП 16 мм Влагостойкое</div><div class="td-desc">Зоны повышенной влажности (мойка, ванные)</div></td><td>Зеленый влагостойкий сердечник повышенной плотности</td><td class="td-price">18 000 ₽ / лист</td></tr>
-            <tr><td><div class="td-name">МДФ ПВХ 16 мм прямой (Кедр)</div><div class="td-desc">Пленочные фасады 3-й категории</div></td><td>Плотная пленка, влагостойкая кромка, устойчивость к пару</td><td class="td-price">10 540 ₽ / м²</td></tr>
-            <tr><td><div class="td-name">МДФ ПВХ 19 мм прямой</div><div class="td-desc">Утолщенный фасад с глубокой фрезеровкой</div></td><td>Тактильная матовая пленка Soft Touch, глубокий рисунок</td><td class="td-price">11 775 ₽ / м²</td></tr>
-            <tr><td><div class="td-name">МДФ ПВХ 19–22 мм ВОЛНА / РИФ</div><div class="td-desc">Трендовая вертикальная 3D-фрезеровка</div></td><td>Архитектурная волна, борозды и рифление для стильных акцентов</td><td class="td-price">18 315 – 19 800 ₽ / м²</td></tr>
-            <tr><td><div class="td-name">Фасады AGT Supramat 18 мм</div><div class="td-desc">МДФ панель шелковисто-матовая с защитой от отпечатков</div></td><td>Бархатистый матовый финиш, стойкость к царапинам и выгоранию</td><td class="td-price">15 000 ₽ / м²</td></tr>
-            <tr><td><div class="td-name">Фасады AGT матовые / Syncron / Unitone</div><div class="td-desc">Синхронная 3D-структура натурального шпона и камня</div></td><td>Точное совпадение рельефа с текстурой, премиум класс</td><td class="td-price">19 000 ₽ / м²</td></tr>
-            <tr><td><div class="td-name">МДФ Эмаль CORAL 16 мм матовая</div><div class="td-desc">Окрашивание по веерам RAL / NCS</div></td><td>Идеально гладкая шелковая матовая поверхность без швов</td><td class="td-price">14 400 ₽ / м²</td></tr>
-            <tr><td><div class="td-name">МДФ Эмаль CORAL 19 мм с матовым лаком</div><div class="td-desc">Двухкомпонентный полиуретановый лак</div></td><td>Максимальная защита от влаги, пара и механических повреждений</td><td class="td-price">20 790 – 22 160 ₽ / м²</td></tr>
-            <tr><td><div class="td-name">МДФ Эмаль 19 мм ВОЛНА (матовый лак)</div><div class="td-desc">Эксклюзивные радиусные и рифленые фасады в эмали</div></td><td>Сложная ручная шлифовка и послойное лакирование в камере</td><td class="td-price">36 815 ₽ / м²</td></tr>
-            <tr><td><div class="td-name">Интегрированная ручка в эмали (19 мм)</div><div class="td-desc">Фрезерованный J-профиль ручки прямо в торце фасада</div></td><td>Чистый европейский минимализм без накладных ручек</td><td class="td-price">24 185 ₽ / м²</td></tr>
-            <tr><td><div class="td-name">Пластик Eterno PUR-кромление (MATT/UNITONE)</div><div class="td-desc">Антивандальный матовый пластик 18 мм</div></td><td>PUR-водостойкий шов, самовосстановление от микроцарапин</td><td class="td-price">16 020 ₽ / м²</td></tr>
-            <tr><td><div class="td-name">Пластик Eterno SENS / LOFT / WOOD ТЕКСТУРА</div><div class="td-desc">Глубокие рельефы бетона, дерева и ржавчины</div></td><td>Высочайшая термостойкость и защита от истирания</td><td class="td-price">19 440 – 23 220 ₽ / м²</td></tr>
-            <tr><td><div class="td-name">Пластик ARPA / ABET (Италия) HPL 16–18 мм</div><div class="td-desc">Итальянский пластик сверхвысокого давления</div></td><td>Один из самых долговечных материалов в мебельной индустрии</td><td class="td-price">20 000 ₽ / м²</td></tr>
-            <tr><td><div class="td-name">Фасад со стеклом в черном алюминиевом профиле</div><div class="td-desc">Узкий премиальный профиль, закаленное стекло</div></td><td>Витрины с внутренней подсветкой полок и бокалов</td><td class="td-price">20 250 – 24 750 ₽ / м²</td></tr>
-            <tr><td><div class="td-name">Фасад со стеклом рифленым "MORU" в алюм. рамке</div><div class="td-desc">Трендовое архитектурное рифленое стекло MORU</div></td><td>Скрывает силуэты посуды, выглядит роскошно с теплой подсветкой</td><td class="td-price">21 375 – 27 000 ₽ / м²</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <!-- Tab 2: Столешницы -->
-      <div class="pm-pane" id="pm-tops">
-        <table class="pm-table">
-          <thead>
-            <tr><th>Столешница / Обработка</th><th>Особенности и габариты</th><th style="text-align:right">Цена (клиент)</th></tr>
-          </thead>
-          <tbody>
-            <tr><td><div class="td-name">Столешница КЕДР 38 мм (3.0 м) Категория 1–2</div><div class="td-desc">Влагостойкий HPL пластик 3000&times;600&times;38 мм</div></td><td>Популярные базовые декоры: бетон, дуб, мрамор</td><td class="td-price">10 660 ₽ (~3 550 ₽/м.п.)</td></tr>
-            <tr><td><div class="td-name">Столешница КЕДР 38 мм (3.0 м) Категория 3–4</div><div class="td-desc">Глубокие синхронные тиснения и шелковистые матовые финиши</div></td><td>Увеличенная стойкость к истиранию и термовоздействию</td><td class="td-price">10 875 – 11 935 ₽ (~3 980 ₽/м.п.)</td></tr>
-            <tr><td><div class="td-name">Столешница КЕДР 38 мм (4.1 м) Категория 1–4</div><div class="td-desc">Длинномер 4100&times;600&times;38 мм без лишних стыков</div></td><td>Для просторных кухонь и единой рабочей поверхности</td><td class="td-price">15 435 – 20 445 ₽</td></tr>
-            <tr><td><div class="td-name">Столешница влагостойкая EVA 38 мм R5 (3.05 м)</div><div class="td-desc">Премиум постформинг R5 с защитным полимерным беком</div></td><td>Изящный радиус завала R5, влагонепроницаемый шов</td><td class="td-price">23 295 ₽ (~7 640 ₽/м.п.)</td></tr>
-            <tr><td><div class="td-name">Столешница влагостойкая EVA 38 мм R5 (4.10 м)</div><div class="td-desc">Длинномер 4100&times;600&times;38 мм R5</div></td><td>Единый контур для угловых и П-образных кухонь</td><td class="td-price">32 075 ₽</td></tr>
-            <tr><td><div class="td-name">Компакт-плита Eterno Kompakt PRO 12 мм</div><div class="td-desc">Монолит 3050&times;650&times;12 мм с черным сердечником</div></td><td>100% водостойкость, ультратонкий тренд 12 мм, подклейка мойки снизу</td><td class="td-price">51 075 ₽</td></tr>
-            <tr><td><div class="td-name">Компакт-плита SLOTEX e1/e2 12 мм</div><div class="td-desc">Сверхплотная монолитная компакт-плита 3050&times;650&times;12 мм</div></td><td>Абсолютная гигиеничность, антибактериальная поверхность</td><td class="td-price">74 620 – 77 230 ₽</td></tr>
-            <tr><td><div class="td-name">Стеновая панель КЕДР 4 мм (3.0 м)</div><div class="td-desc">Фартук в точный цвет столешницы 3050&times;600&times;4 мм</div></td><td>Гармоничный переход фактуры со столешницы на стену</td><td class="td-price">6 615 – 8 965 ₽</td></tr>
-            <tr><td><div class="td-name">Стеновая панель КЕДР 10 мм (4.1 м)</div><div class="td-desc">Утолщенный фартук повышенной прочности 4100&times;600&times;10 мм</div></td><td>Надежное прилегание, скрывает неровности стены</td><td class="td-price">12 955 – 14 180 ₽</td></tr>
-            <tr><td><div class="td-name">Еврозапил фабричный со стяжками и спецгерметиком</div><div class="td-desc">Бесшовное высокоточное сращивание под 90&deg; на ЧПУ</div></td><td>Невидимый стык без алюминиевых планок, гидроизоляция на весь срок</td><td class="td-price">5 625 – 8 660 ₽</td></tr>
-            <tr><td><div class="td-name">Врезка столешницы в подоконник (окно)</div><div class="td-desc">Объединение рабочей зоны кухни с подоконником</div></td><td>Индивидуальная подгонка по откосам с заполнением пеной</td><td class="td-price">6 750 – 9 900 ₽</td></tr>
-            <tr><td><div class="td-name">Плинтус пристеночный PREMIAL Квадро / KORNER (3 м)</div><div class="td-desc">Алюминиевый черный матовый / хром / белый с заглушками</div></td><td>Герметичный силиконовый уплотнитель против затекания воды</td><td class="td-price">1 225 – 1 360 ₽</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <!-- Tab 3: Фурнитура -->
-      <div class="pm-pane" id="pm-hardware">
-        <table class="pm-table">
-          <thead>
-            <tr><th>Механизм / Артикул</th><th>Бренд и назначение</th><th style="text-align:right">Цена (клиент)</th></tr>
-          </thead>
-          <tbody>
-            <tr><td><div class="td-name">Петля Premial PRESTO Clip-On с доводчиком</div><div class="td-desc">Быстрый монтаж Clip-On, мягкое бесшумное закрывание</div></td><td>Premial (надежный заводской стандарт)</td><td class="td-price">140 ₽ / шт</td></tr>
-            <tr><td><div class="td-name">Петля 3D Premial накладная/полунакладная/вкладная</div><div class="td-desc">Трехмерная регулировка зазоров фасада, плавный доводчик</div></td><td>Premial PRESTO 3D</td><td class="td-price">204 – 227 ₽ / шт</td></tr>
-            <tr><td><div class="td-name">Петля Premial с доводчиком для черного профиля/стекла</div><div class="td-desc">Специальная петля для алюминиевых витрин</div></td><td>Premial BLACK 3D Clip-on</td><td class="td-price">230 – 310 ₽ / шт</td></tr>
-            <tr><td><div class="td-name">Петля Blum CLIP top BLUMOTION накладная 110&deg;</div><div class="td-desc">Легендарная австрийская петля со встроенным доводчиком</div></td><td>Blum (Австрия), ресурс 200 000 циклов</td><td class="td-price">608 ₽ / шт</td></tr>
-            <tr><td><div class="td-name">Петля Blum CLIP top BLUMOTION (Черный оникс)</div><div class="td-desc">Премиум петля цвета Onyx Black для темных корпусов</div></td><td>Blum (Австрия), для дизайнерских кухонь</td><td class="td-price">729 ₽ / шт</td></tr>
-            <tr><td><div class="td-name">Петля Blum угловая 155&deg; нулевое вхождение</div><div class="td-desc">Широкий угол для шкафов с внутренними ящиками</div></td><td>Blum BLUMOTION 155&deg;</td><td class="td-price">1 445 – 1 798 ₽ / шт</td></tr>
-            <tr><td><div class="td-name">Направляющие скрытого монтажа Premial (300–550 мм)</div><div class="td-desc">Полное выдвижение, плавный доводчик, нагрузка 35 кг</div></td><td>Premial Morendo / Andante</td><td class="td-price">2 540 – 2 995 ₽ / пара</td></tr>
-            <tr><td><div class="td-name">Направляющие скрытого монтажа Push-to-Open (300–550 мм)</div><div class="td-desc">Открывание легким нажатием на фасад без ручек</div></td><td>Premial Morendo Push</td><td class="td-price">2 480 – 2 835 ₽ / пара</td></tr>
-            <tr><td><div class="td-name">Ящик металлический Slimbox AKS с доводчиком</div><div class="td-desc">Тонкие боковины H=90 / 175 мм, цвет графит или белый</div></td><td>AKS Slimbox Soft Close</td><td class="td-price">2 925 – 3 550 ₽ / компл.</td></tr>
-            <tr><td><div class="td-name">Ящик выдвижной Premial MAESTRO 7D с доводчиком</div><div class="td-desc">Синхронизированные направляющие, боковины H=93 / 178 мм</div></td><td>Premial MAESTRO (белый / серый)</td><td class="td-price">4 950 – 5 625 ₽ / компл.</td></tr>
-            <tr><td><div class="td-name">Ящик Blum Tandembox Antaro высота M (98.5 мм)</div><div class="td-desc">Оригинальный ящик Blum с направляющими Blumotion</div></td><td>Blum (Австрия), плавнейший ход до 65 кг</td><td class="td-price">8 500 ₽ / компл.</td></tr>
-            <tr><td><div class="td-name">Ящик Blum Tandembox Antaro с рейлингом высота D (224 мм)</div><div class="td-desc">Глубокий вместительный ящик для кастрюль и припасов</div></td><td>Blum (Австрия), с продольным рейлингом</td><td class="td-price">10 450 ₽ / компл.</td></tr>
-            <tr><td><div class="td-name">Направляющие Blum TANDEM BLUMOTION скрытый монтаж</div><div class="td-desc">Полное выдвижение с интегрированным доводчиком 30 кг</div></td><td>Blum (Австрия)</td><td class="td-price">5 290 – 6 480 ₽ / компл.</td></tr>
-            <tr><td><div class="td-name">Направляющие Blum MOVENTO BLUMOTION S (250–500 мм)</div><div class="td-desc">Флагманские направляющие Blum с 4D-регулировкой</div></td><td>Blum (Австрия), эталон плавности хода</td><td class="td-price">6 615 ₽ / компл.</td></tr>
-            <tr><td><div class="td-name">Подъемный механизм Blum AVENTOS HF (складной)</div><div class="td-desc">Складывает два фасада наверх, фиксация в любой точке</div></td><td>Blum (Австрия), для верхних шкафов H=700-900 мм</td><td class="td-price">25 425 – 27 000 ₽ / компл.</td></tr>
-            <tr><td><div class="td-name">Подъемный механизм Blum AVENTOS HK / HK top</div><div class="td-desc">Поворотный подъемник для одиночных тяжелых фасадов</div></td><td>Blum (Австрия)</td><td class="td-price">14 940 – 17 575 ₽ / компл.</td></tr>
-            <tr><td><div class="td-name">Подъемный механизм Blum AVENTOS HK-XS</div><div class="td-desc">Компактный подъемник для невысоких антресольных шкафов</div></td><td>Blum (Австрия), с доводчиком или Tip-On</td><td class="td-price">4 612 ₽ / компл.</td></tr>
-            <tr><td><div class="td-name">Подъемный механизм Premial ALLA GRAZIA</div><div class="td-desc">Складной механизм для двойных фасадов 4.9–8.5 кг</div></td><td>Premial (надежный аналог Aventos HF)</td><td class="td-price">14 335 – 16 140 ₽ / компл.</td></tr>
-            <tr><td><div class="td-name">Подъемник Premial SEMPRE (графит) для одинарного фасада</div><div class="td-desc">Плавное мягкое открывание фасада вверх</div></td><td>Premial SEMPRE 2–6 кг</td><td class="td-price">1 490 ₽ / компл.</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <!-- Tab 4: Наполнение и LED -->
-      <div class="pm-pane" id="pm-org">
-        <table class="pm-table">
-          <thead>
-            <tr><th>Элемент организации / Артикул</th><th>Характеристики и комплектность</th><th style="text-align:right">Цена (клиент)</th></tr>
-          </thead>
-          <tbody>
-            <tr><td><div class="td-name">LED-подсветка рабочей зоны под ключ (до 3 м)</div><div class="td-desc">Врезной профиль + экран + лента 4000K + БП 100W + сенсор</div></td><td>Профессиональный монтаж с фрезеровкой паза в дне шкафов</td><td class="td-price">12 000 ₽ / компл.</td></tr>
-            <tr><td><div class="td-name">Лента светодиодная Premial 120 LED/м 4000K (5 м)</div><div class="td-desc">Высокий индекс цветопередачи CRI>80, мягкий нейтральный свет</div></td><td>Premial 9.6–16 Вт/м в силиконовой защите</td><td class="td-price">2 025 – 2 700 ₽</td></tr>
-            <tr><td><div class="td-name">Профиль врезной алюминиевый с экраном (2–3 м)</div><div class="td-desc">Черный муар / анодированный хром / матовое золото</div></td><td>Матовый рассеиватель скрывает светодиодные точки</td><td class="td-price">900 – 1 260 ₽</td></tr>
-            <tr><td><div class="td-name">Блок питания AKS Indoor 100–150W / 12V</div><div class="td-desc">Узкий тонкий алюминиевый корпус для скрытой установки</div></td><td>Защита от перегрева, перегрузок и короткого замыкания</td><td class="td-price">1 440 – 2 925 ₽</td></tr>
-            <tr><td><div class="td-name">Выключатель бесконтактный Premial с диммированием</div><div class="td-desc">Срабатывает на взмах руки, зажатием регулирует яркость</div></td><td>Врезается снизу в модуль или под столешницу</td><td class="td-price">1 800 – 2 135 ₽</td></tr>
-            <tr><td><div class="td-name">Сушка для посуды Boyard PANDORA SU07 (600–900 мм)</div><div class="td-desc">Премиум сушка из стали в графитовом цвете с поддоном</div></td><td>Сталь GRPH Графит, не ржавеет, жесткая несущая рамка</td><td class="td-price">15 115 – 20 250 ₽</td></tr>
-            <tr><td><div class="td-name">Сушка для посуды СТУДИО нержавеющая сталь (500–900 мм)</div><div class="td-desc">Настоящая зеркальная пищевая нержавеющая сталь</div></td><td>Boyard SU09, максимальный ресурс без коррозии</td><td class="td-price">6 750 – 11 450 ₽</td></tr>
-            <tr><td><div class="td-name">Сушка для посуды 2-уровневая с рамой VAR3 (600–800 мм)</div><div class="td-desc">Классическая сушка хром с алюминиевой нижней рамой</div></td><td>VAR3 Хром (надежный базовый вариант)</td><td class="td-price">2 925 – 3 825 ₽</td></tr>
-            <tr><td><div class="td-name">Бутылочница двухуровневая карго 150 мм BRIOSO</div><div class="td-desc">Направляющие скрытого монтажа с плавным доводчиком</div></td><td>Удобное хранение масел, специй и бутылок в узкой базе</td><td class="td-price">4 500 – 5 015 ₽</td></tr>
-            <tr><td><div class="td-name">Бутылочница премиум KALIBRA / Hettich 150/200 мм</div><div class="td-desc">Направляющие Hettich с разделителями, графит/хром</div></td><td>Повышенная жесткость, исключает раскачивание бутылок</td><td class="td-price">8 235 – 10 450 ₽</td></tr>
-            <tr><td><div class="td-name">Выдвижная корзина-сушка в нижнюю базу MIRA (600/800 мм)</div><div class="td-desc">Нижняя сушка для посуды на скрытых направляющих до 40 кг</div></td><td>Позволяет хранить тарелки в нижнем ящике без навешивания</td><td class="td-price">14 375 – 16 860 ₽</td></tr>
-            <tr><td><div class="td-name">Лоток для столовых приборов (300–900 мм)</div><div class="td-desc">Серый или белый ударопрочный пластик под размер ящика</div></td><td>Органайзер вилок, ложек, ножей с возможностью урезки</td><td class="td-price">515 – 1 460 ₽</td></tr>
-            <tr><td><div class="td-name">Лоток для столовых приборов TRAYBOND MESAN (5 секций)</div><div class="td-desc">Премиум секционный органайзер 292&times;480 мм</div></td><td>Модульная система под мелкие кухонные аксессуары</td><td class="td-price">1 056 ₽</td></tr>
-            <tr><td><div class="td-name">Гигиенический алюминиевый поддон в базу мойки</div><div class="td-desc">Рифленый алюминиевый коврик с бортиком (600–1000 мм)</div></td><td>Защищает корпус от капель воды и бытовой химии</td><td class="td-price">2 440 – 3 640 ₽</td></tr>
-            <tr><td><div class="td-name">Горизонтальный профиль GOLA / JAZZ / LIMBO (4.2 м)</div><div class="td-desc">Черный муар / латунь браш / хром / белый глянец</div></td><td>Для кухонь без накладных ручек с захватом фасада</td><td class="td-price">2 355 – 3 560 ₽</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <!-- Tab 5: Монтаж и услуги -->
-      <div class="pm-pane" id="pm-services">
-        <table class="pm-table">
-          <thead>
-            <tr><th>Вид услуги / Дополнительной работы</th><th>Что входит в операцию</th><th style="text-align:right">Стоимость</th></tr>
-          </thead>
-          <tbody>
-            <tr><td><div class="td-name">Демонтаж старого кухонного гарнитура</div><div class="td-desc">Аккуратный разбор старой мебели заказчика</div></td><td>Зависит от габаритов гарнитура и сложности демонтажа</td><td class="td-price">3 000 – 7 000 ₽</td></tr>
-            <tr><td><div class="td-name">Демонтаж старой мойки / варочной панели</div><div class="td-desc">Снятие старого оборудования перед установкой нового</div></td><td>Отключение и демонтаж со старой столешницы</td><td class="td-price">800 – 1 000 ₽</td></tr>
-            <tr><td><div class="td-name">Выпил столешницы под мойку с герметизацией</div><div class="td-desc">Высокоточный лобзиковый пропил с обработкой герметиком</div></td><td>Нанесение санитарного герметика против разбухания плиты</td><td class="td-price">1 000 ₽</td></tr>
-            <tr><td><div class="td-name">Выпил столешницы под варочную поверхность</div><div class="td-desc">Пропил под точные размеры встраиваемой варочной панели</div></td><td>Обработка термо- и влагозащитным составом</td><td class="td-price">1 000 ₽</td></tr>
-            <tr><td><div class="td-name">Еврозапил столешницы на адресе с герметизацией</div><div class="td-desc">Стяжка еврозамками и запечатывание спецклеем-герметиком</div></td><td>Идеальная состыковка угловых элементов</td><td class="td-price">1 200 ₽</td></tr>
-            <tr><td><div class="td-name">Врезка столешницы в оконный проем с пеной</div><div class="td-desc">Подгонка столешницы под раму и откосы окна</div></td><td>Заполнение монтажной пеной, герметизация примыкания</td><td class="td-price">2 500 ₽</td></tr>
-            <tr><td><div class="td-name">Упиливание шкафа под особенности помещения</div><div class="td-desc">Уменьшение глубины или ширины корпуса по месту</div></td><td>При наличии выступов, балок, ригелей и ниш</td><td class="td-price">1 000 ₽</td></tr>
-            <tr><td><div class="td-name">Пропил под коммуникации (газ, вода, венткороб)</div><div class="td-desc">Выпилы в корпусах, полках, столешнице под стояки и трубы</div></td><td>Цена за 1 корпус / пропил с обработкой кромки</td><td class="td-price">400 ₽ / выпил</td></tr>
-            <tr><td><div class="td-name">Выпил отверстия под розетку в столешнице</div><div class="td-desc">Под выдвижной или стационарный блок розеток</div></td><td>Круглый или прямоугольный выпил</td><td class="td-price">500 ₽</td></tr>
-            <tr><td><div class="td-name">Выпил в стеновой панели (фартуке) под розетку</div><div class="td-desc">Вырез в HPL / МДФ панели под подрозетник</div></td><td>Цена за 1 точку (блок розеток)</td><td class="td-price">150 ₽ / шт</td></tr>
-            <tr><td><div class="td-name">Установка и монтаж мойки заказчика</div><div class="td-desc">Фиксация мойки на струбцины и герметик (без сантехники)</div></td><td>Установка накладной мойки в выпил столешницы</td><td class="td-price">1 000 ₽</td></tr>
-            <tr><td><div class="td-name">Отверстие под смеситель в каменной мойке</div><div class="td-desc">Сверление алмазной коронкой без сколов</div></td><td>Под диаметр 35 мм под стандартный смеситель</td><td class="td-price">300 ₽</td></tr>
-            <tr><td><div class="td-name">Установка смесителя заказчика / сборка сифона</div><div class="td-desc">Монтаж крана и сифона в подготовленные выводы</div></td><td>Проверка на герметичность соединений</td><td class="td-price">300 – 500 ₽</td></tr>
-            <tr><td><div class="td-name">Установка духового шкафа / СВЧ / варочной панели</div><div class="td-desc">Монтаж техники в подготовленную нишу при наличии проводки</div></td><td>Выставление по уровню и надежная фиксация саморезами</td><td class="td-price">600 – 1 000 ₽</td></tr>
-            <tr><td><div class="td-name">Установка встраиваемой посудомоечной машины</div><div class="td-desc">Инсталляция ПММ, навеска мебельного фасада с регулировкой</div></td><td>Выравнивание зазоров с соседними фасадами</td><td class="td-price">1 000 ₽</td></tr>
-            <tr><td><div class="td-name">Установка вытяжки (без венткороба) / монтаж короба</div><div class="td-desc">Подвеска вытяжки и прокладка воздуховода 1 м</div></td><td>Крепление к корпусу или стене</td><td class="td-price">400 – 500 ₽</td></tr>
-            <tr><td><div class="td-name">Монтаж врезной светодиодной ленты с профилем и датчиком</div><div class="td-desc">Укладка ленты в алюминиевый профиль с экраном</div></td><td>Цена за 1 погонный метр монтажа подсветки</td><td class="td-price">500 ₽ / м.п.</td></tr>
-            <tr><td><div class="td-name">Выезд монтажной бригады за черту города</div><div class="td-desc">Транспортные расходы при удаленности объекта (до 40–50 км)</div></td><td>Компенсация топлива и времени в пути</td><td class="td-price">1 500 – 2 500 ₽</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <div class="pm-foot">
-      <span>* Цены сформированы на базе официального технологического прейскуранта фабрики «Мебельный Бутик 48» (ИП Котлярова Т.В., Липецк) на 2026 год. Смета фиксируется в договоре.</span>
-      <button type="button" class="b b--ink b--sm" id="pmCloseFoot">Закрыть прайс-лист</button>
-    </div>
-  </div>
-</div>
-
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Просмотр проекта">
   <button type="button" class="lb__x" id="lbX" aria-label="Закрыть">&times;</button>
   <img id="lbImg" src="" alt="">
@@ -2198,49 +2000,7 @@ var calcSummary="";
 })();
 
 
-/* ---------- price modal handler ---------- */
-(function(){
-  var openBtn = $("#btnPriceModal");
-  var modal = $("#priceModal");
-  var closeBtn = $("#priceModalClose");
-  var closeFoot = $("#pmCloseFoot");
-  if(!openBtn || !modal) return;
 
-  function openModal(){
-    modal.classList.add("on");
-    document.body.style.overflow = "hidden";
-  }
-  function closeModal(){
-    modal.classList.remove("on");
-    document.body.style.overflow = "";
-  }
-
-  openBtn.addEventListener("click", openModal);
-  if(closeBtn) closeBtn.addEventListener("click", closeModal);
-  if(closeFoot) closeFoot.addEventListener("click", closeModal);
-
-  modal.addEventListener("click", function(e){
-    if(e.target === modal) closeModal();
-  });
-
-  window.addEventListener("keydown", function(e){
-    if(e.key === "Escape" && modal.classList.contains("on")) closeModal();
-  });
-
-  // Tab switching
-  var tabs = $(".pm-tab", modal);
-  var panes = $(".pm-pane", modal);
-  tabs.forEach(function(tab){
-    tab.addEventListener("click", function(){
-      var targetId = "pm-" + tab.getAttribute("data-tab");
-      tabs.forEach(function(t){ t.classList.remove("on"); });
-      panes.forEach(function(p){ p.classList.remove("on"); });
-      tab.classList.add("on");
-      var targetPane = $("#" + targetId);
-      if(targetPane) targetPane.classList.add("on");
-    });
-  });
-})();
 
 /* ---------- 9. works filter + lightbox ---------- */
 (function(){
