@@ -416,15 +416,49 @@ em, i{font-style:normal}
 
 /* ========== 9. categories ========== */
 .cg{display:grid; grid-template-columns:repeat(12,1fr); gap:clamp(10px,1.1vw,18px); margin-top:clamp(30px,4vw,54px)}
-.cd{position:relative; display:block; overflow:hidden; text-decoration:none; color:var(--paper); background:var(--noir-2)}
+.cd{
+  position:relative; display:block; overflow:hidden; text-decoration:none;
+  color:var(--paper); background:var(--noir-2); border-radius:6px;
+  opacity:0;
+  transform:translateY(40px) scale(0.985);
+  filter:blur(4px);
+  transition:opacity 1.05s cubic-bezier(.16, 1, .3, 1), transform 1.15s cubic-bezier(.16, 1, .3, 1), filter 0.95s cubic-bezier(.16, 1, .3, 1);
+  transition-delay:var(--d, 0s);
+  will-change:transform, opacity, filter;
+}
+.cd.in{
+  opacity:1;
+  transform:none;
+  filter:blur(0);
+}
 .cd--a{grid-column:span 7; aspect-ratio:16/12}
 .cd--b{grid-column:span 5; aspect-ratio:16/12}
 .cd--c{grid-column:span 4; aspect-ratio:5/4}
-.cd img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transform:scale(1.01); transition:transform 1.4s var(--e), filter 1.4s var(--e); filter:saturate(1.08) contrast(1.04)}
-.cd:hover img{transform:scale(1.07)}
+.cd img{
+  position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+  transform:scale(1.12);
+  transition:transform 1.6s cubic-bezier(.16, 1, .3, 1), filter 1.4s var(--e);
+  filter:saturate(1.08) contrast(1.04);
+  will-change:transform;
+}
+.cd.in img{
+  transform:scale(1.01);
+}
+.cd.in:hover img{
+  transform:scale(1.07);
+}
 .cd::after{content:""; position:absolute; inset:0; background:linear-gradient(to top,rgba(12,11,10,.86) 0%,rgba(12,11,10,.28) 46%,rgba(12,11,10,.06) 100%); transition:opacity .8s var(--e)}
 .cd__meta{display:block; flex:1}
-.cd__in{position:absolute; inset:auto 0 0 0; z-index:2; padding:clamp(18px,2vw,32px); display:flex; align-items:flex-end; justify-content:space-between; gap:16px}
+.cd__in{
+  position:absolute; inset:auto 0 0 0; z-index:2;
+  padding:clamp(18px,2vw,32px); display:flex; align-items:flex-end;
+  justify-content:space-between; gap:16px;
+  opacity:0; transform:translateY(16px);
+  transition:opacity 0.85s var(--e-rev) 0.18s, transform 0.9s var(--e-rev) 0.18s;
+}
+.cd.in .cd__in{
+  opacity:1; transform:none;
+}
 .cd__t{display:block; font:400 clamp(20px,2vw,31px)/1.2 var(--serif); letter-spacing:-.02em; padding-bottom:2px}
 .cd__d{display:block; margin-top:9px; font-size:13.5px; color:rgba(255,255,255,.9); max-width:34ch}
 .cd__n{font:500 10px/1 var(--sans); letter-spacing:.18em; color:var(--clay-2); margin-bottom:12px; display:block}
@@ -1166,7 +1200,7 @@ em, i{font-style:normal}
     </div>
 
     <div class="cg">
-      <a class="cd cd--a ir" href="#calc">
+      <a class="cd cd--a r" href="#calc">
         <img src="images/cat_kitchen.jpg" alt="Кухни на заказ в Липецке">
         <span class="cd__in">
           <span class="cd__meta">
@@ -1177,7 +1211,7 @@ em, i{font-style:normal}
           <span class="cd__ar" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
         </span>
       </a>
-      <a class="cd cd--b ir" style="--d:.1s" href="#quiz">
+      <a class="cd cd--b r" style="--d:.12s" href="#quiz">
         <img src="images/cat_wardrobe.jpg" alt="Шкафы и гардеробные на заказ">
         <span class="cd__in">
           <span class="cd__meta">
@@ -1188,7 +1222,7 @@ em, i{font-style:normal}
           <span class="cd__ar" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
         </span>
       </a>
-      <a class="cd cd--c ir" href="#calc">
+      <a class="cd cd--c r" href="#calc">
         <img src="images/cat_bedroom.jpg" alt="Спальни и парящие тумбы">
         <span class="cd__in">
           <span class="cd__meta">
@@ -1198,7 +1232,7 @@ em, i{font-style:normal}
           <span class="cd__ar cd__ar--sm" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
         </span>
       </a>
-      <a class="cd cd--c ir" style="--d:.08s" href="#cta">
+      <a class="cd cd--c r" style="--d:.1s" href="#cta">
         <img src="images/cat_kids.jpg" alt="Детская мебель на заказ">
         <span class="cd__in">
           <span class="cd__meta">
@@ -1208,7 +1242,7 @@ em, i{font-style:normal}
           <span class="cd__ar cd__ar--sm" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
         </span>
       </a>
-      <a class="cd cd--c ir" style="--d:.16s" href="#cta">
+      <a class="cd cd--c r" style="--d:.2s" href="#cta">
         <img src="images/cat_hallway.jpg" alt="Прихожие и входные группы">
         <span class="cd__in">
           <span class="cd__meta">
@@ -1952,7 +1986,7 @@ function money(n){return fmt(n)+NB+"\u20BD";}
 
 /* ---------- 2. reveal on scroll & kinetic stagger ---------- */
 (function(){
-  var items=$$(".r, .ir, .sp, .r--left, .r--right, .r--scale, .st__card, .wk");
+  var items=$$(".r, .ir, .sp, .r--left, .r--right, .r--scale, .st__card, .wk, .cd");
   function showAll(){ items.forEach(function(el){el.classList.add("in");}); }
   if(reduce || !("IntersectionObserver" in W)){ showAll(); return; }
 
@@ -1962,7 +1996,7 @@ function money(n){return fmt(n)+NB+"\u20BD";}
     var children = Array.prototype.slice.call(container.children);
     children.forEach(function(child, index){
       if(!child.style.getPropertyValue("--d")){
-        child.style.setProperty("--d", (index * 0.08).toFixed(2) + "s");
+        child.style.setProperty("--d", (index * 0.1).toFixed(2) + "s");
       }
     });
   });
@@ -1974,17 +2008,16 @@ function money(n){return fmt(n)+NB+"\u20BD";}
         io.unobserve(e.target);
       }
     });
-  },{rootMargin:"0px 0px -6% 0px", threshold:0.06});
+  },{rootMargin:"0px 0px -40px 0px", threshold:0.04});
   items.forEach(function(el){ io.observe(el); });
 
-  /* safety: never leave content invisible */
+  /* Only reveal items visible above the fold on initial page load */
   setTimeout(function(){
     items.forEach(function(el){
       var r=el.getBoundingClientRect();
-      if(r.top < W.innerHeight*1.35) el.classList.add("in");
+      if(r.top < W.innerHeight && r.bottom > 0) el.classList.add("in");
     });
-  },1200);
-  W.addEventListener("load", function(){ setTimeout(showAll, 5000); });
+  }, 250);
 })();
 
 /* ---------- 3. header ---------- */
