@@ -785,7 +785,7 @@ em, i{font-style:normal}
 .ci__loc{margin-bottom:6px}
 .ci__loc:last-child{margin-bottom:0}
 .soc{display:flex; gap:12px; margin-top:28px; flex-wrap:wrap; align-items:center}
-.map{position:relative; min-height:clamp(400px,46vw,540px); background:var(--noir-2); border:1px solid rgba(255,255,255,.1); border-radius:6px; overflow:hidden; box-shadow:0 8px 30px rgba(0,0,0,.3)}
+.map{position:relative; min-height:clamp(400px,46vw,540px); background:var(--noir-2) radial-gradient(circle at 60% 50%, rgba(200,168,122,.08) 0%, transparent 60%); border:1px solid rgba(255,255,255,.1); border-radius:6px; overflow:hidden; box-shadow:0 8px 30px rgba(0,0,0,.3)}
 .map iframe{position:absolute; inset:0; width:100%; height:100%; border:0; display:block}
 .map__card{position:absolute; top:16px; left:16px; z-index:2; background:rgba(14,13,11,.94); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border:1px solid rgba(200,168,122,.28); border-radius:6px; padding:14px 18px; max-width:calc(100% - 32px); box-shadow:0 8px 24px rgba(0,0,0,.55)}
 .map__card-t{font:600 10.5px/1.2 var(--sans); letter-spacing:.14em; text-transform:uppercase; color:var(--clay-2); margin-bottom:4px}
@@ -1836,13 +1836,18 @@ em, i{font-style:normal}
 
       <div class="map r" id="map" style="--d:.08s">
         <iframe src="https://yandex.ru/map-widget/v1/?ll=39.525545%2C52.607421&z=16&pt=39.525545%2C52.607421%2Cpm2rdm"
-          width="100%" height="100%" frameborder="0" allowfullscreen="true" loading="lazy" title="Карта проезда: Липецк, Универсальный проезд, 9а"></iframe>
+          width="100%" height="100%" frameborder="0" allowfullscreen="true" title="Карта проезда: Липецк, Универсальный проезд, 9а"></iframe>
         <div class="map__card">
           <div class="map__card-t">Шоурум и производство</div>
           <div class="map__card-a">г. Липецк, Универсальный проезд, 9а &middot; офис 7</div>
-          <a class="map__card-lnk" href="https://yandex.ru/maps/?text=%D0%9B%D0%B8%D0%BF%D0%B5%D1%86%D0%BA%2C%20%D0%A3%D0%BD%D0%B8%D0%B2%D0%B5%D1%80%D1%81%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9%20%D0%BF%D1%80%D0%BE%D0%B5%D0%B7%D0%B4%2C%209%D0%B0" target="_blank" rel="noopener nofollow">
-            Маршрут в Яндекс Картах &rarr;
-          </a>
+          <div style="display:flex; gap:14px; flex-wrap:wrap; align-items:center;">
+            <a class="map__card-lnk" href="https://yandex.ru/maps/?text=%D0%9B%D0%B8%D0%BF%D0%B5%D1%86%D0%BA%2C%20%D0%A3%D0%BD%D0%B8%D0%B2%D0%B5%D1%80%D1%81%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9%20%D0%BF%D1%80%D0%BE%D0%B5%D0%B7%D0%B4%2C%209%D0%B0" target="_blank" rel="noopener nofollow">
+              Яндекс Карты &rarr;
+            </a>
+            <a class="map__card-lnk" href="https://2gis.ru/lipetsk/search/%D0%A3%D0%BD%D0%B8%D0%B2%D0%B5%D1%80%D1%81%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9%20%D0%BF%D1%80%D0%BE%D0%B5%D0%B7%D0%B4%2C%209%D0%B0" target="_blank" rel="noopener nofollow" style="color:#2ECC71;">
+              2ГИС &rarr;
+            </a>
+          </div>
         </div>
       </div>
     </div>
