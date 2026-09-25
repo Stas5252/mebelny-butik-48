@@ -52,10 +52,11 @@ ul,ol{padding:0; list-style:none}
 .noir .hr{background:var(--line-d)}
 
 /* ========== 3. type ========== */
-.d1{font:400 clamp(40px,7.1vw,108px)/.97 var(--serif); letter-spacing:-.028em}
-.d2{font:400 clamp(30px,4.6vw,68px)/1.03 var(--serif); letter-spacing:-.024em}
-.d3{font:400 clamp(24px,2.7vw,38px)/1.14 var(--serif); letter-spacing:-.018em}
-.d4{font:400 clamp(19px,1.5vw,23px)/1.3 var(--serif); letter-spacing:-.012em}
+em, i{font-style:normal}
+.d1{font:400 clamp(38px,6.6vw,98px)/1.16 var(--serif); letter-spacing:-.02em; padding-bottom:6px; overflow:visible}
+.d2{font:400 clamp(30px,4.5vw,64px)/1.18 var(--serif); letter-spacing:-.016em; padding-bottom:4px; overflow:visible}
+.d3{font:400 clamp(24px,2.7vw,38px)/1.22 var(--serif); letter-spacing:-.012em; overflow:visible}
+.d4{font:400 clamp(19px,1.5vw,23px)/1.34 var(--serif); letter-spacing:-.01em; overflow:visible}
 .lead{font-size:clamp(16px,1.25vw,19px); line-height:1.62; color:var(--ink-2); max-width:58ch}
 .noir .lead{color:rgba(255,255,255,.9)}
 .sm{font-size:14px; line-height:1.6; color:var(--ink-3)}
@@ -192,18 +193,18 @@ ul,ol{padding:0; list-style:none}
 .hero__eyebrow .dot{width:5px; height:5px; border-radius:50%; background:var(--clay-2); animation:pulse 2.6s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
 .hero__v{writing-mode:vertical-rl; font:500 10.5px/1 var(--sans); letter-spacing:.24em; text-transform:uppercase; color:rgba(255,255,255,.75)}
-.hero h1{max-width:15ch}
-.hero h1 em{font-style:italic; color:var(--clay-2)}
+.hero h1{max-width:16ch; overflow:visible; padding-bottom:8px}
+.hero h1 em{font-style:normal; color:var(--clay-2); font-weight:inherit}
 .hero__sub{margin-top:clamp(18px,2.4vw,28px); max-width:46ch; font-size:clamp(15px,1.2vw,18px); line-height:1.6; color:rgba(255,255,255,.92)}
 .hero__act{display:flex; flex-wrap:wrap; gap:12px; margin-top:clamp(24px,3vw,38px)}
 .hero__bot{display:grid; grid-template-columns:1fr auto; gap:24px; align-items:end; margin-top:clamp(34px,5vw,64px); padding:22px 0 26px; border-top:1px solid var(--line-d)}
 .idx{display:flex; gap:clamp(10px,2vw,34px); flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none}
 .idx::-webkit-scrollbar{display:none}
-.ix{position:relative; flex:none; background:none; border:0; padding:12px 0 14px; cursor:pointer; text-align:left; color:rgba(255,255,255,.75); transition:color .45s var(--e)}
+.ix{position:relative; flex:none; background:none; border:0; padding:12px 0 16px; cursor:pointer; text-align:left; color:rgba(255,255,255,.75); transition:color .45s var(--e)}
 .ix:hover{color:rgba(244,241,235,.86)}
 .ix.on{color:var(--paper)}
 .ix i{display:block; font:500 10px/1 var(--sans); font-style:normal; letter-spacing:.18em; opacity:.6; margin-bottom:8px}
-.ix b{font:400 clamp(14px,1.1vw,17px)/1 var(--serif); font-weight:400; letter-spacing:-.01em; white-space:nowrap}
+.ix b{font:400 clamp(14px,1.1vw,17px)/1.25 var(--serif); font-weight:400; letter-spacing:-.01em; white-space:nowrap}
 .ix::before{content:""; position:absolute; left:0; right:0; bottom:0; height:1px; background:rgba(244,241,235,.2)}
 .ix::after{content:""; position:absolute; left:0; bottom:0; width:100%; height:1px; background:var(--clay-2); transform:scaleX(0); transform-origin:left}
 .ix.on::after{animation:sweep 6s linear forwards}
@@ -218,18 +219,18 @@ ul,ol{padding:0; list-style:none}
 .mq__t{display:flex; width:max-content; animation:mq 46s linear infinite}
 .mq:hover .mq__t{animation-play-state:paused}
 @keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.mq__t span{display:inline-flex; align-items:center; gap:clamp(18px,3vw,44px); padding:18px clamp(9px,1.5vw,22px); font:400 clamp(15px,1.5vw,21px)/1 var(--serif); letter-spacing:-.01em; white-space:nowrap; color:#221811}
+.mq__t span{display:inline-flex; align-items:center; gap:clamp(18px,3vw,44px); padding:18px clamp(9px,1.5vw,22px); font:400 clamp(15px,1.5vw,21px)/1.25 var(--serif); letter-spacing:-.01em; white-space:nowrap; color:#221811}
 .mq__t span::after{content:""; width:5px; height:5px; border-radius:50%; background:#8E6342; opacity:.85}
 
 /* ========== 8. manifest + stats ========== */
 .mf{display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr); gap:clamp(28px,5vw,88px); align-items:start}
-.mf__t{font:400 clamp(23px,2.7vw,40px)/1.24 var(--serif); letter-spacing:-.02em; max-width:20ch}
-.mf__t em{font-style:italic; color:var(--clay)}
+.mf__t{font:400 clamp(23px,2.7vw,40px)/1.3 var(--serif); letter-spacing:-.015em; max-width:22ch; overflow:visible; padding-bottom:4px}
+.mf__t em{font-style:normal; color:var(--clay); font-weight:inherit}
 .mf__r{display:flex; flex-direction:column; gap:22px; padding-top:8px}
 .st{display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid var(--line); margin-top:clamp(44px,6vw,86px)}
 .st__i{padding:clamp(22px,2.6vw,34px) clamp(14px,2vw,26px) 0 0; border-right:1px solid var(--line)}
 .st__i:last-child{border-right:0}
-.st__n{font:400 clamp(34px,4.6vw,64px)/1 var(--serif); letter-spacing:-.03em; display:flex; align-items:baseline; gap:2px}
+.st__n{font:400 clamp(34px,4.6vw,64px)/1.1 var(--serif); letter-spacing:-.03em; display:flex; align-items:baseline; gap:2px}
 .st__n sup{font-size:.42em; top:-.9em; position:relative; color:var(--clay)}
 .st__c{margin-top:12px; font-size:13.5px; line-height:1.5; color:var(--ink-3); max-width:22ch}
 
@@ -244,7 +245,7 @@ ul,ol{padding:0; list-style:none}
 .cd::after{content:""; position:absolute; inset:0; background:linear-gradient(to top,rgba(12,11,10,.86) 0%,rgba(12,11,10,.28) 46%,rgba(12,11,10,.06) 100%); transition:opacity .8s var(--e)}
 .cd__in > span{display:block}
 .cd__in{position:absolute; inset:auto 0 0 0; z-index:2; padding:clamp(18px,2vw,32px); display:flex; align-items:flex-end; justify-content:space-between; gap:16px}
-.cd__t{display:block; font:400 clamp(20px,2vw,31px)/1.08 var(--serif); letter-spacing:-.02em}
+.cd__t{display:block; font:400 clamp(20px,2vw,31px)/1.2 var(--serif); letter-spacing:-.02em; padding-bottom:2px}
 .cd__d{display:block; margin-top:9px; font-size:13.5px; color:rgba(255,255,255,.9); max-width:34ch}
 .cd__n{font:500 10px/1 var(--sans); letter-spacing:.18em; color:var(--clay-2); margin-bottom:12px; display:block}
 .cd__ar{flex:none; width:46px; height:46px; border:1px solid rgba(244,241,235,.35); border-radius:999px; display:grid; place-items:center; transition:background .5s var(--e), color .5s var(--e), border-color .5s var(--e), transform .5s var(--e)}
@@ -523,7 +524,7 @@ ul,ol{padding:0; list-style:none}
 .fc__ul li{display:flex; gap:12px; align-items:flex-start; font-size:14.5px; color:var(--ink-2)}
 .fc__ul svg{flex:none; margin-top:3px; color:var(--clay)}
 .ft{background:var(--noir); color:var(--paper); padding:clamp(48px,6vw,86px) 0 34px}
-.ft__big{font:400 clamp(52px,13vw,190px)/1 var(--serif); letter-spacing:-.045em; color:rgba(244,241,235,.1); user-select:none; margin-bottom:clamp(24px,3vw,44px)}
+.ft__big{font:400 clamp(52px,13vw,190px)/1.08 var(--serif); letter-spacing:-.045em; color:rgba(244,241,235,.1); user-select:none; margin-bottom:clamp(24px,3vw,44px); overflow:visible; padding-bottom:8px}
 .ft__in{display:grid; grid-template-columns:repeat(4,1fr); gap:26px; padding-top:32px; border-top:1px solid var(--line-d)}
 .ft__c b{display:block; font:500 10.5px/1 var(--sans); letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,.7); margin-bottom:14px}
 .ft__c a,.ft__c p{display:block; font-size:14px; line-height:1.75; color:rgba(244,241,235,.78); text-decoration:none}
@@ -537,10 +538,10 @@ ul,ol{padding:0; list-style:none}
 .r.in{opacity:1; transform:none}
 .ir{clip-path:inset(0 0 100% 0); transition:clip-path 1.25s var(--e2); transition-delay:var(--d,0s)}
 .ir.in{clip-path:inset(0 0 0 0)}
-.sp{display:block}
-.sp .w{display:inline-block; overflow:hidden; vertical-align:bottom}
-.sp .w > i{display:inline-block; font-style:inherit; transform:translateY(108%); transition:transform 1.05s var(--e); transition-delay:calc(var(--i,0)*.055s)}
-.sp.in .w > i{transform:none}
+.sp{display:block; overflow:visible}
+.sp .w{display:inline-block; overflow:visible; vertical-align:baseline; padding:0 1px}
+.sp .w > i{display:inline-block; font-style:normal; transform:translateY(20px); opacity:0; transition:opacity .85s var(--e), transform .85s var(--e); transition-delay:calc(var(--i,0)*.045s)}
+.sp.in .w > i{transform:none; opacity:1}
 
 /* ========== 20. responsive ========== */
 @media (max-width:1180px){
@@ -687,7 +688,7 @@ ul,ol{padding:0; list-style:none}
       <span class="hero__v">Индивидуальные проекты</span>
     </div>
 
-    <h1 class="d1 sp" data-split>Кухни и шкафы, <em>сделанные</em> под вашу квартиру</h1>
+    <h1 class="d1 r" style="--d:.15s">Кухни и шкафы, <em>сделанные</em> под вашу квартиру</h1>
     <p class="hero__sub r" style="--d:.5s">Проектируем, производим и ставим сами &mdash; без посредников, типовых решений и наценок. С 2014 года.</p>
     <div class="hero__act r" style="--d:.62s">
       <a class="b b--paper" href="#calc">Рассчитать стоимость <span class="ar">&rarr;</span></a>
