@@ -307,17 +307,47 @@ em, i{font-style:normal}
 .hero__sl.on img{transform:scale(1)}
 .hero__bg::after{content:""; position:absolute; inset:0; background:linear-gradient(88deg,rgba(12,11,10,.76) 0%,rgba(12,11,10,.52) 36%,rgba(12,11,10,.12) 72%,rgba(12,11,10,.35) 100%)}
 .hero__bg::before{content:""; position:absolute; inset:0; z-index:2; background:linear-gradient(to bottom,rgba(12,11,10,.5) 0%,transparent 22%,transparent 62%,rgba(12,11,10,.72) 100%)}
-.hero__in{position:relative; z-index:3; flex:1; display:flex; flex-direction:column; padding-top:calc(var(--head) + clamp(14px, 2.2vh, 32px))}
-.hero__top{display:flex; align-items:center; justify-content:space-between; margin-bottom:clamp(12px, 1.8vh, 22px)}
+.hero__in{
+  position:relative; z-index:3; flex:1; display:flex; flex-direction:column;
+  justify-content:space-between;
+  padding-top:calc(var(--head) + clamp(16px, 2.5vh, 40px));
+  padding-bottom:0;
+}
+.hero__main{
+  margin:auto 0;
+  padding:clamp(16px, 2.5vh, 40px) 0;
+  display:flex; flex-direction:column;
+}
+.hero__top{
+  display:flex; align-items:center;
+  margin-bottom:clamp(18px, 2.4vh, 28px);
+}
 .hero__eyebrow{display:inline-flex; align-items:center; gap:12px; font:500 11px/1 var(--sans); letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,.9)}
 .hero__eyebrow .dot{width:5px; height:5px; border-radius:50%; background:var(--clay-2); animation:pulse 2.6s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
-.hero__v{position:absolute; right:var(--gut); top:clamp(120px, 20vh, 190px); writing-mode:vertical-rl; font:500 10.5px/1 var(--sans); letter-spacing:.24em; text-transform:uppercase; color:rgba(255,255,255,.68); pointer-events:none}
-.hero h1{font:400 clamp(32px, 4.4vw, 68px)/1.14 var(--serif); max-width:20ch; overflow:visible; padding-bottom:4px; color:#FFFFFF}
+.hero__v{
+  position:absolute; right:var(--gut); top:50%; transform:translateY(-50%);
+  writing-mode:vertical-rl; font:500 10.5px/1 var(--sans); letter-spacing:.24em;
+  text-transform:uppercase; color:rgba(255,255,255,.65); pointer-events:none;
+}
+.hero h1{
+  font:400 clamp(36px, 5vw, 76px)/1.15 var(--serif);
+  max-width:17ch; overflow:visible; padding-bottom:6px; color:#FFFFFF; margin:0;
+}
 .hero h1 em{font-style:normal; color:#FFFFFF; font-weight:inherit}
-.hero__sub{margin-top:clamp(12px, 1.6vh, 20px); max-width:50ch; font-size:clamp(14.5px, 1.1vw, 17px); line-height:1.55; color:rgba(255,255,255,.9)}
-.hero__act{display:flex; flex-wrap:wrap; gap:12px; margin-top:clamp(16px, 2.2vh, 26px)}
-.hero__bot{display:grid; grid-template-columns:1fr auto; gap:24px; align-items:end; margin-top:auto; padding:clamp(12px, 1.8vh, 20px) 0 clamp(16px, 2.2vh, 24px); border-top:1px solid var(--line-d)}
+.hero__sub{
+  margin-top:clamp(18px, 2.4vh, 28px); max-width:52ch;
+  font-size:clamp(15px, 1.15vw, 18px); line-height:1.6; color:rgba(255,255,255,.92);
+}
+.hero__act{
+  display:flex; flex-wrap:wrap; gap:14px;
+  margin-top:clamp(26px, 3.2vh, 38px);
+}
+.hero__bot{
+  display:grid; grid-template-columns:1fr auto; gap:24px; align-items:end;
+  margin-top:0; padding:clamp(16px, 2.2vh, 24px) 0 clamp(18px, 2.4vh, 26px);
+  border-top:1px solid var(--line-d);
+}
 .idx{display:flex; gap:clamp(10px,2vw,34px); flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none}
 .idx::-webkit-scrollbar{display:none}
 .ix{position:relative; flex:none; background:none; border:0; padding:12px 0 16px; cursor:pointer; text-align:left; color:rgba(255,255,255,.75); transition:color .45s var(--e)}
@@ -903,7 +933,9 @@ em, i{font-style:normal}
 @media (max-width:720px){
   :root{--head:64px; --gut:clamp(16px,4vw,24px)}
   body{padding-bottom:calc(68px + env(safe-area-inset-bottom))}
-  .hero__bot{grid-template-columns:1fr}
+  .hero__in{padding-top:calc(var(--head) + 16px); justify-content:flex-start}
+  .hero__main{margin:0; padding:10px 0 20px}
+  .hero__bot{grid-template-columns:1fr; margin-top:auto}
   .hero__scroll{display:none}
   .hero__v{display:none}
   .hero__act{flex-direction:column; width:100%}
@@ -1015,21 +1047,24 @@ em, i{font-style:normal}
   </div>
 
   <div class="wrap hero__in">
-    <div class="hero__top">
-      <span class="hero__eyebrow"><span class="dot"></span>Собственное производство &middot; Липецк</span>
-      <span class="hero__v">Индивидуальные проекты</span>
+    <div class="hero__main">
+      <div class="hero__top">
+        <span class="hero__eyebrow"><span class="dot"></span>Собственное производство &middot; Липецк</span>
+      </div>
+
+      <h1 class="d1 r" style="--d:.15s">Кухни и шкафы, сделанные под вашу квартиру</h1>
+      <p class="hero__sub r" style="--d:.5s">Проектируем, производим и ставим сами &mdash; без посредников, типовых решений и наценок. С 2014 года.</p>
+      <div class="hero__act r" style="--d:.62s">
+        <a class="b b--paper" href="#calc">Рассчитать стоимость <span class="ar">&rarr;</span></a>
+        <a class="b b--lined" href="#quiz">Подобрать кухню &mdash; скидка 7%</a>
+      </div>
+      <div class="hero__promo r" style="--d:.68s">
+        <span class="promo-tag">Акция</span>
+        <span>При заказе кухни &mdash; <b>сертификат 20 000 ₽</b> на шкаф, гардеробную или спальню</span>
+      </div>
     </div>
 
-    <h1 class="d1 r" style="--d:.15s">Кухни и шкафы, сделанные под вашу квартиру</h1>
-    <p class="hero__sub r" style="--d:.5s">Проектируем, производим и ставим сами &mdash; без посредников, типовых решений и наценок. С 2014 года.</p>
-    <div class="hero__act r" style="--d:.62s">
-      <a class="b b--paper" href="#calc">Рассчитать стоимость <span class="ar">&rarr;</span></a>
-      <a class="b b--lined" href="#quiz">Подобрать кухню &mdash; скидка 7%</a>
-    </div>
-    <div class="hero__promo r" style="--d:.68s">
-      <span class="promo-tag">Акция</span>
-      <span>При заказе кухни &mdash; <b>сертификат 20 000 ₽</b> на шкаф, гардеробную или спальню</span>
-    </div>
+    <span class="hero__v" aria-hidden="true">Индивидуальные проекты</span>
 
     <div class="hero__bot">
       <div class="idx" id="idx">
