@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://stas5252.github.io/mebelny-butik-48/sitemap.xml
+Host: https://stas5252.github.io/mebelny-butik-48/
