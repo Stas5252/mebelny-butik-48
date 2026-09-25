@@ -120,6 +120,12 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;heigh
   .panel{width:260px}
 }
 @media(max-width:700px){
+  .topbar{padding:0 12px;gap:8px;overflow-x:auto;scrollbar-width:none}
+  .topbar::-webkit-scrollbar{display:none}
+  .topbar__logo{font-size:13px;white-space:nowrap}
+  .topbar__cam-group{display:none}
+  .topbar__sep{display:none}
+  .topbar__btn--ghost{display:none}
   .main{flex-direction:column}
   .sidebar,.panel{width:100%;max-height:200px}
   .sidebar{border-right:none;border-bottom:1px solid var(--bg4);flex-direction:row;overflow-x:auto}
