@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>3D-Конструктор гардеробных КДМ — Мебельный Бутик 48</title>
+<title>3D-Конструктор гардеробных — Мебельный Бутик 48</title>
 <script src="js/three.min.js"></script>
 <script src="js/OrbitControls.js"></script>
 <style>
@@ -127,7 +127,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;heigh
   <header class="topbar">
     <a href="index.html" class="topbar__btn topbar__btn--back">← На сайт</a>
     <div class="topbar__sep"></div>
-    <div class="topbar__logo"><span>◆</span> 3D-Конструктор гардеробных КДМ</div>
+    <div class="topbar__logo"><span>◆</span> 3D-Конструктор гардеробных</div>
     <div class="topbar__cam-group">
       <button class="topbar__cam on" data-cam="3d">3D Перспектива</button>
       <button class="topbar__cam" data-cam="front">Фронт</button>
@@ -164,7 +164,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;heigh
         <button class="mod-btn" data-module="upright">
           <div class="mod-btn__icon">┃</div>
           <div class="mod-btn__info">
-            <span class="mod-btn__name">Стойка КДМ</span>
+            <span class="mod-btn__name">Стойка каркаса</span>
             <span class="mod-btn__desc">Вертикальный профиль</span>
           </div>
         </button>
@@ -302,7 +302,7 @@ var shelfPalettes = {
   cashmere:  { hex: 0xcdc2b5, rough: 0.72, base: "#cdc2b5", dark: "#9c8f80" }
 };
 var moduleLabels = {
-  upright: "Стойка КДМ", shelf: "Полка ЛДСП", rail: "Штанга хром",
+  upright: "Стойка каркаса", shelf: "Полка ЛДСП", rail: "Штанга хром",
   basket: "Корзина сетчатая", shoe_rack: "Обувница", drawer: "Ящик ЛДСП"
 };
 var modulePrices = {
@@ -798,7 +798,7 @@ function placeModule(type, x, y){
     /* Must be between two uprights */
     var bounds = findSectionBounds(x);
     if(!bounds){
-      showToast("Сначала расставьте стойки КДМ! Модули размещаются между двумя стойками.");
+      showToast("Сначала расставьте стойки каркаса! Модули размещаются между двумя стойками.");
       return;
     }
     sw = bounds.right - bounds.left;
@@ -996,7 +996,7 @@ function getSpecText(){
   var high = Math.round((total * 1.08) / 1000) * 1000;
 
   var r = state.room;
-  var text = "Гардеробная система КДМ (комната " + fmtDec(r.width) + "×" + fmtDec(r.depth) + "×" + fmtDec2(r.height) + " м). ";
+  var text = "Гардеробная система (комната " + fmtDec(r.width) + "×" + fmtDec(r.depth) + "×" + fmtDec2(r.height) + " м). ";
   text += "Каркас: " + state.frameColor + ", полки: " + state.shelfColor + ". ";
   text += "Модули: ";
   Object.keys(counts).forEach(function(type){
