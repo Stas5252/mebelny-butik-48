@@ -632,77 +632,99 @@ p,.lead,.hero__sub,.st__c,.cd__d{
 }
 .hero__promo b{color:#FFFFFF; font-weight:700}
 
-/* ========== Proprietary Wardrobe Configurator ========== */
-.cfg-sec{background:#0e0d0c; color:var(--paper); border-top:1px solid var(--line-d); border-bottom:1px solid var(--line-d); overflow:hidden}
-.cfg-head{margin-bottom:clamp(20px,2.5vw,32px)}
-.cfg-layout{display:grid; grid-template-columns:minmax(0,1.38fr) minmax(0,1fr); gap:clamp(20px,2.8vw,44px); align-items:start}
-
-/* Stage (Canvas & Controls) */
-.cfg-stage{position:sticky; top:88px; display:flex; flex-direction:column; gap:12px}
-.cfg-toolbar{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:10px; padding:10px 14px; background:rgba(244,241,235,.04); border:1px solid var(--line-d); border-radius:10px}
-.cfg-view-toggle{display:inline-flex; padding:3px; background:rgba(0,0,0,.4); border-radius:8px; gap:2px}
-.cfg-view-toggle button{padding:6px 14px; border:0; border-radius:6px; background:none; color:rgba(244,241,235,.6); font:500 12.5px/1 var(--sans); cursor:pointer; transition:all .3s var(--e)}
-.cfg-view-toggle button.on{background:var(--paper); color:var(--noir); box-shadow:0 2px 8px rgba(0,0,0,.3)}
-.cfg-led-btn{display:inline-flex; align-items:center; gap:8px; padding:7px 14px; border:1px solid var(--line-d); border-radius:8px; background:none; color:rgba(244,241,235,.75); font:500 12.5px/1 var(--sans); cursor:pointer; transition:all .3s var(--e)}
-.cfg-led-btn.on{background:rgba(224,169,109,.16); border-color:var(--clay-2); color:var(--clay-2); box-shadow:0 0 16px rgba(224,169,109,.25)}
-.cfg-led-dot{width:8px; height:8px; border-radius:50%; background:rgba(244,241,235,.3); transition:all .3s var(--e)}
-.cfg-led-btn.on .cfg-led-dot{background:#ffd07a; box-shadow:0 0 8px #ffd07a}
-
-.cfg-canvas-wrap{position:relative; width:100%; height:450px; background:radial-gradient(ellipse at 50% 30%, #1f1d1a 0%, #0d0c0b 85%); border:1px solid var(--line-d); border-radius:12px; overflow:hidden; box-shadow:inset 0 1px 0 rgba(255,255,255,.08), 0 20px 48px rgba(0,0,0,.6)}
-.cfg-canvas-wrap canvas{width:100%; height:100%; display:block; cursor:pointer}
-.cfg-canvas-hint{position:absolute; bottom:12px; left:16px; font-size:12px; color:rgba(255,255,255,.7); pointer-events:none}
-.cfg-section-bar{display:flex; gap:6px; overflow-x:auto; padding:4px 0}
-.cfg-sec-tag{flex:1; min-width:80px; padding:7px 8px; background:rgba(244,241,235,.04); border:1px solid var(--line-d); border-radius:8px; font-size:12px; color:rgba(244,241,235,.75); text-align:center; cursor:pointer; transition:all .3s var(--e)}
-.cfg-sec-tag:hover{border-color:rgba(244,241,235,.35); color:var(--paper)}
-.cfg-sec-tag.on{background:rgba(181,144,106,.16); border-color:var(--clay-2); color:var(--paper); font-weight:500}
-
-/* Configurator Panels & Controls */
-.cfg-panel{display:flex; flex-direction:column; gap:16px}
-.cfg-card{padding:18px 20px; background:rgba(244,241,235,.03); border:1px solid var(--line-d); border-radius:12px}
-.cfg-card-title{font:500 11px/1 var(--sans); text-transform:uppercase; letter-spacing:.18em; color:rgba(255,255,255,.75); margin-bottom:12px; display:flex; justify-content:space-between; align-items:center}
-.cfg-card-title b{color:var(--clay-2); font-weight:500}
-
-.cfg-presets{display:grid; grid-template-columns:repeat(2,1fr); gap:8px}
-.cfg-preset-btn{padding:10px 12px; background:rgba(244,241,235,.04); border:1px solid var(--line-d); border-radius:8px; color:rgba(244,241,235,.8); font-size:12.5px; text-align:left; cursor:pointer; transition:all .3s var(--e)}
-.cfg-preset-btn:hover{border-color:rgba(244,241,235,.4); background:rgba(244,241,235,.08)}
-.cfg-preset-btn.on{border-color:var(--clay-2); background:rgba(181,144,106,.15); color:var(--paper)}
-.cfg-preset-btn small{display:block; font-size:11px; opacity:.6; margin-top:2px}
-
-.cfg-swatches{display:grid; grid-template-columns:repeat(2,1fr); gap:8px}
-.cfg-swatch{display:flex; align-items:center; gap:10px; padding:9px 12px; background:rgba(244,241,235,.04); border:1px solid var(--line-d); border-radius:8px; cursor:pointer; font-size:13px; color:rgba(244,241,235,.8); transition:all .3s var(--e)}
-.cfg-swatch:hover{border-color:rgba(244,241,235,.35)}
-.cfg-swatch.on{border-color:var(--clay-2); background:rgba(181,144,106,.14); color:var(--paper)}
-.cfg-swatch-dot{width:16px; height:16px; border-radius:50%; border:1px solid rgba(255,255,255,.2); flex:none}
-
-.cfg-modules{display:grid; grid-template-columns:repeat(2,1fr); gap:8px}
-.cfg-mod-btn{padding:10px 12px; background:rgba(244,241,235,.04); border:1px solid var(--line-d); border-radius:8px; text-align:left; cursor:pointer; color:rgba(244,241,235,.8); font-size:12.5px; transition:all .3s var(--e)}
-.cfg-mod-btn:hover{border-color:rgba(244,241,235,.35)}
-.cfg-mod-btn.on{border-color:var(--clay-2); background:rgba(181,144,106,.15); color:var(--paper)}
-.cfg-mod-btn span{display:block; font-weight:500}
-.cfg-mod-btn small{display:block; font-size:11px; opacity:.6; margin-top:2px}
-
-/* Summary & Live Calculation */
-.cfg-summary{padding:22px; background:linear-gradient(180deg, rgba(244,241,235,.06) 0%, rgba(244,241,235,.02) 100%); border:1px solid var(--line-d); border-radius:12px}
-.cfg-sum-price{font:400 clamp(26px,2.8vw,38px)/1.05 var(--serif); letter-spacing:-.02em; color:var(--paper); margin:8px 0}
-.cfg-sum-inst{font-size:13px; color:rgba(244,241,235,.6); margin-bottom:16px}
-.cfg-sum-inst b{color:var(--clay-2); font-weight:500}
-.cfg-specs{display:grid; grid-template-columns:repeat(2,1fr); gap:6px 12px; padding:12px 0; border-top:1px solid var(--line-d); border-bottom:1px solid var(--line-d); margin-bottom:18px; font-size:12.5px; color:rgba(244,241,235,.75)}
-.cfg-specs span{display:flex; justify-content:space-between; gap:6px}
-.cfg-specs span b{color:var(--paper); font-weight:500}
-.cfg-actions{display:flex; flex-direction:column; gap:8px}
-
-.cfg-toast{position:fixed; bottom:24px; right:24px; z-index:120; padding:12px 20px; background:var(--clay-2); color:var(--noir); border-radius:8px; font:500 13px/1.3 var(--sans); box-shadow:0 10px 30px rgba(0,0,0,.5); opacity:0; transform:translateY(10px); transition:opacity .3s var(--e), transform .3s var(--e); pointer-events:none}
-.cfg-toast.on{opacity:1; transform:none}
-
-@media(max-width:960px){
-  .cfg-layout{grid-template-columns:1fr}
-  .cfg-stage{position:static}
-  .cfg-canvas-wrap{height:360px}
-  .cfg-swatches, .cfg-modules{grid-template-columns:1fr}
+/* ========== 10. Wardrobe 3D Configurator Showcase ========== */
+.cfg-sec{background:var(--noir); color:var(--paper); border-top:1px solid var(--line-d); border-bottom:1px solid var(--line-d); position:relative}
+.cfg-banner{
+  display:grid;
+  grid-template-columns:minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap:clamp(28px, 4.5vw, 64px);
+  align-items:center;
+  margin-top:clamp(24px, 3.5vw, 44px);
 }
-@media(max-width:540px){
-  .cfg-canvas-wrap{height:290px}
-  .cfg-presets{grid-template-columns:1fr}
+.cfg-features{
+  list-style:none; padding:0; margin:0 0 clamp(24px, 3vw, 36px) 0;
+  display:flex; flex-direction:column; gap:14px;
+}
+.cfg-feature{
+  display:flex; align-items:flex-start; gap:12px; font-size:15px; color:rgba(255,255,255,.9); line-height:1.5;
+}
+.cfg-feature-icon{
+  width:22px; height:22px; border-radius:50%; background:rgba(200,168,122,.15);
+  border:1px solid rgba(200,168,122,.4); color:var(--clay-2);
+  display:inline-flex; align-items:center; justify-content:center;
+  font-size:12px; font-weight:700; flex:none; margin-top:1px;
+}
+.cfg-card{
+  position:relative;
+  border-radius:16px;
+  overflow:hidden;
+  aspect-ratio:16/10;
+  border:1px solid rgba(200,168,122,.32);
+  box-shadow:0 20px 50px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.1);
+  display:flex; flex-direction:column; justify-content:space-between;
+  padding:20px;
+  text-decoration:none;
+  transition:all .45s var(--e);
+}
+.cfg-card:hover{
+  border-color:var(--clay-2);
+  transform:translateY(-4px) scale(1.01);
+  box-shadow:0 26px 64px rgba(200,168,122,.2), inset 0 1px 0 rgba(255,255,255,.2);
+}
+.cfg-card-bg{
+  position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+  transition:transform .7s var(--e), filter .7s ease;
+  filter:brightness(0.62) contrast(1.1);
+}
+.cfg-card:hover .cfg-card-bg{
+  transform:scale(1.06);
+  filter:brightness(0.72) contrast(1.15);
+}
+.cfg-card-overlay{
+  position:absolute; inset:0;
+  background:linear-gradient(180deg, rgba(14,13,11,.3) 0%, rgba(14,13,11,.65) 60%, rgba(14,13,11,.92) 100%);
+}
+.cfg-card-top{
+  position:relative; z-index:2;
+  display:flex; justify-content:space-between; align-items:center;
+}
+.cfg-pill{
+  display:inline-flex; align-items:center; gap:8px;
+  background:rgba(14,13,11,.8); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.15); border-radius:999px;
+  padding:6px 14px; font:600 10.5px/1 var(--sans); letter-spacing:.12em; text-transform:uppercase; color:var(--clay-2);
+}
+.cfg-pill-dot{
+  width:6px; height:6px; border-radius:50%; background:#2ECC71; box-shadow:0 0 8px #2ECC71;
+}
+.cfg-card-mid{
+  position:relative; z-index:2;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px;
+  margin:auto 0;
+}
+.cfg-play-btn{
+  width:64px; height:64px; border-radius:50%;
+  background:rgba(200,168,122,.22); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+  border:1.5px solid var(--clay-2); color:#FFFFFF;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 8px 30px rgba(0,0,0,.6), 0 0 24px rgba(200,168,122,.35);
+  transition:all .35s var(--e);
+}
+.cfg-card:hover .cfg-play-btn{
+  background:var(--clay-2); color:#0E0D0B; transform:scale(1.12);
+  box-shadow:0 12px 36px rgba(200,168,122,.6);
+}
+.cfg-play-text{
+  font:600 14px/1 var(--sans); letter-spacing:.04em; color:#FFFFFF; text-shadow:0 2px 8px rgba(0,0,0,.8);
+}
+.cfg-card-bot{
+  position:relative; z-index:2;
+  display:flex; justify-content:space-between; align-items:center;
+  font-size:12px; color:rgba(255,255,255,.75);
+}
+@media (max-width:960px){
+  .cfg-banner{grid-template-columns:1fr; gap:32px}
+  .cfg-card{aspect-ratio:16/9; max-width:100%}
 }
 
 /* ========== 11. quiz ========== */
@@ -1483,44 +1505,59 @@ p,.lead,.hero__sub,.st__c,.cd__d{
 <!-- ============ NATIVE WARDROBE CONFIGURATOR ============ -->
 <section class="sec sec--tight cfg-sec noir" id="wardrobe-configurator">
   <div class="wrap">
-    <div class="cfg-head">
-      <span class="lab r"><b>04</b> 3D проектирование онлайн</span>
-      <h2 class="d2 r" style="--d:.06s">Конструктор гардеробных<br>систем</h2>
-      <p class="lead r" style="--d:.12s">Спроектируйте наполнение металлической гардеробной за 3 минуты: расставьте полки, выдвижные корзины, брючницы и штанги под точные размеры вашей ниши. Получите спецификацию и отправьте нам на точный расчёт со скидкой.</p>
+    <div class="head-row">
+      <div>
+        <span class="lab r"><b>04</b> 3D проектирование</span>
+        <h2 class="d2 r" style="--d:.06s">Конструктор гардеробных<br>систем онлайн</h2>
+      </div>
+      <p class="lead r" style="--d:.12s">Спроектируйте наполнение металлической гардеробной за&nbsp;3&nbsp;минуты: расставьте полки, выдвижные корзины, брючницы и&nbsp;штанги под&nbsp;точные размеры вашей ниши. Получите спецификацию со&nbsp;скидкой.</p>
     </div>
 
-    <div style="display:flex;flex-wrap:wrap;gap:32px;align-items:center;margin-top:40px">
-      <div style="flex:1;min-width:260px">
-        <ul style="list-style:none;padding:0;margin:0 0 32px 0;display:flex;flex-direction:column;gap:12px">
-          <li style="display:flex;align-items:center;gap:10px;color:var(--paper);font-size:15px">
-            <span style="color:var(--clay-2);font-size:18px">✓</span>
-            Оригинальные стальные стойки и сетчатые системы
+    <div class="cfg-banner">
+      <div class="r" style="--d:.1s">
+        <ul class="cfg-features">
+          <li class="cfg-feature">
+            <span class="cfg-feature-icon">✓</span>
+            <div><b>Оригинальные стальные стойки</b> &mdash; надёжные направляющие, сетчатые корзины и полки с шагом перестановки.</div>
           </li>
-          <li style="display:flex;align-items:center;gap:10px;color:var(--paper);font-size:15px">
-            <span style="color:var(--clay-2);font-size:18px">✓</span>
-            Наглядная 3D-визуализация с любого ракурса
+          <li class="cfg-feature">
+            <span class="cfg-feature-icon">✓</span>
+            <div><b>Интерактивное 3D-моделирование</b> &mdash; свободный обзор на 360°, приближение и точная расстановка секций.</div>
           </li>
-          <li style="display:flex;align-items:center;gap:10px;color:var(--paper);font-size:15px">
-            <span style="color:var(--clay-2);font-size:18px">✓</span>
-            Доставка и профессиональный монтаж в Липецке
+          <li class="cfg-feature">
+            <span class="cfg-feature-icon">✓</span>
+            <div><b>Точный расчёт сметы и монтаж</b> &mdash; быстрая доставка и профессиональная установка под ключ в Липецке.</div>
           </li>
         </ul>
 
-        <div style="display:flex;flex-wrap:wrap;gap:12px">
-          <a href="configurator.html" class="b b--paper" style="display:inline-flex;align-items:center;gap:8px;text-decoration:none">Открыть 3D-конструктор <span class="ar">&rarr;</span></a>
-          <a href="configurator.html" target="_blank" class="b b--lined" style="display:inline-flex;align-items:center;gap:8px;text-decoration:none">В отдельной вкладке <span style="font-size:12px">↗</span></a>
+        <div style="display:flex; flex-wrap:wrap; gap:12px; align-items:center;">
+          <a href="configurator.html" class="b b--paper">Открыть 3D-конструктор <span class="ar">&rarr;</span></a>
+          <a href="configurator.html" target="_blank" rel="noopener" class="b b--lined">В новой вкладке ↗</a>
         </div>
       </div>
 
-      <div style="flex:1;min-width:260px;max-width:560px" class="r" style="--d:.15s">
-        <div style="position:relative;background:#11100e;border-radius:16px;overflow:hidden;aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.08)">
-          <div style="text-align:center">
-            <div style="font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.4);margin-bottom:16px">3D МОДУЛЬ ОНЛАЙН</div>
-            <a href="configurator.html" style="display:inline-flex;align-items:center;gap:10px;padding:14px 28px;background:rgba(200,168,122,.12);border:1px solid rgba(200,168,122,.3);border-radius:12px;color:var(--paper);text-decoration:none;font-size:15px;font-weight:600;transition:all .3s" onmouseover="this.style.background='rgba(200,168,122,.22)'" onmouseout="this.style.background='rgba(200,168,122,.12)'">
-              <span style="font-size:20px">▶</span> Запустить 3D-конструктор
-            </a>
+      <div class="r" style="--d:.18s">
+        <a href="configurator.html" class="cfg-card" aria-label="Запустить 3D-конструктор гардеробных">
+          <img class="cfg-card-bg" src="images/hero_wardrobe.jpg" alt="Интерактивный 3D-конструктор гардеробных">
+          <div class="cfg-card-overlay"></div>
+          
+          <div class="cfg-card-top">
+            <span class="cfg-pill"><span class="cfg-pill-dot"></span>Realtime 3D</span>
+            <span style="font-size:11px; text-transform:uppercase; letter-spacing:.1em; color:rgba(255,255,255,.7); background:rgba(0,0,0,.5); padding:5px 10px; border-radius:6px; border:1px solid rgba(255,255,255,.1);">Three.js WebGL</span>
           </div>
-        </div>
+
+          <div class="cfg-card-mid">
+            <div class="cfg-play-btn">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="margin-left:3px;"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <span class="cfg-play-text">Запустить 3D-моделирование</span>
+          </div>
+
+          <div class="cfg-card-bot">
+            <span>Вращение 360&deg; &middot; Расстановка полок</span>
+            <span style="color:var(--clay-2); font-weight:600;">Бесплатно &rarr;</span>
+          </div>
+        </a>
       </div>
     </div>
   </div>
