@@ -1,18 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
-  <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#1A1815"/>
-      <stop offset="100%" stop-color="#0E0D0B"/>
-    </linearGradient>
-  </defs>
+  <!-- Черный фон -->
+  <rect width="512" height="512" fill="#000000" rx="48"/>
 
-  <!-- Luxury Obsidian Rounded Squircle matching header & brand aesthetic -->
-  <rect width="512" height="512" rx="104" fill="url(#bg)"/>
-  <rect x="8" y="8" width="496" height="496" rx="96" fill="none" stroke="rgba(255,255,255,0.14)" stroke-width="8"/>
-
-  <!-- Brand Typography: БУТИК 48 in white serif matching site header and user reference -->
-  <g fill="#FFFFFF" text-anchor="middle" font-family="'Georgia', 'Times New Roman', 'Playfair Display', serif" font-weight="700">
-    <text x="256" y="215" font-size="114" letter-spacing="8">БУТИК</text>
-    <text x="256" y="382" font-size="166" letter-spacing="4">48</text>
-  </g>
+  <!-- Белое число 48 -->
+  <text x="256" y="356" text-anchor="middle" font-family="'Georgia', 'Times New Roman', 'Playfair Display', serif" font-weight="700" font-size="310" fill="#FFFFFF" letter-spacing="-2">48</text>
 </svg>
