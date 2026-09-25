@@ -579,20 +579,25 @@ em, i{font-style:normal}
 .yabar span{display:block; font-size:13px; color:var(--ink-3); margin-top:5px}
 
 /* ========== 16. contacts & map ========== */
-.ct{display:grid; grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr); gap:clamp(26px,4vw,72px); align-items:start; margin-top:clamp(26px,3vw,44px)}
-.ci{border-top:1px solid var(--line-d)}
-.ci__r{display:grid; grid-template-columns:130px 1fr; gap:18px; padding:18px 0; border-bottom:1px solid var(--line-d); align-items:baseline}
-.ci__r b{font:500 11px/1.5 var(--sans); letter-spacing:.16em; text-transform:uppercase; color:rgba(255,255,255,.75)}
-.ci__r span,.ci__r a{font:400 17px/1.4 var(--serif); letter-spacing:-.012em; text-decoration:none}
-.soc{display:flex; gap:10px; margin-top:26px}
-.map{position:relative; min-height:clamp(320px,42vw,500px); background:var(--noir-2); border:1px solid var(--line-d); overflow:hidden; display:grid; place-items:center}
-.map iframe{position:absolute; inset:0; width:100%; height:100%; border:0; filter:grayscale(1) contrast(.9) brightness(.9)}
-.map__g{position:absolute; inset:0; background-image:linear-gradient(var(--line-d2) 1px,transparent 1px),linear-gradient(90deg,var(--line-d2) 1px,transparent 1px); background-size:46px 46px}
-.map__b{position:relative; z-index:2; text-align:center; padding:26px}
-.map__b b{display:block; font:400 19px/1.3 var(--serif); letter-spacing:-.015em}
-.map__b span{display:block; margin:10px 0 20px; font-size:13.5px; color:rgba(255,255,255,.8)}
-.map__p{position:relative; z-index:2; color:var(--clay-2); margin-bottom:2px}
-.map.live .map__b,.map.live .map__p,.map.live .map__g{display:none}
+.ct{display:grid; grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr); gap:clamp(28px,4vw,64px); align-items:stretch; margin-top:clamp(26px,3vw,44px)}
+.ci{border-top:1px solid rgba(255,255,255,.1)}
+.ci__r{display:grid; grid-template-columns:120px 1fr; gap:16px; padding:18px 0; border-bottom:1px solid rgba(255,255,255,.08); align-items:baseline}
+.ci__r b{font:600 10.5px/1.5 var(--sans); letter-spacing:.16em; text-transform:uppercase; color:rgba(255,255,255,.5)}
+.ci__v{font:400 15px/1.55 var(--sans); color:rgba(255,255,255,.9)}
+.ci__v a{color:#FFFFFF; text-decoration:none; font-weight:500; transition:color .25s ease}
+.ci__v a:hover{color:var(--clay-2)}
+.ci__sub{display:inline-block; font-size:12px; color:rgba(255,255,255,.45); margin-left:8px; font-weight:400}
+.ci__badge{display:inline-block; font:600 9.5px/1 var(--sans); letter-spacing:.08em; text-transform:uppercase; background:rgba(255,255,255,.1); color:rgba(255,255,255,.85); padding:3px 7px; border-radius:3px; margin-right:8px; vertical-align:baseline}
+.ci__loc{margin-bottom:6px}
+.ci__loc:last-child{margin-bottom:0}
+.soc{display:flex; gap:12px; margin-top:28px; flex-wrap:wrap; align-items:center}
+.map{position:relative; min-height:clamp(400px,46vw,540px); background:var(--noir-2); border:1px solid rgba(255,255,255,.1); border-radius:6px; overflow:hidden; box-shadow:0 8px 30px rgba(0,0,0,.3)}
+.map iframe{position:absolute; inset:0; width:100%; height:100%; border:0; display:block}
+.map__card{position:absolute; top:16px; left:16px; z-index:2; background:rgba(22,15,11,.92); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,.14); border-radius:6px; padding:14px 18px; max-width:calc(100% - 32px); box-shadow:0 8px 24px rgba(0,0,0,.45)}
+.map__card-t{font:600 10.5px/1.2 var(--sans); letter-spacing:.14em; text-transform:uppercase; color:var(--clay-2); margin-bottom:4px}
+.map__card-a{font:500 13.5px/1.4 var(--sans); color:#FFFFFF; margin-bottom:8px}
+.map__card-lnk{display:inline-flex; align-items:center; gap:6px; font:600 11.5px/1 var(--sans); letter-spacing:.04em; color:#FC3F1D; text-decoration:none; transition:color .2s}
+.map__card-lnk:hover{color:#ff694b}
 
 /* ========== 17. final cta & footer ========== */
 .fc{display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr); gap:clamp(28px,4vw,80px); align-items:center}
@@ -1458,26 +1463,64 @@ em, i{font-style:normal}
     <div class="ct">
       <div class="r">
         <div class="ci">
-          <div class="ci__r"><b>Телефон</b><a class="ul" href="tel:+79042822376">+7 (904) 282-23-76</a>, <a class="ul" href="tel:+79635228609">+7 (963) 522-86-09</a></div>
-          <div class="ci__r"><b>Мессенджеры</b><a class="ul" href="#" rel="nofollow">WhatsApp и Telegram</a></div>
-          <div class="ci__r"><b>Адрес</b><span>Липецк, Универсальный проезд, 9а, офис 7 (салон) · ул. Трофимова, 46 (производство)</span></div>
-          <div class="ci__r"><b>График</b><span>Ежедневно с 9:00 до 20:00, замер — в удобное время</span></div>
-          <div class="ci__r"><b>ВКонтакте</b><a class="ul" href="#" rel="nofollow">Живые фото работ и этапы сборки</a></div>
+          <div class="ci__r">
+            <b>Телефон</b>
+            <div class="ci__v">
+              <div><a href="tel:+79042822376">+7 (904) 282-23-76</a><span class="ci__sub">консультация / WhatsApp</span></div>
+              <div style="margin-top:6px"><a href="tel:+79635228609">+7 (963) 522-86-09</a><span class="ci__sub">производство</span></div>
+            </div>
+          </div>
+          <div class="ci__r">
+            <b>Мессенджеры</b>
+            <div class="ci__v">
+              <a href="https://wa.me/79042822376" target="_blank" rel="noopener nofollow">WhatsApp</a>
+              <span style="margin:0 8px; color:rgba(255,255,255,.25)">&middot;</span>
+              <a href="https://t.me/+79042822376" target="_blank" rel="noopener nofollow">Telegram</a>
+            </div>
+          </div>
+          <div class="ci__r">
+            <b>Адрес</b>
+            <div class="ci__v">
+              <div class="ci__loc">
+                <span class="ci__badge">Салон</span>
+                <span>г. Липецк, Универсальный проезд, 9а, офис 7</span>
+              </div>
+              <div class="ci__loc">
+                <span class="ci__badge">Цех</span>
+                <span>г. Липецк, ул. Трофимова, 46 (производство)</span>
+              </div>
+            </div>
+          </div>
+          <div class="ci__r">
+            <b>График</b>
+            <div class="ci__v">
+              <div>Ежедневно с 9:00 до 20:00</div>
+              <div class="ci__sub" style="margin-left:0; margin-top:3px">Замер помещения &mdash; в удобное для вас время</div>
+            </div>
+          </div>
+          <div class="ci__r">
+            <b>ВКонтакте</b>
+            <div class="ci__v">
+              <a href="https://vk.com" target="_blank" rel="noopener nofollow">Живые фото работ, цех и этапы сборки &rarr;</a>
+            </div>
+          </div>
         </div>
         <div class="soc">
-          <a class="b b--lined b--sm" href="#" rel="nofollow">ВКонтакте</a>
-          <a class="b b--lined b--sm" href="#" rel="nofollow">WhatsApp</a>
+          <a class="b b--lined b--sm" href="https://vk.com" target="_blank" rel="noopener nofollow">ВКонтакте</a>
+          <a class="b b--lined b--sm" href="https://wa.me/79042822376" target="_blank" rel="noopener nofollow">WhatsApp</a>
           <a class="b b--paper b--sm" href="#cta">Заказать замер <span class="ar">&rarr;</span></a>
         </div>
       </div>
 
-      <div class="map ir" id="map">
-        <span class="map__g" aria-hidden="true"></span>
-        <span class="map__p" aria-hidden="true"><svg width="26" height="34" viewBox="0 0 26 34" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M13 33s11-11.7 11-20A11 11 0 1 0 2 13c0 8.3 11 20 11 20z"/><circle cx="13" cy="13" r="4"/></svg></span>
-        <div class="map__b">
-          <b>Липецк, Универсальный проезд, 9а (салон) · ул. Трофимова, 46 (цех)</b>
-          <span>Карта загружается по клику — чтобы страница открывалась быстро</span>
-          <button type="button" class="b b--paper b--sm" id="mapLoad">Показать карту <span class="ar">&rarr;</span></button>
+      <div class="map r" id="map" style="--d:.08s">
+        <iframe src="https://yandex.ru/map-widget/v1/?text=%D0%9B%D0%B8%D0%BF%D0%B5%D1%86%D0%BA%2C%20%D0%A3%D0%BD%D0%B8%D0%B2%D0%B5%D1%80%D1%81%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9%20%D0%BF%D1%80%D0%BE%D0%B5%D0%B7%D0%B4%2C%209%D0%B0&z=16"
+          width="100%" height="100%" frameborder="0" allowfullscreen="true" loading="lazy" title="Карта проезда: Липецк, Универсальный проезд, 9а"></iframe>
+        <div class="map__card">
+          <div class="map__card-t">Шоурум и производство</div>
+          <div class="map__card-a">г. Липецк, Универсальный проезд, 9а &middot; офис 7</div>
+          <a class="map__card-lnk" href="https://yandex.ru/maps/?text=%D0%9B%D0%B8%D0%BF%D0%B5%D1%86%D0%BA%2C%20%D0%A3%D0%BD%D0%B8%D0%B2%D0%B5%D1%80%D1%81%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9%20%D0%BF%D1%80%D0%BE%D0%B5%D0%B7%D0%B4%2C%209%D0%B0" target="_blank" rel="noopener nofollow">
+            Маршрут в Яндекс Картах &rarr;
+          </a>
         </div>
       </div>
     </div>
@@ -2231,20 +2274,6 @@ var calcSummary="";
   }
 })();
 
-/* ---------- 11. lazy map ---------- */
-(function(){
-  var btn=$("#mapLoad"), map=$("#map");
-  if(!btn||!map) return;
-  btn.addEventListener("click", function(){
-    var f=d.createElement("iframe");
-    f.setAttribute("loading","lazy");
-    f.setAttribute("title","\u041a\u0430\u0440\u0442\u0430 \u043f\u0440\u043e\u0435\u0437\u0434\u0430");
-    f.setAttribute("allowfullscreen","");
-    f.src="https://yandex.ru/map-widget/v1/?text="+encodeURIComponent("\u041b\u0438\u043f\u0435\u0446\u043a \u043c\u0435\u0431\u0435\u043b\u044c \u043d\u0430 \u0437\u0430\u043a\u0430\u0437")+"&z=15";
-    map.appendChild(f);
-    map.classList.add("live");
-  });
-})();
 
 /* ---------- 12. smooth anchors ---------- */
 (function(){
