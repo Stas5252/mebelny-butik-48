@@ -273,13 +273,22 @@ em, i{font-style:normal}
 .cd img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transform:scale(1.01); transition:transform 1.4s var(--e), filter 1.4s var(--e); filter:saturate(1.08) contrast(1.04)}
 .cd:hover img{transform:scale(1.07)}
 .cd::after{content:""; position:absolute; inset:0; background:linear-gradient(to top,rgba(12,11,10,.86) 0%,rgba(12,11,10,.28) 46%,rgba(12,11,10,.06) 100%); transition:opacity .8s var(--e)}
-.cd__in > span{display:block}
+.cd__meta{display:block; flex:1}
 .cd__in{position:absolute; inset:auto 0 0 0; z-index:2; padding:clamp(18px,2vw,32px); display:flex; align-items:flex-end; justify-content:space-between; gap:16px}
 .cd__t{display:block; font:400 clamp(20px,2vw,31px)/1.2 var(--serif); letter-spacing:-.02em; padding-bottom:2px}
 .cd__d{display:block; margin-top:9px; font-size:13.5px; color:rgba(255,255,255,.9); max-width:34ch}
 .cd__n{font:500 10px/1 var(--sans); letter-spacing:.18em; color:var(--clay-2); margin-bottom:12px; display:block}
-.cd__ar{flex:none; width:46px; height:46px; border:1px solid rgba(244,241,235,.35); border-radius:999px; display:grid; place-items:center; transition:background .5s var(--e), color .5s var(--e), border-color .5s var(--e), transform .5s var(--e)}
-.cd:hover .cd__ar{background:var(--paper); color:var(--ink); border-color:var(--paper); transform:rotate(-45deg)}
+.cd__ar{
+  flex:none; width:46px; height:46px; border:1px solid rgba(255,255,255,.45);
+  border-radius:50%; display:inline-flex !important; align-items:center !important;
+  justify-content:center !important; color:#FFFFFF; background:rgba(0,0,0,.18);
+  backdrop-filter:blur(6px); transition:all .35s var(--e); position:relative;
+}
+.cd__ar svg{display:block; width:16px; height:16px; margin:auto; flex:none; stroke:currentColor; transition:transform .35s var(--e)}
+.cd__ar--sm{width:36px; height:36px}
+.cd__ar--sm svg{width:13px; height:13px}
+.cd:hover .cd__ar{background:#FFFFFF; color:#1C130E; border-color:#FFFFFF; box-shadow:0 6px 20px rgba(0,0,0,.35)}
+.cd:hover .cd__ar svg{transform:rotate(-45deg)}
 .cd--c .cd__t{font-size:clamp(17px,1.4vw,22px)}
 .cd--c .cd__d{display:none}
 
@@ -833,36 +842,54 @@ em, i{font-style:normal}
       <a class="cd cd--a ir" href="#calc">
         <img src="images/cat_kitchen.jpg" alt="Кухни на заказ в Липецке">
         <span class="cd__in">
-          <span>
+          <span class="cd__meta">
             <span class="cd__n">01 / главное направление</span>
             <span class="cd__t">Кухни на заказ</span>
             <span class="cd__d">Прямые, угловые, П-образные и с островом. Эмаль, пластик Eterno, AGT, плёнка МДФ.</span>
           </span>
-          <span class="cd__ar" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
+          <span class="cd__ar" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
         </span>
       </a>
       <a class="cd cd--b ir" style="--d:.1s" href="#quiz">
         <img src="images/cat_wardrobe.jpg" alt="Шкафы и гардеробные на заказ">
         <span class="cd__in">
-          <span>
+          <span class="cd__meta">
             <span class="cd__n">02 / второе направление</span>
             <span class="cd__t">Шкафы и гардеробные</span>
             <span class="cd__d">Распашные и купе, гардеробные системы, встроенные до потолка.</span>
           </span>
-          <span class="cd__ar" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
+          <span class="cd__ar" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
         </span>
       </a>
       <a class="cd cd--c ir" href="#calc">
         <img src="images/cat_bedroom.jpg" alt="Спальни и парящие тумбы">
-        <span class="cd__in"><span><span class="cd__n">03</span><span class="cd__t">Спальни и парящие тумбы</span></span></span>
+        <span class="cd__in">
+          <span class="cd__meta">
+            <span class="cd__n">03</span>
+            <span class="cd__t">Спальни и парящие тумбы</span>
+          </span>
+          <span class="cd__ar cd__ar--sm" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
+        </span>
       </a>
       <a class="cd cd--c ir" style="--d:.08s" href="#cta">
         <img src="images/cat_kids.jpg" alt="Детская мебель на заказ">
-        <span class="cd__in"><span><span class="cd__n">04</span><span class="cd__t">Детские</span></span></span>
+        <span class="cd__in">
+          <span class="cd__meta">
+            <span class="cd__n">04</span>
+            <span class="cd__t">Детские</span>
+          </span>
+          <span class="cd__ar cd__ar--sm" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
+        </span>
       </a>
       <a class="cd cd--c ir" style="--d:.16s" href="#cta">
         <img src="images/cat_hallway.jpg" alt="Прихожие и входные группы">
-        <span class="cd__in"><span><span class="cd__n">05</span><span class="cd__t">Прихожие</span></span></span>
+        <span class="cd__in">
+          <span class="cd__meta">
+            <span class="cd__n">05</span>
+            <span class="cd__t">Прихожие</span>
+          </span>
+          <span class="cd__ar cd__ar--sm" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
+        </span>
       </a>
     </div>
   </div>
