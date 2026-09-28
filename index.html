@@ -585,28 +585,38 @@ p,.lead,.hero__sub,.st__c,.cd__d{
 .kp-slider{position:relative; border-radius:8px; overflow:hidden; aspect-ratio:4/3; background:#000; margin-bottom:14px}
 .kp-slide{position:absolute; inset:0; opacity:0; pointer-events:none; transition:opacity .45s var(--e), transform .45s var(--e); transform:scale(1.02)}
 .kp-slide.on{opacity:1; pointer-events:auto; transform:scale(1)}
-.kp-slide img{width:100%; height:100%; object-fit:cover; display:block}
-.kp-slide-tag{position:absolute; bottom:12px; left:12px; background:rgba(14,13,11,.82); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,.14); color:#fff; font-size:11px; padding:4px 10px; border-radius:4px; z-index:2}
+.kp-slide img{width:100%; height:100%; object-fit:cover; display:block; cursor:zoom-in; transition:transform .4s var(--e)}
+.kp-slide:hover img{transform:scale(1.02)}
+.kp-slide-tag{position:absolute; bottom:12px; left:12px; background:rgba(14,13,11,.84); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,.16); color:#fff; font-size:11px; padding:5px 11px; border-radius:6px; z-index:2; pointer-events:none}
+.kp-slide-zoom{position:absolute; top:12px; right:12px; background:rgba(14,13,11,.78); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,.16); color:var(--clay-2); font-size:11px; font-weight:600; padding:4px 9px; border-radius:6px; z-index:2; display:inline-flex; align-items:center; gap:5px; pointer-events:none; opacity:.85; transition:opacity .25s}
+.kp-slide:hover .kp-slide-zoom{opacity:1; color:#fff; border-color:var(--clay)}
 
 .kp-slider__nav{position:absolute; top:50%; transform:translateY(-50%); width:100%; display:flex; justify-content:space-between; padding:0 8px; pointer-events:none; z-index:3}
 .kp-slider__btn{width:36px; height:36px; border-radius:50%; background:rgba(14,13,11,.75); border:1px solid rgba(200,168,122,.3); color:var(--clay-2); display:grid; place-items:center; cursor:pointer; pointer-events:auto; transition:all .25s}
 .kp-slider__btn:hover{background:var(--clay); color:#0E0D0B; border-color:#fff}
 
-.kp-slider__tabs{display:flex; justify-content:center; gap:8px; margin-bottom:16px}
-.kp-slider__tab{padding:6px 14px; border-radius:20px; font-size:11.5px; font-weight:600; cursor:pointer; border:1px solid rgba(255,255,255,.14); background:rgba(255,255,255,.03); color:rgba(255,255,255,.7); transition:all .25s}
-.kp-slider__tab.on{background:var(--clay-soft); border-color:var(--clay); color:var(--clay-2)}
+.kp-view-tabs{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:14px}
+.kp-view-tab{display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:10px 14px; border-radius:8px; font-size:12.5px; font-weight:600; cursor:pointer; border:1px solid rgba(255,255,255,.14); background:rgba(255,255,255,.04); color:rgba(255,255,255,.75); transition:all .25s var(--e); font-family:inherit}
+.kp-view-tab:hover{background:rgba(200,168,122,.08); border-color:rgba(200,168,122,.35); color:#fff}
+.kp-view-tab.on{background:var(--clay-soft); border-color:var(--clay); color:var(--clay-2); box-shadow:0 2px 12px rgba(200,168,122,.15)}
+.kp-view-tab svg{flex-shrink:0}
 
-.kp-card__title{font:600 16px/1.3 var(--sans); color:#fff; margin-bottom:16px; min-height:42px}
+.kp-card__title{font:600 16px/1.3 var(--sans); color:#fff; margin-bottom:14px; min-height:42px}
 
 /* Tiers */
 .kp-tiers{display:grid; grid-template-columns:repeat(3, 1fr); gap:8px; margin-bottom:18px}
 @media (max-width: 480px){ .kp-tiers{grid-template-columns:1fr; gap:10px} }
-.kp-tier{border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.02); border-radius:8px; padding:12px 10px; text-align:center; position:relative; display:flex; flex-direction:column; justify-content:center; min-height:86px}
-.kp-tier.optimal{border:2px solid var(--clay); background:rgba(200,168,122,.08); box-shadow:0 4px 18px rgba(200,168,122,.18)}
+.kp-tier{border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.02); border-radius:8px; padding:12px 10px; text-align:center; position:relative; display:flex; flex-direction:column; justify-content:center; min-height:86px; cursor:pointer; font-family:inherit; transition:all .3s var(--e); color:inherit}
+.kp-tier:hover{border-color:rgba(200,168,122,.5); background:rgba(200,168,122,.04)}
+.kp-tier.optimal{border:2px solid rgba(200,168,122,.4); background:rgba(200,168,122,.04)}
+.kp-tier.active,
+.kp-tier.optimal.active{border:2px solid var(--clay); background:rgba(200,168,122,.14); box-shadow:0 4px 18px rgba(200,168,122,.22)}
 .kp-tier__badge{position:absolute; top:-10px; left:50%; transform:translateX(-50%); background:var(--clay); color:#0E0D0B; font:700 9px/1 var(--sans); text-transform:uppercase; letter-spacing:.08em; padding:3px 8px; border-radius:999px; white-space:nowrap}
-.kp-tier__label{font-size:11.5px; color:rgba(255,255,255,.7); margin-bottom:4px; font-weight:500}
-.kp-tier__val{font:700 clamp(14px, 1.2vw, 17px)/1.1 var(--sans); color:#fff; letter-spacing:-.01em}
-.kp-tier.optimal .kp-tier__val{color:var(--clay-2)}
+.kp-tier__label{font-size:11.5px; color:rgba(255,255,255,.7); margin-bottom:4px; font-weight:500; transition:color .25s}
+.kp-tier.active .kp-tier__label{color:var(--clay-2); font-weight:700}
+.kp-tier__val{font:700 clamp(14px, 1.2vw, 17px)/1.1 var(--sans); color:#fff; letter-spacing:-.01em; transition:color .25s}
+.kp-tier.optimal .kp-tier__val,
+.kp-tier.active .kp-tier__val{color:var(--clay-2)}
 
 .kp-card__cta{margin-top:auto}
 
@@ -905,46 +915,88 @@ p,.lead,.hero__sub,.st__c,.cd__d{
 .pl b{display:block; font:400 18px/1.3 var(--serif); font-weight:400; letter-spacing:-.015em}
 .pl span{display:block; margin-top:8px; font-size:14px; line-height:1.55; color:rgba(255,255,255,.85)}
 
-/* ========== 14. materials & steps ========== */
-.mt{
-  display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(12px,1.6vw,24px);
-  margin-top:clamp(32px,4vw,56px);
+/* ========== 14. materials 10 cards showcase ========== */
+.mat-grid{
+  display:grid;
+  grid-template-columns:repeat(5, minmax(0, 1fr));
+  gap:clamp(12px, 1.6vw, 22px);
+  margin-top:clamp(28px, 3.5vw, 48px);
 }
-.mt__card{
-  background:#FFFFFF;
-  border:1px solid rgba(28,19,14,.09);
-  border-radius:6px;
-  padding:clamp(24px,2.2vw,34px) clamp(20px,1.8vw,28px);
-  display:flex; flex-direction:column; justify-content:space-between;
-  min-height:220px;
-  box-shadow:0 4px 18px rgba(28,19,14,.03);
-  transition:transform .4s var(--e), box-shadow .4s var(--e), border-color .4s var(--e);
+@media (max-width: 1080px){
+  .mat-grid{ grid-template-columns:repeat(3, 1fr); gap:16px; }
+}
+@media (max-width: 620px){
+  .mat-grid{ grid-template-columns:repeat(2, 1fr); gap:12px; }
+}
+
+.mat-card{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:14px;
+  padding:12px 10px 16px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  box-shadow:0 8px 24px rgba(0,0,0,.35);
+  transition:all .35s var(--e);
+  cursor:default;
   position:relative;
   overflow:hidden;
 }
-.mt__card::before{
-  content:""; position:absolute; top:0; left:0; width:100%; height:2px;
-  background:linear-gradient(90deg, var(--clay) 0%, transparent 100%);
-  opacity:0; transition:opacity .4s var(--e);
+.mat-card:hover{
+  transform:translateY(-5px);
+  border-color:var(--clay);
+  background:rgba(200,168,122,.08);
+  box-shadow:0 14px 36px rgba(200,168,122,.22);
 }
-.mt__card:hover{
-  transform:translateY(-3px);
-  border-color:rgba(200,168,122,.45);
-  box-shadow:0 12px 30px rgba(200,168,122,.12);
+
+.mat-card__thumb{
+  width:100%;
+  aspect-ratio:1/1;
+  border-radius:10px;
+  overflow:hidden;
+  background:#1a1917;
+  margin-bottom:12px;
+  position:relative;
 }
-.mt__card:hover::before{opacity:1}
-.mt__top{display:flex; align-items:center; justify-content:space-between; margin-bottom:14px}
-.mt__tag{font:600 10.5px/1 var(--sans); letter-spacing:.16em; text-transform:uppercase; color:var(--clay)}
-.mt__dot{width:4px; height:4px; border-radius:50%; background:var(--clay); opacity:.75}
-.mt__n{font:400 clamp(20px,1.8vw,25px)/1.2 var(--serif); letter-spacing:-.015em; color:var(--ink); margin-bottom:6px}
-.mt__p{font:500 12px/1.3 var(--sans); letter-spacing:.04em; color:var(--clay-2); margin-bottom:12px}
-.mt__d{font-size:13.5px; line-height:1.55; color:var(--ink-2); margin:0}
+.mat-card__thumb img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  transition:transform .65s var(--e);
+}
+.mat-card:hover .mat-card__thumb img{
+  transform:scale(1.08);
+}
+
+.mat-card__count{
+  font:700 clamp(18px, 1.6vw, 22px)/1 var(--sans);
+  color:#FFFFFF;
+  letter-spacing:-.01em;
+  margin-bottom:6px;
+}
+.mat-card__title{
+  font:500 13px/1.3 var(--sans);
+  color:rgba(255,255,255,.75);
+  transition:color .25s;
+}
+.mat-card:hover .mat-card__title{
+  color:#FFFFFF;
+}
 .sp2{margin-top:clamp(40px,5vw,72px); border-top:1px solid var(--line)}
 .sp2 li{display:grid; grid-template-columns:74px minmax(0,.9fr) minmax(0,1.3fr); gap:clamp(14px,2vw,34px); align-items:baseline; padding:clamp(18px,2.2vw,28px) 0; border-bottom:1px solid var(--line); transition:padding-left .5s var(--e)}
 .sp2 li:hover{padding-left:10px}
 .sp2 i{font:500 10.5px/1 var(--sans); font-style:normal; letter-spacing:.16em; color:var(--clay)}
 .sp2 b{font:400 clamp(18px,1.6vw,24px)/1.2 var(--serif); font-weight:400; letter-spacing:-.018em}
 .sp2 span{font-size:14px; line-height:1.6; color:var(--ink-3)}
+.noir .sp2{border-top-color:var(--line-d)}
+.noir .sp2 li{border-bottom-color:var(--line-d)}
+.noir .sp2 li:hover{padding-left:12px; background:rgba(255,255,255,.02)}
+.noir .sp2 i{color:var(--clay-2)}
+.noir .sp2 b{color:#FFFFFF}
+.noir .sp2 span{color:rgba(255,255,255,.7)}
 
 /* ========== 15. reviews ========== */
 .rv-h{display:grid; grid-template-columns:minmax(0,1fr) auto; gap:26px; align-items:end}
@@ -1254,6 +1306,7 @@ p,.lead,.hero__sub,.st__c,.cd__d{
       <a href="#quiz">Подбор</a>
       <a href="#works">Работы</a>
       <a href="#prod">Цех</a>
+      <a href="#process">Материалы</a>
       <a href="#reviews">Отзывы</a>
       <a href="#contacts">Контакты</a>
     </nav>
@@ -1272,8 +1325,9 @@ p,.lead,.hero__sub,.st__c,.cd__d{
   <a href="#quiz"><i>04</i>Подбор</a>
   <a href="#works"><i>05</i>Работы</a>
   <a href="#prod"><i>06</i>Своё производство</a>
-  <a href="#reviews"><i>07</i>Отзывы</a>
-  <a href="#contacts"><i>08</i>Контакты</a>
+  <a href="#process"><i>07</i>Материалы</a>
+  <a href="#reviews"><i>08</i>Отзывы</a>
+  <a href="#contacts"><i>09</i>Контакты</a>
   <div class="mm__b">
     <a class="b b--paper b--full" href="#cta">Заказать замер <span class="ar">&rarr;</span></a>
     <a class="b b--lined b--full" href="tel:+79042822376">+7 (904) 282-23-76</a>
@@ -1488,48 +1542,83 @@ p,.lead,.hero__sub,.st__c,.cd__d{
         </div>
 
         <div class="kp-slider">
-          <div class="kp-slide on" data-slide="0">
-            <img src="images/project_1_photo.webp" alt="Кухня с отдельным холодильником и вытяжкой — Мебельный Бутик 48" loading="lazy">
-            <span class="kp-slide-tag">Фото проекта</span>
+          <!-- Tier 0: Стандарт -->
+          <div class="kp-slide" data-tier="0" data-view="photo">
+            <img src="images/p1_standard.webp" alt="Кухня 1 «Стандарт» — фасады ЛДСП Egger, постформинг 38 мм, 98 000 ₽" loading="lazy">
+            <span class="kp-slide-tag">📷 Стандарт · от 98 000 ₽</span>
+            <span class="kp-slide-zoom"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6M8 11h6"/></svg> Увеличить</span>
           </div>
-          <div class="kp-slide" data-slide="1">
-            <img src="images/project_1_scheme.webp" alt="Схема и размеры проекта кухни 1 — 2700 мм" loading="lazy">
-            <span class="kp-slide-tag">Чертёж с размерами 2 700 мм</span>
+          <div class="kp-slide" data-tier="0" data-view="scheme">
+            <img src="images/p1_scheme_standard.webp" alt="Чертёж и размеры кухни 1 «Стандарт» — 2 700 мм" loading="lazy">
+            <span class="kp-slide-tag">📐 Чертёж «Стандарт» · 2 700 мм</span>
+            <span class="kp-slide-zoom"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6M8 11h6"/></svg> Чертёж с размерами</span>
           </div>
+
+          <!-- Tier 1: Комфорт (Default) -->
+          <div class="kp-slide on" data-tier="1" data-view="photo">
+            <img src="images/project_1_photo.webp" alt="Кухня 1 «Комфорт» — МДФ soft-touch, фурнитура с доводчиком, 138 000 ₽" loading="lazy">
+            <span class="kp-slide-tag">📷 Комфорт · от 138 000 ₽</span>
+            <span class="kp-slide-zoom"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6M8 11h6"/></svg> Увеличить</span>
+          </div>
+          <div class="kp-slide" data-tier="1" data-view="scheme">
+            <img src="images/p1_scheme_comfort.webp" alt="Чертёж и размеры кухни 1 «Комфорт» — 2 700 мм" loading="lazy">
+            <span class="kp-slide-tag">📐 Чертёж «Комфорт» · 2 700 мм</span>
+            <span class="kp-slide-zoom"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6M8 11h6"/></svg> Чертёж с размерами</span>
+          </div>
+
+          <!-- Tier 2: Премиум -->
+          <div class="kp-slide" data-tier="2" data-view="photo">
+            <img src="images/p1_premium.webp" alt="Кухня 1 «Премиум» — пластик Eterno / AGT, профиль Gola, Blum, 177 000 ₽" loading="lazy">
+            <span class="kp-slide-tag">📷 Премиум · от 177 000 ₽</span>
+            <span class="kp-slide-zoom"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6M8 11h6"/></svg> Увеличить</span>
+          </div>
+          <div class="kp-slide" data-tier="2" data-view="scheme">
+            <img src="images/p1_scheme_premium.webp" alt="Чертёж и размеры кухни 1 «Премиум» — 2 700 мм" loading="lazy">
+            <span class="kp-slide-tag">📐 Чертёж «Премиум» · 2 700 мм</span>
+            <span class="kp-slide-zoom"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6M8 11h6"/></svg> Чертёж с размерами</span>
+          </div>
+
           <div class="kp-slider__nav">
-            <button type="button" class="kp-slider__btn prev" aria-label="Предыдущий слайд">&larr;</button>
-            <button type="button" class="kp-slider__btn next" aria-label="Следующий слайд">&rarr;</button>
+            <button type="button" class="kp-slider__btn prev" aria-label="Предыдущая комплектация">&larr;</button>
+            <button type="button" class="kp-slider__btn next" aria-label="Следующая комплектация">&rarr;</button>
           </div>
         </div>
 
-        <div class="kp-slider__tabs">
-          <button type="button" class="kp-slider__tab on" data-to="0">Фото проекта</button>
-          <button type="button" class="kp-slider__tab" data-to="1">Схема и размеры</button>
+        <!-- View mode tabs -->
+        <div class="kp-view-tabs">
+          <button type="button" class="kp-view-tab on" data-view="photo">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            <span>Фото проекта</span>
+          </button>
+          <button type="button" class="kp-view-tab" data-view="scheme">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18v18H3z"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg>
+            <span>Схема и размеры</span>
+          </button>
         </div>
 
         <h3 class="kp-card__title">Отдельный холодильник и наклонная вытяжка</h3>
 
         <div class="kp-tiers">
-          <div class="kp-tier">
+          <button type="button" class="kp-tier" data-tier-idx="0">
             <span class="kp-tier__label">Стандарт</span>
             <strong class="kp-tier__val">98 000 ₽</strong>
             <small style="font-size:10px; color:rgba(255,255,255,.5); margin-top:2px;">ЛДСП Egger</small>
-          </div>
-          <div class="kp-tier optimal">
+          </button>
+          <button type="button" class="kp-tier optimal active" data-tier-idx="1">
             <span class="kp-tier__badge">Оптимальный выбор</span>
             <span class="kp-tier__label">Комфорт</span>
             <strong class="kp-tier__val">138 000 ₽</strong>
-            <small style="font-size:10px; color:var(--clay-2); margin-top:2px;">МДФ плёнка / петли с доводчиком</small>
-          </div>
-          <div class="kp-tier">
+            <small style="font-size:10px; color:var(--clay-2); margin-top:2px;">МДФ софт-тач / доводчики</small>
+          </button>
+          <button type="button" class="kp-tier" data-tier-idx="2">
             <span class="kp-tier__label">Премиум</span>
             <strong class="kp-tier__val">177 000 ₽</strong>
-            <small style="font-size:10px; color:rgba(255,255,255,.5); margin-top:2px;">Пластик Eterno / AGT / Blum</small>
-          </div>
+            <small style="font-size:10px; color:rgba(255,255,255,.5); margin-top:2px;">Eterno / Компакт 12 мм</small>
+          </button>
         </div>
 
-        <button type="button" class="b b--paper b--sm b--full kp-card__cta" onclick="prefillKitchenQuiz('Прямая', 'Отдельный', 'Встроенная в шкаф', '270')">
-          Рассчитать похожую кухню <span class="ar">&rarr;</span>
+        <button type="button" class="b b--paper b--sm b--full kp-card__cta" onclick="prefillKitchenQuiz('Прямая', 'Отдельный', 'Наклонная', '270')">
+          Рассчитать кухню «Комфорт» <span class="ar">&rarr;</span>
         </button>
       </article>
 
@@ -1544,48 +1633,83 @@ p,.lead,.hero__sub,.st__c,.cd__d{
         </div>
 
         <div class="kp-slider">
-          <div class="kp-slide on" data-slide="0">
-            <img src="images/project_2_photo.webp" alt="Кухня со встроенными холодильником и вытяжкой — Мебельный Бутик 48" loading="lazy">
-            <span class="kp-slide-tag">Фото проекта</span>
+          <!-- Tier 0: Стандарт -->
+          <div class="kp-slide" data-tier="0" data-view="photo">
+            <img src="images/p2_standard.webp" alt="Кухня 2 «Стандарт» — пеналы, ЛДСП Egger, 120 000 ₽" loading="lazy">
+            <span class="kp-slide-tag">📷 Стандарт · от 120 000 ₽</span>
+            <span class="kp-slide-zoom"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6M8 11h6"/></svg> Увеличить</span>
           </div>
-          <div class="kp-slide" data-slide="1">
-            <img src="images/project_2_scheme.webp" alt="Схема и размеры проекта кухни 2 — встроенная техника" loading="lazy">
-            <span class="kp-slide-tag">Чертёж со встроенной техникой</span>
+          <div class="kp-slide" data-tier="0" data-view="scheme">
+            <img src="images/p2_scheme_standard.webp" alt="Чертёж и размеры кухни 2 «Стандарт» — 2 700 мм" loading="lazy">
+            <span class="kp-slide-tag">📐 Чертёж «Стандарт» · 2 700 мм</span>
+            <span class="kp-slide-zoom"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6M8 11h6"/></svg> Чертёж с размерами</span>
           </div>
+
+          <!-- Tier 1: Комфорт (Default) -->
+          <div class="kp-slide on" data-tier="1" data-view="photo">
+            <img src="images/project_2_photo.webp" alt="Кухня 2 «Комфорт» — встроенный пенал, МДФ софт-тач, 223 000 ₽" loading="lazy">
+            <span class="kp-slide-tag">📷 Комфорт · от 223 000 ₽</span>
+            <span class="kp-slide-zoom"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6M8 11h6"/></svg> Увеличить</span>
+          </div>
+          <div class="kp-slide" data-tier="1" data-view="scheme">
+            <img src="images/p2_scheme_comfort.webp" alt="Чертёж и размеры кухни 2 «Комфорт» — 2 700 мм" loading="lazy">
+            <span class="kp-slide-tag">📐 Чертёж «Комфорт» · 2 700 мм</span>
+            <span class="kp-slide-zoom"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6M8 11h6"/></svg> Чертёж с размерами</span>
+          </div>
+
+          <!-- Tier 2: Премиум -->
+          <div class="kp-slide" data-tier="2" data-view="photo">
+            <img src="images/p2_premium.webp" alt="Кухня 2 «Премиум» — эмаль RAL в потолок, пеналы, Blum, 284 000 ₽" loading="lazy">
+            <span class="kp-slide-tag">📷 Премиум · от 284 000 ₽</span>
+            <span class="kp-slide-zoom"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6M8 11h6"/></svg> Увеличить</span>
+          </div>
+          <div class="kp-slide" data-tier="2" data-view="scheme">
+            <img src="images/p2_scheme_premium.webp" alt="Чертёж и размеры кухни 2 «Премиум» — 2 700 мм" loading="lazy">
+            <span class="kp-slide-tag">📐 Чертёж «Премиум» · 2 700 мм</span>
+            <span class="kp-slide-zoom"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6M8 11h6"/></svg> Чертёж с размерами</span>
+          </div>
+
           <div class="kp-slider__nav">
-            <button type="button" class="kp-slider__btn prev" aria-label="Предыдущий слайд">&larr;</button>
-            <button type="button" class="kp-slider__btn next" aria-label="Следующий слайд">&rarr;</button>
+            <button type="button" class="kp-slider__btn prev" aria-label="Предыдущая комплектация">&larr;</button>
+            <button type="button" class="kp-slider__btn next" aria-label="Следующая комплектация">&rarr;</button>
           </div>
         </div>
 
-        <div class="kp-slider__tabs">
-          <button type="button" class="kp-slider__tab on" data-to="0">Фото проекта</button>
-          <button type="button" class="kp-slider__tab" data-to="1">Схема и размеры</button>
+        <!-- View mode tabs -->
+        <div class="kp-view-tabs">
+          <button type="button" class="kp-view-tab on" data-view="photo">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            <span>Фото проекта</span>
+          </button>
+          <button type="button" class="kp-view-tab" data-view="scheme">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18v18H3z"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg>
+            <span>Схема и размеры</span>
+          </button>
         </div>
 
         <h3 class="kp-card__title">Встроенный холодильник и встроенная вытяжка</h3>
 
         <div class="kp-tiers">
-          <div class="kp-tier">
+          <button type="button" class="kp-tier" data-tier-idx="0">
             <span class="kp-tier__label">Стандарт</span>
             <strong class="kp-tier__val">120 000 ₽</strong>
             <small style="font-size:10px; color:rgba(255,255,255,.5); margin-top:2px;">ЛДСП Egger</small>
-          </div>
-          <div class="kp-tier optimal">
+          </button>
+          <button type="button" class="kp-tier optimal active" data-tier-idx="1">
             <span class="kp-tier__badge">Оптимальный выбор</span>
             <span class="kp-tier__label">Комфорт</span>
             <strong class="kp-tier__val">223 000 ₽</strong>
             <small style="font-size:10px; color:var(--clay-2); margin-top:2px;">МДФ софт-тач / пенальная группа</small>
-          </div>
-          <div class="kp-tier">
+          </button>
+          <button type="button" class="kp-tier" data-tier-idx="2">
             <span class="kp-tier__label">Премиум</span>
             <strong class="kp-tier__val">284 000 ₽</strong>
             <small style="font-size:10px; color:rgba(255,255,255,.5); margin-top:2px;">Эмаль RAL / фурнитура Blum</small>
-          </div>
+          </button>
         </div>
 
         <button type="button" class="b b--paper b--sm b--full kp-card__cta" onclick="prefillKitchenQuiz('Прямая', 'Встроенный в пенал', 'Встроенная в шкаф', '270')">
-          Рассчитать похожую кухню <span class="ar">&rarr;</span>
+          Рассчитать кухню «Комфорт» <span class="ar">&rarr;</span>
         </button>
       </article>
     </div>
@@ -2052,69 +2176,78 @@ p,.lead,.hero__sub,.st__c,.cd__d{
 </section>
 
 <!-- ============ MATERIALS + STEPS ============ -->
-<section class="sec" id="process">
+<section class="sec noir" id="process">
   <div class="wrap">
     <div class="head-row">
       <div>
-        <span class="lab r"><b>07</b> Материалы и процесс</span>
-        <h2 class="d2 r" style="--d:.06s">Работаем только по<br>индивидуальным заказам</h2>
+        <span class="lab r"><b>07</b> Материалы и палитра</span>
+        <h2 class="d2 r" style="--d:.06s">Мы можем изготовить действительно любую мебель.</h2>
       </div>
-      <p class="lead r" style="--d:.12s">Покажем образцы и&nbsp;честно скажем, где переплачивать не&nbsp;стоит: часто разница в&nbsp;цене не&nbsp;стоит разницы в&nbsp;ресурсе.</p>
+      <p class="lead r" style="--d:.12s">В&nbsp;нашем салоне собрана огромная коллекция живых образцов: более 1&nbsp;000 декоров фасадов, столешниц и&nbsp;премиальной европейской фурнитуры. Покажем, сравним и&nbsp;поможем подобрать идеальное сочетание под&nbsp;ваш бюджет.</p>
     </div>
 
-    <div class="mt">
-      <div class="mt__card r" style="--d:.06s">
-        <div>
-          <div class="mt__top">
-            <span class="mt__tag">01 / Базовый</span>
-            <span class="mt__dot"></span>
-          </div>
-          <div class="mt__n">ЛДСП</div>
-          <div class="mt__p">Egger & Kronospan &middot; кромка 1 мм</div>
-        </div>
-        <p class="mt__d">Оптимально для&nbsp;надёжных шкафов, гардеробных зон и&nbsp;практичных решений без&nbsp;переплат.</p>
+    <div class="mat-grid r" style="--d:.12s">
+      <div class="mat-card r">
+        <div class="mat-card__thumb"><img src="images/mat_plastic.jpg" alt="Пластик" loading="lazy"></div>
+        <div class="mat-card__count">200+</div>
+        <div class="mat-card__title">Пластик</div>
       </div>
-
-      <div class="mt__card r" style="--d:.12s">
-        <div>
-          <div class="mt__top">
-            <span class="mt__tag">02 / Самый частый</span>
-            <span class="mt__dot"></span>
-          </div>
-          <div class="mt__n">Плёнка МДФ</div>
-          <div class="mt__p">Фрезеровка &middot; матовые фактуры</div>
-        </div>
-        <p class="mt__d">Любые формы фрезеровок, стойкость к&nbsp;кухонному пару, матовые и&nbsp;суперматовые декоры.</p>
+      <div class="mat-card r">
+        <div class="mat-card__thumb"><img src="images/mat_ldsp.jpg" alt="ЛДСП" loading="lazy"></div>
+        <div class="mat-card__count">180+</div>
+        <div class="mat-card__title">ЛДСП</div>
       </div>
-
-      <div class="mt__card r" style="--d:.18s">
-        <div>
-          <div class="mt__top">
-            <span class="mt__tag">03 / Индивидуальный</span>
-            <span class="mt__dot"></span>
-          </div>
-          <div class="mt__n">Эмаль RAL/NCS</div>
-          <div class="mt__p">Глубокий матовый &middot; без швов</div>
-        </div>
-        <p class="mt__d">Идеальная гладкость торцов без&nbsp;стыков кромки, покраска в&nbsp;любой из&nbsp;2000+ оттенков палитры RAL.</p>
+      <div class="mat-card r">
+        <div class="mat-card__thumb"><img src="images/mat_film.jpg" alt="МДФ плёнка" loading="lazy"></div>
+        <div class="mat-card__count">350+</div>
+        <div class="mat-card__title">МДФ плёнка</div>
       </div>
-
-      <div class="mt__card r" style="--d:.24s">
-        <div>
-          <div class="mt__top">
-            <span class="mt__tag">04 / Премиум</span>
-            <span class="mt__dot"></span>
-          </div>
-          <div class="mt__n">Пластик Eterno & AGT</div>
-          <div class="mt__p">Soft-touch &middot; сверхстойкость</div>
-        </div>
-        <p class="mt__d">Итальянский пластик Eterno и&nbsp;турецкие плиты AGT: защита от&nbsp;микроцарапин и&nbsp;следов пальцев.</p>
+      <div class="mat-card r">
+        <div class="mat-card__thumb"><img src="images/mat_enamel.jpg" alt="Эмаль" loading="lazy"></div>
+        <div class="mat-card__count">500+</div>
+        <div class="mat-card__title">Эмаль</div>
+      </div>
+      <div class="mat-card r">
+        <div class="mat-card__thumb"><img src="images/mat_acrylic.jpg" alt="Акрил" loading="lazy"></div>
+        <div class="mat-card__count">20+</div>
+        <div class="mat-card__title">Акрил</div>
+      </div>
+      <div class="mat-card r">
+        <div class="mat-card__thumb"><img src="images/mat_veneer.jpg" alt="Шпон" loading="lazy"></div>
+        <div class="mat-card__count">25+</div>
+        <div class="mat-card__title">Шпон</div>
+      </div>
+      <div class="mat-card r">
+        <div class="mat-card__thumb"><img src="images/mat_compact.jpg" alt="Столешницы компакт" loading="lazy"></div>
+        <div class="mat-card__count">30+</div>
+        <div class="mat-card__title">Столешницы компакт</div>
+      </div>
+      <div class="mat-card r">
+        <div class="mat-card__thumb"><img src="images/mat_plastic_top.jpg" alt="Столешницы пластик" loading="lazy"></div>
+        <div class="mat-card__count">200+</div>
+        <div class="mat-card__title">Столешницы пластик</div>
+      </div>
+      <div class="mat-card r">
+        <div class="mat-card__thumb"><img src="images/mat_stone.jpg" alt="Столешницы искусственный камень" loading="lazy"></div>
+        <div class="mat-card__count">190+</div>
+        <div class="mat-card__title">Столешницы иск. камень</div>
+      </div>
+      <div class="mat-card r">
+        <div class="mat-card__thumb"><img src="images/mat_hardware.jpg" alt="Люксовая фурнитура" loading="lazy"></div>
+        <div class="mat-card__count">300+</div>
+        <div class="mat-card__title">Люксовая фурнитура</div>
       </div>
     </div>
 
-    <ul class="sp2">
+    <!-- 5 STEPS -->
+    <div style="margin-top:clamp(48px, 6vw, 76px); padding-top: clamp(24px, 3vw, 40px); border-top: 1px solid var(--line-d);">
+      <span class="lab r"><b>Этапы</b> Прозрачный процесс</span>
+      <h3 class="d3 r" style="--d:.06s; margin-top:12px; font-size:clamp(22px, 2.2vw, 32px);">5 шагов от&nbsp;вашей идеи до&nbsp;готовой мебели</h3>
+    </div>
+
+    <ul class="sp2" style="margin-top:clamp(20px, 2.5vw, 32px); border-top:none;">
       <li class="r"><i>ШАГ 01</i><b>Заявка и разговор</b><span>Уточняем задачу, бюджет и&nbsp;сроки. Если мы не&nbsp;подходим по&nbsp;бюджету &mdash; скажем сразу.</span></li>
-      <li class="r" style="--d:.05s"><i>ШАГ 02</i><b>Замер и выбор образцов в офисе</b><span>Выезжаем на&nbsp;объект и&nbsp;снимаем точную геометрию стен и&nbsp;ниш. А&nbsp;материалы и&nbsp;фурнитуру выбираем в&nbsp;офисе &mdash; у&nbsp;нас огромная коллекция живых образцов, которую невозможно возить с&nbsp;собой.</span></li>
+      <li class="r" style="--d:.05s"><i>ШАГ 02</i><b>Замер и выбор образцов в салоне</b><span>Выезжаем на&nbsp;объект и&nbsp;снимаем точную геометрию стен и&nbsp;ниш. А&nbsp;материалы и&nbsp;фурнитуру выбираем в&nbsp;салоне &mdash; у&nbsp;нас огромная коллекция живых образцов, которую невозможно возить с&nbsp;собой.</span></li>
       <li class="r" style="--d:.1s"><i>ШАГ 03</i><b>Проект и смета</b><span>3D-визуализация и&nbsp;фиксированная смета в&nbsp;договоре: цена не&nbsp;растёт по&nbsp;ходу.</span></li>
       <li class="r" style="--d:.15s"><i>ШАГ 04</i><b>Производство</b><span>В&nbsp;среднем 35&nbsp;рабочих дней. Присылаем фото с&nbsp;этапов в&nbsp;мессенджер.</span></li>
       <li class="r" style="--d:.2s"><i>ШАГ 05</i><b>Монтаж и сдача</b><span>Установка за&nbsp;1&ndash;2&nbsp;дня, уборка после&nbsp;себя, гарантийный талон на&nbsp;1&nbsp;год.</span></li>
@@ -2317,10 +2450,11 @@ p,.lead,.hero__sub,.st__c,.cd__d{
       <div class="ft__c">
         <b>Навигация</b>
         <a href="#cats">Направления</a>
-        <a href="#calc">Калькулятор</a>
-        <a href="configurator.html">3D-Конструктор гардеробных</a>
-        <a href="#quiz">Подбор за&nbsp;5&nbsp;шагов</a>
+        <a href="#calc">Шесть вариантов цен</a>
+        <a href="configurator.html">3D-Конструктор</a>
+        <a href="#quiz">Подбор кухни</a>
         <a href="#works">Работы</a>
+        <a href="#process">Материалы</a>
       </div>
       <div class="ft__c">
         <b>Что делаем</b>
@@ -2418,7 +2552,7 @@ function money(n){return fmt(n)+NB+"\u20BD";}
   if(reduce || !("IntersectionObserver" in W)){ showAll(); return; }
 
   // Automatic grid cascading delays for smooth ripple-in on scroll
-  var gridContainers = $$(".st, .cg, .gw, .mt, .rvs, .pl, .sp2");
+  var gridContainers = $$(".st, .cg, .gw, .mt, .mat-grid, .rvs, .pl, .sp2");
   gridContainers.forEach(function(container){
     var children = Array.prototype.slice.call(container.children);
     children.forEach(function(child, index){
@@ -2611,22 +2745,88 @@ function money(n){return fmt(n)+NB+"\u20BD";}
     var card = $('#' + cardId);
     if(!card) return;
     var slides = $$('.kp-slide', card);
-    var tabs = $$('.kp-slider__tab', card);
+    var viewTabs = $$('.kp-view-tab', card);
+    var tierBtns = $$('.kp-tier', card);
     var prevBtn = $('.kp-slider__btn.prev', card);
     var nextBtn = $('.kp-slider__btn.next', card);
-    var cur = 0;
+    var ctaBtn = $('.kp-card__cta', card);
+    var curTier = 1; // Default to Comfort (index 1)
+    var curView = 'photo'; // Default to 'photo'
+    var tierNames = ['Стандарт', 'Комфорт', 'Премиум'];
 
-    function showSlide(idx){
-      cur = (idx + slides.length) % slides.length;
-      slides.forEach(function(s, i){ s.classList.toggle('on', i === cur); });
-      tabs.forEach(function(t, i){ t.classList.toggle('on', i === cur); });
+    function syncState(){
+      slides.forEach(function(s){
+        var t = parseInt(s.getAttribute('data-tier'), 10);
+        var v = s.getAttribute('data-view');
+        var match = (t === curTier && v === curView);
+        s.classList.toggle('on', match);
+      });
+      viewTabs.forEach(function(vt){
+        vt.classList.toggle('on', vt.getAttribute('data-view') === curView);
+      });
+      tierBtns.forEach(function(tb){
+        var t = parseInt(tb.getAttribute('data-tier-idx'), 10);
+        tb.classList.toggle('active', t === curTier);
+      });
+      if(ctaBtn){
+        ctaBtn.innerHTML = 'Рассчитать кухню «' + tierNames[curTier] + '» <span class="ar">&rarr;</span>';
+      }
     }
 
-    if(prevBtn) prevBtn.addEventListener('click', function(e){ e.stopPropagation(); showSlide(cur - 1); });
-    if(nextBtn) nextBtn.addEventListener('click', function(e){ e.stopPropagation(); showSlide(cur + 1); });
-    tabs.forEach(function(t, i){
-      t.addEventListener('click', function(e){ e.stopPropagation(); showSlide(i); });
+    // View tabs: [ Фото проекта ] vs [ Схема и размеры ]
+    viewTabs.forEach(function(vt){
+      vt.addEventListener('click', function(e){
+        e.stopPropagation();
+        curView = vt.getAttribute('data-view') || 'photo';
+        syncState();
+      });
     });
+
+    // Tier buttons: [ Стандарт ] [ Комфорт ] [ Премиум ]
+    tierBtns.forEach(function(tb){
+      tb.addEventListener('click', function(e){
+        e.stopPropagation();
+        var idx = parseInt(tb.getAttribute('data-tier-idx'), 10);
+        if(!isNaN(idx)){
+          curTier = idx;
+          syncState();
+        }
+      });
+    });
+
+    // Navigation arrows: cycle tiers
+    if(prevBtn) prevBtn.addEventListener('click', function(e){
+      e.stopPropagation();
+      curTier = (curTier - 1 + 3) % 3;
+      syncState();
+    });
+    if(nextBtn) nextBtn.addEventListener('click', function(e){
+      e.stopPropagation();
+      curTier = (curTier + 1) % 3;
+      syncState();
+    });
+
+    // Click on slide image opens lightbox
+    slides.forEach(function(s){
+      var img = $('img', s);
+      if(img){
+        img.addEventListener('click', function(e){
+          e.stopPropagation();
+          var lb = $('#lb');
+          var lbImg = $('#lbImg');
+          var lbCap = $('#lbCap');
+          if(lb && lbImg){
+            lbImg.src = img.src;
+            lbImg.alt = img.alt;
+            if(lbCap) lbCap.textContent = img.alt;
+            lb.classList.add('on');
+            document.body.style.overflow = 'hidden';
+          }
+        });
+      }
+    });
+
+    syncState();
   });
 })();
 
