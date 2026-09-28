@@ -1132,20 +1132,22 @@ p,.lead,.hero__sub,.st__c,.cd__d{
   filter:blur(0);
 }
 
-/* Image reveal with scale clipping (Pattern B from Creative Motion Engine) */
+/* Image reveal with smooth lift and scale */
 .ir{
   position:relative;
   overflow:hidden;
-  clip-path:inset(0 0 100% 0);
-  transition:clip-path 1.25s cubic-bezier(.16, 1, .3, 1);
+  opacity:0;
+  transform:translateY(22px);
+  transition:opacity 0.85s var(--e-rev), transform 0.95s var(--e-rev);
   transition-delay:var(--d, 0s);
 }
 .ir.in{
-  clip-path:inset(0 0 0 0);
+  opacity:1;
+  transform:none;
 }
 .ir img{
-  transform:scale(1.15);
-  transition:transform 1.6s cubic-bezier(.16, 1, .3, 1), filter 1s ease;
+  transform:scale(1.06);
+  transition:transform 1.4s cubic-bezier(.16, 1, .3, 1), filter 1s ease;
   will-change:transform;
 }
 .ir.in img{
@@ -1549,8 +1551,8 @@ p,.lead,.hero__sub,.st__c,.cd__d{
             <span class="kp-slide-zoom"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6M8 11h6"/></svg> Увеличить</span>
           </div>
           <div class="kp-slide" data-tier="0" data-view="scheme">
-            <img src="images/p1_scheme_standard.webp" alt="Чертёж и размеры кухни 1 «Стандарт» — 2 700 мм" loading="lazy">
-            <span class="kp-slide-tag">📐 Чертёж «Стандарт» · 2 700 мм</span>
+            <img src="images/p1_scheme_standard.webp" alt="Чертёж и размеры кухни 1 «Стандарт» — 2 850 мм" loading="lazy">
+            <span class="kp-slide-tag">📐 Чертёж «Стандарт» · 2 850 мм</span>
             <span class="kp-slide-zoom"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6M8 11h6"/></svg> Чертёж с размерами</span>
           </div>
 
@@ -1573,8 +1575,8 @@ p,.lead,.hero__sub,.st__c,.cd__d{
             <span class="kp-slide-zoom"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6M8 11h6"/></svg> Увеличить</span>
           </div>
           <div class="kp-slide" data-tier="2" data-view="scheme">
-            <img src="images/p1_scheme_premium.webp" alt="Чертёж и размеры кухни 1 «Премиум» — 2 700 мм" loading="lazy">
-            <span class="kp-slide-tag">📐 Чертёж «Премиум» · 2 700 мм</span>
+            <img src="images/p1_scheme_premium.webp" alt="Чертёж и размеры кухни 1 «Премиум» — 3 600 мм" loading="lazy">
+            <span class="kp-slide-tag">📐 Чертёж «Премиум» · 3 600 мм</span>
             <span class="kp-slide-zoom"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6M8 11h6"/></svg> Чертёж с размерами</span>
           </div>
 
@@ -1640,8 +1642,8 @@ p,.lead,.hero__sub,.st__c,.cd__d{
             <span class="kp-slide-zoom"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6M8 11h6"/></svg> Увеличить</span>
           </div>
           <div class="kp-slide" data-tier="0" data-view="scheme">
-            <img src="images/p2_scheme_standard.webp" alt="Чертёж и размеры кухни 2 «Стандарт» — 2 700 мм" loading="lazy">
-            <span class="kp-slide-tag">📐 Чертёж «Стандарт» · 2 700 мм</span>
+            <img src="images/p2_scheme_standard.webp" alt="Чертёж и размеры кухни 2 «Стандарт» — 3 200 мм" loading="lazy">
+            <span class="kp-slide-tag">📐 Чертёж «Стандарт» · 3 200 мм</span>
             <span class="kp-slide-zoom"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6M8 11h6"/></svg> Чертёж с размерами</span>
           </div>
 
@@ -1664,8 +1666,8 @@ p,.lead,.hero__sub,.st__c,.cd__d{
             <span class="kp-slide-zoom"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6M8 11h6"/></svg> Увеличить</span>
           </div>
           <div class="kp-slide" data-tier="2" data-view="scheme">
-            <img src="images/p2_scheme_premium.webp" alt="Чертёж и размеры кухни 2 «Премиум» — 2 700 мм" loading="lazy">
-            <span class="kp-slide-tag">📐 Чертёж «Премиум» · 2 700 мм</span>
+            <img src="images/p2_scheme_premium.webp" alt="Чертёж и размеры кухни 2 «Премиум» — 3 600 мм" loading="lazy">
+            <span class="kp-slide-tag">📐 Чертёж «Премиум» · 3 600 мм</span>
             <span class="kp-slide-zoom"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6M8 11h6"/></svg> Чертёж с размерами</span>
           </div>
 
@@ -2569,16 +2571,27 @@ function money(n){return fmt(n)+NB+"\u20BD";}
         io.unobserve(e.target);
       }
     });
-  },{rootMargin:"0px 0px -40px 0px", threshold:0.04});
+  },{rootMargin:"150px 0px 150px 0px", threshold:0.01});
   items.forEach(function(el){ io.observe(el); });
 
-  /* Only reveal items visible above the fold on initial page load */
-  setTimeout(function(){
+  /* Reliable reveal check to ensure images and cards reveal smoothly without requiring a reload */
+  function revealCheck(){
+    var vh = W.innerHeight || 800;
     items.forEach(function(el){
-      var r=el.getBoundingClientRect();
-      if(r.top < W.innerHeight && r.bottom > 0) el.classList.add("in");
+      if(!el.classList.contains("in")){
+        var r=el.getBoundingClientRect();
+        if(r.top < vh + 160 && r.bottom > -160){
+          el.classList.add("in");
+        }
+      }
     });
-  }, 250);
+  }
+  revealCheck();
+  setTimeout(revealCheck, 150);
+  setTimeout(revealCheck, 600);
+  setTimeout(revealCheck, 1500);
+  W.addEventListener("scroll", revealCheck, {passive:true});
+  W.addEventListener("resize", revealCheck, {passive:true});
 })();
 
 /* ---------- 3. header ---------- */
@@ -2741,9 +2754,30 @@ function money(n){return fmt(n)+NB+"\u20BD";}
 
 /* ---------- 7. kitchen prices sliders & interactive actions ---------- */
 (function(){
+  var cardSpecs = {
+    'kpCard1': {
+      lens: ['Длина 2,85 м.п.', 'Длина 2,7 м.п.', 'Длина 3,6 м.п.'],
+      quizParams: [
+        { shape: 'Прямая', fridge: 'Отдельный', hood: 'Наклонная', len: '285' },
+        { shape: 'Прямая', fridge: 'Отдельный', hood: 'Наклонная', len: '270' },
+        { shape: 'Прямая', fridge: 'Отдельный', hood: 'Наклонная', len: '360' }
+      ]
+    },
+    'kpCard2': {
+      lens: ['Длина 3,2 м.п. (пеналы)', 'Длина 2,7 м.п. (пеналы)', 'Длина 3,6 м.п. (пеналы)'],
+      quizParams: [
+        { shape: 'Прямая', fridge: 'Встроенный в пенал', hood: 'Встроенная в шкаф', len: '320' },
+        { shape: 'Прямая', fridge: 'Встроенный в пенал', hood: 'Встроенная в шкаф', len: '270' },
+        { shape: 'Прямая', fridge: 'Встроенный в пенал', hood: 'Встроенная в шкаф', len: '360' }
+      ]
+    }
+  };
+
   ['kpCard1', 'kpCard2'].forEach(function(cardId){
     var card = $('#' + cardId);
     if(!card) return;
+    var spec = cardSpecs[cardId];
+    var lenBadge = $('.kp-card__len', card);
     var slides = $$('.kp-slide', card);
     var viewTabs = $$('.kp-view-tab', card);
     var tierBtns = $$('.kp-tier', card);
@@ -2768,8 +2802,15 @@ function money(n){return fmt(n)+NB+"\u20BD";}
         var t = parseInt(tb.getAttribute('data-tier-idx'), 10);
         tb.classList.toggle('active', t === curTier);
       });
-      if(ctaBtn){
+      if(lenBadge && spec && spec.lens[curTier]){
+        lenBadge.textContent = spec.lens[curTier];
+      }
+      if(ctaBtn && spec && spec.quizParams[curTier]){
+        var qp = spec.quizParams[curTier];
         ctaBtn.innerHTML = 'Рассчитать кухню «' + tierNames[curTier] + '» <span class="ar">&rarr;</span>';
+        ctaBtn.onclick = function(){
+          prefillKitchenQuiz(qp.shape, qp.fridge, qp.hood, qp.len);
+        };
       }
     }
 
