@@ -569,53 +569,145 @@ p,.lead,.hero__sub,.st__c,.cd__d{
 .cd--c .cd__t{font-size:clamp(17px,1.4vw,22px)}
 .cd--c .cd__d{display:none}
 
-/* ========== 10. calculator ========== */
-.cl{display:grid; grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr); gap:clamp(26px,4vw,72px); margin-top:clamp(30px,4vw,56px); align-items:start}
-.fld{padding:clamp(20px,2.2vw,28px) 0; border-top:1px solid var(--line-d)}
-.fld:first-child{border-top:0; padding-top:0}
-.fld__h{display:flex; align-items:baseline; justify-content:space-between; gap:16px; margin-bottom:16px}
-.fld__l{font:500 11px/1 var(--sans); letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,.8)}
-.fld__v{font:400 17px/1 var(--serif); color:var(--paper)}
-.sw{display:inline-flex; padding:4px; border:1px solid rgba(255,255,255,.15); border-radius:4px; background:rgba(0,0,0,.35); gap:3px}
-.sw button{position:relative; min-height:42px; padding:0 22px; border:0; border-radius:3px; background:none; color:rgba(255,255,255,.75); cursor:pointer; font:600 13.5px/1 var(--sans); transition:all .3s var(--e)}
-.sw button.on{background:#FFFFFF; color:#0E0D0B; font-weight:700; box-shadow:0 2px 10px rgba(0,0,0,.3)}
-.chs{display:flex; flex-wrap:wrap; gap:8px}
-.ch{min-height:42px; padding:0 18px; border:1px solid rgba(255,255,255,.18); border-radius:4px; background:rgba(255,255,255,.04); color:#FFFFFF; cursor:pointer; font:500 13.5px/1 var(--sans); display:inline-flex; align-items:center; gap:8px; transition:all .3s var(--e)}
-.ch:hover{border-color:rgba(200,168,122,.5); color:#FFFFFF; background:rgba(200,168,122,.08)}
-.ch.on{background:#C8A87A; border-color:#C8A87A; color:#0E0D0B; font-weight:700; box-shadow:0 2px 14px rgba(200,168,122,.35)}
-.ch small{color:rgba(255,255,255,.75); font-size:11.5px; font-weight:600}
-.ch.on small{color:#1A1610; font-weight:600}
-.rg{width:100%; -webkit-appearance:none; appearance:none; background:transparent; height:36px; cursor:pointer; display:block}
-.rg::-webkit-slider-runnable-track{height:1px; background:rgba(244,241,235,.28)}
-.rg::-moz-range-track{height:1px; background:rgba(244,241,235,.28)}
-.rg::-webkit-slider-runnable-track{height:2px; background:rgba(255,255,255,.25)}
-.rg::-webkit-slider-thumb{-webkit-appearance:none; width:22px; height:22px; border-radius:50%; background:#FFFFFF; margin-top:-10px; border:2px solid #C8A87A; box-shadow:0 2px 12px rgba(200,168,122,.5); transition:transform .3s var(--e)}
-.rg::-moz-range-thumb{width:22px; height:22px; border:2px solid #C8A87A; border-radius:50%; background:#FFFFFF}
-.rg:hover::-webkit-slider-thumb{transform:scale(1.14)}
-.rg__sc{display:flex; justify-content:space-between; font:500 11px/1 var(--sans); letter-spacing:.08em; color:rgba(255,255,255,.4); margin-top:2px}
-.opts{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px}
-.op{display:flex; align-items:center; gap:12px; padding:15px 16px; border:1px solid var(--line-d); cursor:pointer; transition:border-color .4s var(--e), background .4s var(--e)}
-.op:hover{border-color:rgba(200,168,122,.5)}
-.op input{position:absolute; opacity:0; width:0; height:0}
-.op__bx{flex:none; width:18px; height:18px; border:1px solid rgba(255,255,255,.4); display:grid; place-items:center; transition:background .3s var(--e), border-color .3s var(--e)}
-.op__bx svg{opacity:0; transform:scale(.7); transition:opacity .3s var(--e), transform .3s var(--e); color:#0E0D0B}
-.op input:checked + .op__bx{background:#C8A87A; border-color:#C8A87A}
-.op input:checked + .op__bx svg{opacity:1; transform:none}
-.op__t{font-size:14px; line-height:1.35}
-.op__t span{display:block; font-size:12px; color:rgba(255,255,255,.75); margin-top:3px}
-.pnl{
-  position:sticky; top:96px; border:1px solid rgba(200,168,122,.28); border-radius:6px;
-  padding:clamp(24px,2.4vw,34px); background:#151412;
-  box-shadow:0 25px 60px rgba(0,0,0,.6);
-}
-.pnl__l{font:600 11px/1 var(--sans); letter-spacing:.2em; text-transform:uppercase; color:#C8A87A}
-.pnl__s{margin-top:16px; font:400 clamp(28px,3.1vw,44px)/1.05 var(--serif); letter-spacing:-.025em; display:block; color:#FFFFFF}
-.pnl__n{margin-top:10px; font-size:13.5px; color:#DFBA84; font-weight:600}
-.pnl__rows{margin:22px 0 0; border-top:1px solid rgba(255,255,255,.1)}
-.pnl__rows div{display:flex; justify-content:space-between; gap:14px; padding:11px 0; border-bottom:1px solid rgba(255,255,255,.1); font-size:13.5px; color:#E2DDD4}
-.pnl__rows div b{color:#FFFFFF; font-weight:600; white-space:nowrap}
-.pnl__ins{margin:20px 0 22px; padding:14px 16px; background:rgba(200,168,122,.12); border-left:2px solid #C8A87A; border-radius:0 4px 4px 0; font-size:13.5px; color:#FFFFFF}
-.pnl__ins b{color:#F3DFBF; font-weight:600}
+/* ========== 10. Kitchen Prices 6 Variants ========== */
+.kp-sec{background:var(--noir); color:var(--paper); border-top:1px solid var(--line-d); border-bottom:1px solid var(--line-d); position:relative}
+.kp-grid{display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:clamp(24px, 3.5vw, 48px); margin-top:clamp(28px, 4vw, 52px)}
+@media (max-width: 900px){ .kp-grid{grid-template-columns:1fr; gap:36px} }
+
+.kp-card{background:var(--noir-2); border:1px solid rgba(200,168,122,.24); border-radius:12px; padding:clamp(16px, 2.2vw, 24px); display:flex; flex-direction:column; box-shadow:0 16px 40px rgba(0,0,0,.5); transition:border-color .35s var(--e)}
+.kp-card:hover{border-color:rgba(200,168,122,.48)}
+
+.kp-card__head{display:flex; align-items:center; justify-content:space-between; margin-bottom:14px}
+.kp-card__badge{display:inline-flex; align-items:center; gap:8px; font:600 11px/1 var(--sans); letter-spacing:.14em; text-transform:uppercase; color:var(--clay-2)}
+.kp-card__len{font-size:12px; color:rgba(255,255,255,.6); background:rgba(255,255,255,.06); padding:4px 10px; border-radius:4px}
+
+/* Slider inside card */
+.kp-slider{position:relative; border-radius:8px; overflow:hidden; aspect-ratio:4/3; background:#000; margin-bottom:14px}
+.kp-slide{position:absolute; inset:0; opacity:0; pointer-events:none; transition:opacity .45s var(--e), transform .45s var(--e); transform:scale(1.02)}
+.kp-slide.on{opacity:1; pointer-events:auto; transform:scale(1)}
+.kp-slide img{width:100%; height:100%; object-fit:cover; display:block}
+.kp-slide-tag{position:absolute; bottom:12px; left:12px; background:rgba(14,13,11,.82); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,.14); color:#fff; font-size:11px; padding:4px 10px; border-radius:4px; z-index:2}
+
+.kp-slider__nav{position:absolute; top:50%; transform:translateY(-50%); width:100%; display:flex; justify-content:space-between; padding:0 8px; pointer-events:none; z-index:3}
+.kp-slider__btn{width:36px; height:36px; border-radius:50%; background:rgba(14,13,11,.75); border:1px solid rgba(200,168,122,.3); color:var(--clay-2); display:grid; place-items:center; cursor:pointer; pointer-events:auto; transition:all .25s}
+.kp-slider__btn:hover{background:var(--clay); color:#0E0D0B; border-color:#fff}
+
+.kp-slider__tabs{display:flex; justify-content:center; gap:8px; margin-bottom:16px}
+.kp-slider__tab{padding:6px 14px; border-radius:20px; font-size:11.5px; font-weight:600; cursor:pointer; border:1px solid rgba(255,255,255,.14); background:rgba(255,255,255,.03); color:rgba(255,255,255,.7); transition:all .25s}
+.kp-slider__tab.on{background:var(--clay-soft); border-color:var(--clay); color:var(--clay-2)}
+
+.kp-card__title{font:600 16px/1.3 var(--sans); color:#fff; margin-bottom:16px; min-height:42px}
+
+/* Tiers */
+.kp-tiers{display:grid; grid-template-columns:repeat(3, 1fr); gap:8px; margin-bottom:18px}
+@media (max-width: 480px){ .kp-tiers{grid-template-columns:1fr; gap:10px} }
+.kp-tier{border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.02); border-radius:8px; padding:12px 10px; text-align:center; position:relative; display:flex; flex-direction:column; justify-content:center; min-height:86px}
+.kp-tier.optimal{border:2px solid var(--clay); background:rgba(200,168,122,.08); box-shadow:0 4px 18px rgba(200,168,122,.18)}
+.kp-tier__badge{position:absolute; top:-10px; left:50%; transform:translateX(-50%); background:var(--clay); color:#0E0D0B; font:700 9px/1 var(--sans); text-transform:uppercase; letter-spacing:.08em; padding:3px 8px; border-radius:999px; white-space:nowrap}
+.kp-tier__label{font-size:11.5px; color:rgba(255,255,255,.7); margin-bottom:4px; font-weight:500}
+.kp-tier__val{font:700 clamp(14px, 1.2vw, 17px)/1.1 var(--sans); color:#fff; letter-spacing:-.01em}
+.kp-tier.optimal .kp-tier__val{color:var(--clay-2)}
+
+.kp-card__cta{margin-top:auto}
+
+/* Why price differs block */
+.kp-why{margin-top:clamp(32px, 4vw, 56px); border:1px solid rgba(200,168,122,.28); border-radius:12px; background:linear-gradient(135deg, rgba(200,168,122,.07) 0%, rgba(21,20,18,.8) 100%); padding:clamp(20px, 3vw, 32px); display:grid; grid-template-columns:auto 1fr; gap:20px; align-items:start}
+@media (max-width: 680px){ .kp-why{grid-template-columns:1fr} }
+.kp-why__icon{width:56px; height:56px; border-radius:12px; background:rgba(200,168,122,.15); border:1px solid rgba(200,168,122,.35); display:grid; place-items:center; color:var(--clay); font-size:24px; flex-shrink:0}
+.kp-why__h{font:600 clamp(17px, 1.6vw, 22px)/1.2 var(--sans); color:#fff; margin-bottom:8px}
+.kp-why__p{font-size:14px; line-height:1.6; color:rgba(255,255,255,.82); margin-bottom:8px}
+.kp-why__note{font-size:13px; color:var(--clay-2); font-weight:600}
+
+/* ========== 10b. Kitchen Bonuses ========== */
+.kb-sec{background:var(--paper-2); padding:clamp(44px, 5.5vw, 84px) 0; border-bottom:1px solid var(--line)}
+.kb-grid{display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:clamp(14px, 1.8vw, 24px); margin-top:clamp(28px, 3.5vw, 44px)}
+@media (max-width: 992px){ .kb-grid{grid-template-columns:repeat(2, 1fr)} }
+@media (max-width: 540px){ .kb-grid{grid-template-columns:1fr} }
+.kb-card{background:#fff; border:1px solid var(--line); border-radius:12px; padding:22px; display:flex; flex-direction:column; box-shadow:0 4px 18px rgba(0,0,0,.03); transition:all .35s var(--e)}
+.kb-card:hover{transform:translateY(-3px); border-color:var(--clay); box-shadow:0 12px 30px rgba(200,168,122,.15)}
+.kb-card__num{font:700 20px/1 var(--serif); color:var(--clay); margin-bottom:10px}
+.kb-card__title{font:600 16px/1.3 var(--sans); color:var(--ink); margin-bottom:8px}
+.kb-card__desc{font-size:13px; line-height:1.5; color:var(--ink-3); margin-bottom:16px}
+.kb-card__badge{margin-top:auto; display:inline-flex; align-items:center; gap:6px; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--clay-dark); background:var(--clay-soft); padding:6px 12px; border-radius:999px; width:fit-content}
+
+/* ========== 11. Modern Kitchen Quiz ========== */
+.kz-sec{background:var(--paper); padding:clamp(44px, 5.5vw, 84px) 0}
+.kz-designer{display:flex; align-items:center; gap:clamp(16px, 2.5vw, 32px); background:var(--paper-2); border:1px solid var(--line); border-radius:12px; padding:clamp(18px, 2.5vw, 28px); margin-bottom:clamp(30px, 3.5vw, 48px)}
+@media (max-width: 680px){ .kz-designer{flex-direction:column; align-items:flex-start} }
+.kz-designer__avatar{width:72px; height:72px; border-radius:50%; border:2px solid var(--clay); overflow:hidden; flex-shrink:0; background:linear-gradient(135deg, #FAF9F6, #C8A87A); display:grid; place-items:center; color:var(--ink-2)}
+.kz-designer__info b{display:block; font:600 15px/1.2 var(--sans); color:var(--ink)}
+.kz-designer__info span{display:block; font-size:12px; color:var(--ink-3); margin-top:2px; margin-bottom:8px}
+.kz-designer__quote{font-size:13.5px; line-height:1.5; color:var(--ink-2); font-style:italic}
+
+.kz-box{border:1px solid var(--line); border-radius:12px; background:#fff; box-shadow:0 12px 40px rgba(0,0,0,.05); overflow:hidden}
+.kz-header{display:flex; align-items:center; justify-content:space-between; padding:18px 24px; border-bottom:1px solid var(--line); background:var(--paper-2)}
+.kz-step-badge{font:600 12px/1 var(--sans); letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3)}
+.kz-bar-outer{flex:1; max-width:240px; height:6px; background:var(--line); border-radius:3px; overflow:hidden; margin:0 16px}
+.kz-bar-inner{height:100%; background:var(--clay); width:25%; transition:width .45s var(--e)}
+.kz-body{padding:clamp(22px, 3.5vw, 42px)}
+.kz-step{display:none}
+.kz-step.on{display:block; animation:qin .45s var(--e) both}
+.kz-step__title{font:400 clamp(20px, 2.2vw, 28px)/1.2 var(--serif); color:var(--ink); margin-bottom:6px}
+.kz-step__hint{font-size:13.5px; color:var(--ink-3); margin-bottom:24px}
+
+/* Shapes grid */
+.kz-shapes{display:grid; grid-template-columns:repeat(4, 1fr); gap:12px}
+@media (max-width: 768px){ .kz-shapes{grid-template-columns:repeat(2, 1fr)} }
+.kz-shape{border:1.5px solid var(--line); border-radius:8px; padding:16px 12px; text-align:center; cursor:pointer; background:#fff; transition:all .3s var(--e)}
+.kz-shape:hover{border-color:var(--clay); transform:translateY(-2px)}
+.kz-shape.on{border-color:var(--clay); background:var(--clay-soft); box-shadow:0 4px 16px rgba(200,168,122,.2)}
+.kz-shape__icon{height:64px; display:grid; place-items:center; margin-bottom:10px; color:var(--ink)}
+.kz-shape.on .kz-shape__icon{color:var(--clay-dark)}
+.kz-shape__label{font:600 13.5px/1.2 var(--sans); color:var(--ink)}
+
+/* Appliances grid */
+.kz-appliances{display:grid; grid-template-columns:repeat(3, 1fr); gap:16px}
+@media (max-width: 768px){ .kz-appliances{grid-template-columns:1fr; gap:14px} }
+.kz-app-group{border:1px solid var(--line); border-radius:8px; padding:16px; background:var(--paper-2)}
+.kz-app-group__title{font:600 13px/1.2 var(--sans); text-transform:uppercase; letter-spacing:.08em; color:var(--ink-3); margin-bottom:12px}
+.kz-app-opts{display:flex; flex-direction:column; gap:8px}
+.kz-app-opt{display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:6px; background:#fff; border:1px solid var(--line); cursor:pointer; font-size:13px; font-weight:500; transition:all .2s; width:100%; text-align:left}
+.kz-app-opt:hover{border-color:var(--clay)}
+.kz-app-opt.on{background:var(--clay-soft); border-color:var(--clay); color:var(--clay-dark); font-weight:700}
+
+/* Dimensions step */
+.kz-dims{display:grid; grid-template-columns:1.2fr 0.8fr; gap:clamp(20px, 3vw, 40px); align-items:center}
+@media (max-width: 768px){ .kz-dims{grid-template-columns:1fr} }
+.kz-room-svg{width:100%; max-width:440px; margin:0 auto; display:block; border-radius:8px; background:var(--paper-2); border:1px solid var(--line); padding:16px}
+.kz-dims-inputs{display:flex; flex-direction:column; gap:16px}
+.kz-dim-field{display:flex; flex-direction:column; gap:6px}
+.kz-dim-field label{font:600 12.5px/1 var(--sans); color:var(--ink-2)}
+.kz-dim-row{display:flex; align-items:center; gap:8px}
+.kz-dim-row input{flex:1; border:1px solid var(--line); border-radius:6px; padding:12px 14px; font-size:15px; font-weight:600; outline:none; transition:border-color .25s}
+.kz-dim-row input:focus{border-color:var(--clay); box-shadow:0 0 0 3px var(--clay-soft)}
+.kz-dim-row span{font-size:14px; color:var(--ink-3); font-weight:600}
+
+/* Finish Step with WhatsApp split layout */
+.kz-finish-grid{display:grid; grid-template-columns:1fr 1.15fr; gap:clamp(20px, 3.5vw, 44px); align-items:start}
+@media (max-width: 860px){ .kz-finish-grid{grid-template-columns:1fr; gap:28px} }
+
+/* WhatsApp Mockup */
+.wa-mock{background:#EFEAE2; border-radius:12px; border:1px solid #D1D7DB; overflow:hidden; box-shadow:0 12px 30px rgba(0,0,0,.08); max-width:380px; margin:0 auto; width:100%}
+.wa-mock__header{background:#075E54; padding:10px 14px; display:flex; align-items:center; gap:10px; color:#fff}
+.wa-mock__avatar{width:36px; height:36px; border-radius:50%; background:#C8A87A; display:grid; place-items:center; font-weight:700; color:#0E0D0B; font-size:13px}
+.wa-mock__name{font-weight:600; font-size:13.5px; line-height:1.2}
+.wa-mock__status{font-size:11px; opacity:.85}
+.wa-mock__body{padding:14px; min-height:240px; display:flex; flex-direction:column; gap:10px; background:#ECE5DD url('data:image/svg+xml;utf8,<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M20 20.5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z" fill="%23c7bfae" opacity="0.3"/></svg>') repeat}
+.wa-bubble{background:#fff; border-radius:0 8px 8px 8px; padding:10px 12px; font-size:12.5px; line-height:1.45; color:#111; max-width:92%; box-shadow:0 1px 2px rgba(0,0,0,.15); position:relative}
+.wa-bubble__time{font-size:10px; color:#667781; text-align:right; margin-top:4px}
+
+/* Lead form right side */
+.kz-lead-form{display:flex; flex-direction:column; gap:16px}
+.kz-messengers{display:flex; gap:8px}
+.kz-msg-btn{flex:1; padding:10px 8px; border-radius:8px; border:1.5px solid var(--line); background:#fff; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px; font-size:13px; font-weight:600; transition:all .25s}
+.kz-msg-btn:hover{border-color:var(--clay)}
+.kz-msg-btn.on{border-color:var(--clay); background:var(--clay-soft); color:var(--clay-dark)}
+.kz-msg-btn svg{width:18px; height:18px}
+.kz-phone-wrap{position:relative}
+.kz-phone-input{width:100%; border:1.5px solid var(--line); border-radius:8px; padding:14px 16px; font-size:16px; font-weight:600; outline:none; transition:all .25s}
+.kz-phone-input:focus{border-color:var(--clay); box-shadow:0 0 0 3px var(--clay-soft)}
+.kz-badges-row{display:grid; grid-template-columns:repeat(2, 1fr); gap:8px; margin-top:8px}
+.kz-badge-item{display:flex; align-items:center; gap:6px; font-size:11.5px; color:var(--ink-2); background:var(--paper-2); padding:6px 10px; border-radius:6px}
 
 /* ========== Hero promo badge & accents ========== */
 .hero__promo{
@@ -1319,7 +1411,7 @@ p,.lead,.hero__sub,.st__c,.cd__d{
 
     <div class="cg">
       <a class="cd cd--a r" href="#calc">
-        <img src="images/cat_kitchen.jpg" alt="Кухни на заказ в Липецке">
+        <img src="images/kitchen_marble_gold.jpg" alt="Кухни на заказ в Липецке" style="object-position:center 60%">
         <span class="cd__in">
           <span class="cd__meta">
             <span class="cd__n">01 / главное направление</span>
@@ -1341,7 +1433,7 @@ p,.lead,.hero__sub,.st__c,.cd__d{
         </span>
       </a>
       <a class="cd cd--c r" href="#calc">
-        <img src="images/cat_bedroom.jpg" alt="Спальни и парящие тумбы">
+        <img src="images/bedroom_luxury_fluted.png" alt="Спальни и парящие тумбы" style="object-position:center 36%">
         <span class="cd__in">
           <span class="cd__meta">
             <span class="cd__n">03</span>
@@ -1361,7 +1453,7 @@ p,.lead,.hero__sub,.st__c,.cd__d{
         </span>
       </a>
       <a class="cd cd--c r" style="--d:.2s" href="#cta">
-        <img src="images/cat_hallway.jpg" alt="Прихожие и входные группы">
+        <img src="images/hallway_luxury_mirror.png" alt="Прихожие и входные группы" style="object-position:center center">
         <span class="cd__in">
           <span class="cd__meta">
             <span class="cd__n">05</span>
@@ -1373,134 +1465,184 @@ p,.lead,.hero__sub,.st__c,.cd__d{
     </div>
   </div>
 </section>
-<!-- ============ CALCULATOR ============ -->
-<section class="sec noir" id="calc">
+<!<!-- ============ KITCHEN PRICE OPTIONS (6 VARIANTS) ============ -->
+<section class="sec noir kp-sec" id="calc">
   <div class="wrap">
     <div class="head-row">
       <div>
-        <span class="lab r"><b>03</b> Расчёт</span>
-        <h2 class="d2 r" style="--d:.06s">Предварительная<br>стоимость за&nbsp;30&nbsp;секунд</h2>
+        <span class="lab r"><b>03</b> Ориентиры стоимости</span>
+        <h2 class="d2 r" style="--d:.06s">Шесть вариантов цен<br>для одной кухни</h2>
       </div>
-      <p class="lead r" style="--d:.12s">Цены в&nbsp;калькуляторе откалиброваны строго по&nbsp;официальному фабричному прайсу 2026&nbsp;года без&nbsp;скрытых наценок. Итоговую смету фиксируем в&nbsp;договоре после&nbsp;бесплатного замера геометрии.</p>
+      <p class="lead r" style="--d:.12s">Мы подготовили два проекта кухонь для одного и того же помещения (2,7&nbsp;м) и рассчитали их цену в трёх комплектациях. Это наглядно показывает, как конструктив кухни, вид техники и материалы влияют на итоговую стоимость без скрытых наценок.</p>
     </div>
 
-    <div class="cl">
-      <div class="r">
-        <div class="fld">
-          <div class="fld__h"><span class="fld__l">Что считаем</span></div>
-          <div class="sw" id="calcTabs">
-            <button type="button" class="on" data-prod="kitchen">Кухня</button>
-            <button type="button" data-prod="wardrobe">Шкаф / гардеробная</button>
-            <button type="button" data-prod="bedroom">Спальня</button>
+    <div class="kp-grid r" style="--d:.1s">
+      <!-- Project 1 -->
+      <article class="kp-card" id="kpCard1">
+        <div class="kp-card__head">
+          <div class="kp-card__badge">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2.5L20.5 7.25V16.75L12 21.5L3.5 16.75V7.25L12 2.5Z"/><path d="M12 2.5V12M12 12L3.5 7.25M12 12L20.5 7.25M12 12V21.5"/></svg>
+            <span>Проект кухни 1</span>
+          </div>
+          <span class="kp-card__len">Длина 2,7 м.п.</span>
+        </div>
+
+        <div class="kp-slider">
+          <div class="kp-slide on" data-slide="0">
+            <img src="images/project_1_photo.webp" alt="Кухня с отдельным холодильником и вытяжкой — Мебельный Бутик 48" loading="lazy">
+            <span class="kp-slide-tag">Фото проекта</span>
+          </div>
+          <div class="kp-slide" data-slide="1">
+            <img src="images/project_1_scheme.webp" alt="Схема и размеры проекта кухни 1 — 2700 мм" loading="lazy">
+            <span class="kp-slide-tag">Чертёж с размерами 2 700 мм</span>
+          </div>
+          <div class="kp-slider__nav">
+            <button type="button" class="kp-slider__btn prev" aria-label="Предыдущий слайд">&larr;</button>
+            <button type="button" class="kp-slider__btn next" aria-label="Следующий слайд">&rarr;</button>
           </div>
         </div>
 
-        <div class="fld" data-only="kitchen">
-          <div class="fld__h"><span class="fld__l">Планировка кухни</span></div>
-          <div class="chs" data-group="layout">
-            <button type="button" class="ch on" data-v="line">Прямая</button>
-            <button type="button" class="ch" data-v="corner">Угловая <small>+10%</small></button>
-            <button type="button" class="ch" data-v="u">П-образная <small>+18%</small></button>
-            <button type="button" class="ch" data-v="island">С&nbsp;островом <small>+25%</small></button>
+        <div class="kp-slider__tabs">
+          <button type="button" class="kp-slider__tab on" data-to="0">Фото проекта</button>
+          <button type="button" class="kp-slider__tab" data-to="1">Схема и размеры</button>
+        </div>
+
+        <h3 class="kp-card__title">Отдельный холодильник и наклонная вытяжка</h3>
+
+        <div class="kp-tiers">
+          <div class="kp-tier">
+            <span class="kp-tier__label">Стандарт</span>
+            <strong class="kp-tier__val">98 000 ₽</strong>
+            <small style="font-size:10px; color:rgba(255,255,255,.5); margin-top:2px;">ЛДСП Egger</small>
+          </div>
+          <div class="kp-tier optimal">
+            <span class="kp-tier__badge">Оптимальный выбор</span>
+            <span class="kp-tier__label">Комфорт</span>
+            <strong class="kp-tier__val">138 000 ₽</strong>
+            <small style="font-size:10px; color:var(--clay-2); margin-top:2px;">МДФ плёнка / петли с доводчиком</small>
+          </div>
+          <div class="kp-tier">
+            <span class="kp-tier__label">Премиум</span>
+            <strong class="kp-tier__val">177 000 ₽</strong>
+            <small style="font-size:10px; color:rgba(255,255,255,.5); margin-top:2px;">Пластик Eterno / AGT / Blum</small>
           </div>
         </div>
 
-        <div class="fld" data-only="wardrobe" hidden>
-          <div class="fld__h"><span class="fld__l">Тип шкафа</span></div>
-          <div class="chs" data-group="wtype">
-            <button type="button" class="ch on" data-v="swing">Распашной</button>
-            <button type="button" class="ch" data-v="sliding">Купе <small>+12%</small></button>
-            <button type="button" class="ch" data-v="walkin">Гардеробная <small>&minus;5%</small></button>
+        <button type="button" class="b b--paper b--sm b--full kp-card__cta" onclick="prefillKitchenQuiz('Прямая', 'Отдельный', 'Встроенная в шкаф', '270')">
+          Рассчитать похожую кухню <span class="ar">&rarr;</span>
+        </button>
+      </article>
+
+      <!-- Project 2 -->
+      <article class="kp-card" id="kpCard2">
+        <div class="kp-card__head">
+          <div class="kp-card__badge">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2.5L20.5 7.25V16.75L12 21.5L3.5 16.75V7.25L12 2.5Z"/><path d="M12 2.5V12M12 12L3.5 7.25M12 12L20.5 7.25M12 12V21.5"/></svg>
+            <span>Проект кухни 2</span>
+          </div>
+          <span class="kp-card__len">Длина 2,7 м.п. (пеналы)</span>
+        </div>
+
+        <div class="kp-slider">
+          <div class="kp-slide on" data-slide="0">
+            <img src="images/project_2_photo.webp" alt="Кухня со встроенными холодильником и вытяжкой — Мебельный Бутик 48" loading="lazy">
+            <span class="kp-slide-tag">Фото проекта</span>
+          </div>
+          <div class="kp-slide" data-slide="1">
+            <img src="images/project_2_scheme.webp" alt="Схема и размеры проекта кухни 2 — встроенная техника" loading="lazy">
+            <span class="kp-slide-tag">Чертёж со встроенной техникой</span>
+          </div>
+          <div class="kp-slider__nav">
+            <button type="button" class="kp-slider__btn prev" aria-label="Предыдущий слайд">&larr;</button>
+            <button type="button" class="kp-slider__btn next" aria-label="Следующий слайд">&rarr;</button>
           </div>
         </div>
 
-        <div class="fld" data-only="bedroom" hidden>
-          <div class="fld__h"><span class="fld__l">Комплектация спальни</span></div>
-          <div class="chs" data-group="bedtype">
-            <button type="button" class="ch on" data-v="bed">Кровать с&nbsp;подъёмным механизмом</button>
-            <button type="button" class="ch" data-v="bed_tables">Кровать + 2&nbsp;парящие тумбы</button>
-            <button type="button" class="ch" data-v="bed_set">Кровать + тумбы + туалетный столик</button>
-            <button type="button" class="ch" data-v="master">Мастер-спальня со&nbsp;шкафом</button>
+        <div class="kp-slider__tabs">
+          <button type="button" class="kp-slider__tab on" data-to="0">Фото проекта</button>
+          <button type="button" class="kp-slider__tab" data-to="1">Схема и размеры</button>
+        </div>
+
+        <h3 class="kp-card__title">Встроенный холодильник и встроенная вытяжка</h3>
+
+        <div class="kp-tiers">
+          <div class="kp-tier">
+            <span class="kp-tier__label">Стандарт</span>
+            <strong class="kp-tier__val">120 000 ₽</strong>
+            <small style="font-size:10px; color:rgba(255,255,255,.5); margin-top:2px;">ЛДСП Egger</small>
+          </div>
+          <div class="kp-tier optimal">
+            <span class="kp-tier__badge">Оптимальный выбор</span>
+            <span class="kp-tier__label">Комфорт</span>
+            <strong class="kp-tier__val">223 000 ₽</strong>
+            <small style="font-size:10px; color:var(--clay-2); margin-top:2px;">МДФ софт-тач / пенальная группа</small>
+          </div>
+          <div class="kp-tier">
+            <span class="kp-tier__label">Премиум</span>
+            <strong class="kp-tier__val">284 000 ₽</strong>
+            <small style="font-size:10px; color:rgba(255,255,255,.5); margin-top:2px;">Эмаль RAL / фурнитура Blum</small>
           </div>
         </div>
 
-        <div class="fld" data-only="bedroom" hidden>
-          <div class="fld__h"><span class="fld__l">Размер спального места</span></div>
-          <div class="chs" data-group="bedsize">
-            <button type="button" class="ch" data-v="s140">140 &times; 200 см</button>
-            <button type="button" class="ch on" data-v="s160">160 &times; 200 см</button>
-            <button type="button" class="ch" data-v="s180">180 &times; 200 см</button>
-            <button type="button" class="ch" data-v="s200">200 &times; 200 см</button>
-          </div>
-        </div>
+        <button type="button" class="b b--paper b--sm b--full kp-card__cta" onclick="prefillKitchenQuiz('Прямая', 'Встроенный в пенал', 'Встроенная в шкаф', '270')">
+          Рассчитать похожую кухню <span class="ar">&rarr;</span>
+        </button>
+      </article>
+    </div>
 
-        <div class="fld" data-only="bedroom" hidden>
-          <div class="fld__h"><span class="fld__l">Обивка мягкого изголовья</span></div>
-          <div class="chs" data-group="fabric">
-            <button type="button" class="ch on" data-v="velur">Велюр / рогожка</button>
-            <button type="button" class="ch" data-v="boucle">Букле / Teddy <small>+8&nbsp;000&nbsp;₽</small></button>
-            <button type="button" class="ch" data-v="leather">Экокожа / замша <small>+12&nbsp;000&nbsp;₽</small></button>
-          </div>
-        </div>
+    <!-- Why price differs -->
+    <div class="kp-why r" style="--d:.15s">
+      <div class="kp-why__icon" aria-hidden="true">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>
+      </div>
+      <div>
+        <h3 class="kp-why__h">Почему цена отличается почти в&nbsp;2&nbsp;раза?</h3>
+        <p class="kp-why__p">Внешне кухни могут выглядеть практически одинаково. Итоговая стоимость меняется из-за материала фасадов (ЛДСП, МДФ в плёнке, эмаль или пластик), типа столешницы (постформинг, компакт-плита, акрил) и класса фурнитуры (доводчики, скрытые направляющие, механизмы открывания).</p>
+        <div class="kp-why__note">Подробный состав комплектаций и живые образцы материалов мы покажем и рассчитаем под ваши размеры за 10 минут.</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <div class="fld" data-only="kitchen,wardrobe">
-          <div class="fld__h">
-            <span class="fld__l" id="lenLabel">Длина кухни</span>
-            <span class="fld__v num"><span id="lenVal">3,0</span> м.п.</span>
-          </div>
-          <input class="rg" type="range" id="len" min="1.5" max="8" step="0.1" value="3" aria-label="Длина в метрах">
-          <div class="rg__sc"><span>1,5 м</span><span>8 м</span></div>
-        </div>
+<!-- ============ BONUSES / VALUE BUNDLE ============ -->
+<section class="kb-sec">
+  <div class="wrap">
+    <div class="head-row">
+      <div>
+        <span class="lab r"><b>04</b> Комплект материалов</span>
+        <h2 class="d3 r" style="--d:.06s">Всё самое важное о&nbsp;вашей будущей кухне&nbsp;&mdash; в&nbsp;одном комплекте</h2>
+      </div>
+      <p class="lead r" style="--d:.12s">Вместе с расчётом стоимости мы бесплатно вышлем комплект материалов, которые помогут спланировать кухню и принять взвешенное решение без ошибок при ремонте.</p>
+    </div>
 
-        <div class="fld">
-          <div class="fld__h"><span class="fld__l">Материал фасадов / отделки</span></div>
-          <div class="chs" data-group="facade">
-            <button type="button" class="ch" data-v="ldsp">ЛДСП Egger/Kastamonu</button>
-            <button type="button" class="ch on" data-v="film">Плёнка МДФ</button>
-            <button type="button" class="ch" data-v="eterno">Пластик Eterno</button>
-            <button type="button" class="ch" data-v="agt">Фасады AGT</button>
-            <button type="button" class="ch" data-v="enamel">Эмаль RAL/NCS</button>
-          </div>
-        </div>
-
-        <div class="fld" data-only="kitchen">
-          <div class="fld__h"><span class="fld__l">Столешница</span></div>
-          <div class="chs" data-group="top">
-            <button type="button" class="ch on" data-v="post">Постформинг</button>
-            <button type="button" class="ch" data-v="compact">Компакт-плита</button>
-            <button type="button" class="ch" data-v="stone">Искусственный камень</button>
-          </div>
-        </div>
-
-        <div class="fld" data-only="wardrobe" hidden>
-          <div class="fld__h"><span class="fld__l">Высота</span></div>
-          <div class="chs" data-group="height">
-            <button type="button" class="ch on" data-v="h22">до 2,2 м</button>
-            <button type="button" class="ch" data-v="h27">до 2,7 м <small>+12%</small></button>
-            <button type="button" class="ch" data-v="h28">до потолка <small>+20%</small></button>
-          </div>
-        </div>
-
-        <div class="fld">
-          <div class="fld__h"><span class="fld__l">Дополнительно</span></div>
-          <div class="opts">
-            <label class="op"><input type="checkbox" data-opt="light"><span class="op__bx"><svg width="11" height="9" viewBox="0 0 11 9" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 4.6L4 7.6L10 1.4"/></svg></span><span class="op__t">LED-подсветка<span id="optLight">+12 000 ₽</span></span></label>
-            <label class="op"><input type="checkbox" data-opt="blum"><span class="op__bx"><svg width="11" height="9" viewBox="0 0 11 9" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 4.6L4 7.6L10 1.4"/></svg></span><span class="op__t">Фурнитура Blum<span>+20% к стоимости</span></span></label>
-            <label class="op"><input type="checkbox" data-opt="org"><span class="op__bx"><svg width="11" height="9" viewBox="0 0 11 9" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 4.6L4 7.6L10 1.4"/></svg></span><span class="op__t">Системы хранения<span id="optOrg">+16 000 ₽</span></span></label>
-            <label class="op"><input type="checkbox" data-opt="radius"><span class="op__bx"><svg width="11" height="9" viewBox="0 0 11 9" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 4.6L4 7.6L10 1.4"/></svg></span><span class="op__t" id="optRadiusLabel">Радиусные элементы<span>+15% к стоимости</span></span></label>
-          </div>
-        </div>
+    <div class="kb-grid r" style="--d:.1s">
+      <div class="kb-card">
+        <span class="kb-card__num">01</span>
+        <h3 class="kb-card__title">Проекты кухонь по&nbsp;вашим размерам</h3>
+        <p class="kb-card__desc">Проверьте эргономику, объёмы хранения и удобное расположение техники до запуска в производство.</p>
+        <span class="kb-card__badge">3 варианта бесплатно</span>
       </div>
 
-      <aside class="pnl r" style="--d:.1s">
-        <span class="pnl__l">Предварительная стоимость</span>
-        <strong class="pnl__s num" id="sum">77 000 — 88 000 ₽</strong>
-        <div class="pnl__n" id="perM">≈ 27 600 ₽ за метр погонный</div>
-        <div class="pnl__rows" id="rows"></div>
-        <div class="pnl__ins">Рассрочка <b id="instal">от 13&nbsp;800&nbsp;₽/мес</b> &mdash; 6&nbsp;месяцев, 0% и&nbsp;без&nbsp;переплаты</div>
-        <a class="b b--paper b--full" href="#cta" id="calcToForm">Получить точный расчёт <span class="ar">&rarr;</span></a>
-        <p class="sm" style="margin-top:16px">Замерщик снимет точные размеры, а&nbsp;выбрать материалы и&nbsp;фурнитуру приглашаем в&nbsp;наш салон с&nbsp;сотнями живых образцов.</p>
-      </aside>
+      <div class="kb-card">
+        <span class="kb-card__num">02</span>
+        <h3 class="kb-card__title">Виртуальный 3D-тур по&nbsp;вашей кухне</h3>
+        <p class="kb-card__desc">Побывайте на вашей кухне ещё до её заказа: открывайте шкафы и ящики, меняйте цвета гарнитура.</p>
+        <span class="kb-card__badge">Интерактивный тур</span>
+      </div>
+
+      <div class="kb-card">
+        <span class="kb-card__num">03</span>
+        <h3 class="kb-card__title">Мини-книга «Как избежать ошибок»</h3>
+        <p class="kb-card__desc">О чём чаще всего жалеют заказчики после установки кухни и как не переплатить за ненужные опции.</p>
+        <span class="kb-card__badge">PDF-гайд в подарок</span>
+      </div>
+
+      <div class="kb-card">
+        <span class="kb-card__num">04</span>
+        <h3 class="kb-card__title">Руководство по&nbsp;ремонту кухни</h3>
+        <p class="kb-card__desc">Точные схемы выводов розеток, подводки воды, канализации и вентиляции под ваш проект мебели.</p>
+        <span class="kb-card__badge">Чек-лист для мастеров</span>
+      </div>
     </div>
   </div>
 </section>
@@ -1566,107 +1708,254 @@ p,.lead,.hero__sub,.st__c,.cd__d{
   </div>
 </section>
 
-<!-- ============ QUIZ ============ -->
-<section class="sec" id="quiz">
+<!-- ============ MODERN KITCHEN QUIZ ============ -->
+<section class="kz-sec" id="quiz">
   <div class="wrap">
-    <div class="qz">
-      <div class="qz__side">
-        <span class="lab r"><b>04</b> Подбор</span>
-        <h2 class="d3 r" style="--d:.06s">5&nbsp;вопросов — и&nbsp;пришлём 3&nbsp;варианта дизайна со&nbsp;сметой</h2>
-        <p class="lead r" style="--d:.12s">Дизайнер ответит в&nbsp;том мессенджере, который вы&nbsp;укажете, в&nbsp;течение рабочего дня.</p>
-        <div class="qz__gift r" style="--d:.18s">
-          <b class="num"><span id="qGift">0</span>%</b>
-          <span>накопленная скидка — растёт с&nbsp;каждым ответом, максимум&nbsp;7%</span>
-        </div>
+    <!-- Designer Quote / Intro -->
+    <div class="kz-designer r" style="--d:.06s">
+      <div class="kz-designer__avatar" aria-hidden="true">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </div>
+      <div class="kz-designer__info">
+        <b>Елена &middot; Ведущий дизайнер «Мебельный Бутик 48»</b>
+        <span>Опыт проектирования кухонь более 10 лет в Липецке</span>
+        <p class="kz-designer__quote">«Для быстрой планировки и расчёта цены мы разработали наглядный конфигуратор. Ответьте на 3 простых вопроса — и мы подготовим 3 варианта сметы (Стандарт, Комфорт, Премиум) за 5–10 минут и вышлем вам в удобный мессенджер.»</p>
+      </div>
+    </div>
+
+    <div class="kz-box r" style="--d:.1s">
+      <div class="kz-header">
+        <span class="kz-step-badge" id="kzStepBadge">Шаг 1 из 4</span>
+        <div class="kz-bar-outer"><div class="kz-bar-inner" id="kzBar"></div></div>
+        <span style="font-size:12px; color:var(--clay-dark); font-weight:700;" id="kzGiftBadge">Скидка 7% закреплена</span>
       </div>
 
-      <div class="qz__box r" style="--d:.1s">
-        <div class="qz__top">
-          <span class="qz__st num">Шаг <span id="qNow">01</span> / 06</span>
-          <span class="qz__bar"><i id="qProg"></i></span>
+      <form class="kz-body" id="kitchenQuizForm" novalidate>
+        <!-- Step 1: Shape -->
+        <div class="kz-step on" data-step="0">
+          <h3 class="kz-step__title">1. Выберите форму кухни</h3>
+          <p class="kz-step__hint">Подберём правильное расположение рабочих зон «холодильник &ndash; мойка &ndash; плита»</p>
+          <div class="kz-shapes">
+            <button type="button" class="kz-shape on" data-val="Прямая" data-shape="line">
+              <div class="kz-shape__icon">
+                <svg width="44" height="44" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="28" width="36" height="12" rx="2"/><line x1="18" y1="28" x2="18" y2="40"/><line x1="30" y1="28" x2="30" y2="40"/></svg>
+              </div>
+              <span class="kz-shape__label">Прямая</span>
+            </button>
+            <button type="button" class="kz-shape" data-val="Угловая" data-shape="corner">
+              <div class="kz-shape__icon">
+                <svg width="44" height="44" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 10v28h28v-12H20V10H8z"/></svg>
+              </div>
+              <span class="kz-shape__label">Угловая</span>
+            </button>
+            <button type="button" class="kz-shape" data-val="П-образная" data-shape="u">
+              <div class="kz-shape__icon">
+                <svg width="44" height="44" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 10v30h36V10h-12v18H18V10H6z"/></svg>
+              </div>
+              <span class="kz-shape__label">П-образная</span>
+            </button>
+            <button type="button" class="kz-shape" data-val="С островом" data-shape="island">
+              <div class="kz-shape__icon">
+                <svg width="44" height="44" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="10" width="36" height="10" rx="2"/><rect x="14" y="28" width="20" height="10" rx="2"/></svg>
+              </div>
+              <span class="kz-shape__label">С островом</span>
+            </button>
+          </div>
         </div>
-        <form class="qz__body" id="quizForm" novalidate>
-          <div class="qz__q on" data-q="0">
-            <h3 class="qz__h">Что планируете заказать?</h3>
-            <p class="qz__hint">Можно уточнить детали на последнем шаге</p>
-            <div class="qz__opts">
-              <button type="button" class="qo"><i>01</i><b>Кухню</b></button>
-              <button type="button" class="qo"><i>02</i><b>Шкаф или&nbsp;гардеробную</b></button>
-              <button type="button" class="qo"><i>03</i><b>Спальню или&nbsp;детскую</b></button>
-              <button type="button" class="qo"><i>04</i><b>Мебель во&nbsp;всю квартиру</b></button>
+
+        <!-- Step 2: Appliances -->
+        <div class="kz-step" data-step="1">
+          <h3 class="kz-step__title">2. Техника и оборудование</h3>
+          <p class="kz-step__hint">Укажите, какую технику планируете — мы сразу заложим ниши, вентиляцию и правильные розетки</p>
+          <div class="kz-appliances">
+            <div class="kz-app-group">
+              <div class="kz-app-group__title">Холодильник</div>
+              <div class="kz-app-opts">
+                <button type="button" class="kz-app-opt on" data-grp="fridge" data-v="Отдельный">Отдельностоящий</button>
+                <button type="button" class="kz-app-opt" data-grp="fridge" data-v="Встроенный в пенал">Встроенный в пенал</button>
+              </div>
+            </div>
+            <div class="kz-app-group">
+              <div class="kz-app-group__title">Вытяжка</div>
+              <div class="kz-app-opts">
+                <button type="button" class="kz-app-opt on" data-grp="hood" data-v="Встроенная в шкаф">Встроенная в шкаф</button>
+                <button type="button" class="kz-app-opt" data-grp="hood" data-v="Отдельная наклонная">Отдельная наклонная</button>
+              </div>
+            </div>
+            <div class="kz-app-group">
+              <div class="kz-app-group__title">Посудомоечная машина</div>
+              <div class="kz-app-opts">
+                <button type="button" class="kz-app-opt on" data-grp="dw" data-v="Да, 60 см">Да, 60 см</button>
+                <button type="button" class="kz-app-opt" data-grp="dw" data-v="Да, 45 см">Да, 45 см</button>
+                <button type="button" class="kz-app-opt" data-grp="dw" data-v="Без посудомойки">Не нужна</button>
+              </div>
             </div>
           </div>
+        </div>
 
-          <div class="qz__q" data-q="1">
-            <h3 class="qz__h">Какой тип кухни хотите?</h3>
-            <p class="qz__hint">Если заказываете шкаф — выберите «Не относится»</p>
-            <div class="qz__opts">
-              <button type="button" class="qo"><i>01</i><b>Прямая вдоль стены</b></button>
-              <button type="button" class="qo"><i>02</i><b>Угловая</b></button>
-              <button type="button" class="qo"><i>03</i><b>П-образная</b></button>
-              <button type="button" class="qo"><i>04</i><b>С&nbsp;островом или&nbsp;полуостровом</b></button>
-              <button type="button" class="qo"><i>05</i><b>Ещё не знаю, нужен совет</b></button>
-              <button type="button" class="qo"><i>06</i><b>Не относится</b></button>
+        <!-- Step 3: Dimensions with room diagram -->
+        <div class="kz-step" data-step="2">
+          <h3 class="kz-step__title">3. Примерные размеры кухни</h3>
+          <p class="kz-step__hint">В любых удобных единицах: см или метрах. Если точных размеров нет — укажите ориентировочно</p>
+          <div class="kz-dims">
+            <div class="kz-room-svg">
+              <svg viewBox="0 0 380 240" width="100%" height="auto" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Room background outline -->
+                <path d="M30 20L350 20L350 220L30 220Z" fill="#FAF9F6" stroke="#E2DDD5" stroke-width="1.5"/>
+                <!-- Perspective floor & walls -->
+                <line x1="30" y1="20" x2="110" y2="70" stroke="#DDD7CE" stroke-width="1.2" stroke-dasharray="3 3"/>
+                <line x1="110" y1="70" x2="350" y2="70" stroke="#DDD7CE" stroke-width="1.2"/>
+                <line x1="110" y1="70" x2="110" y2="220" stroke="#DDD7CE" stroke-width="1.2"/>
+                <!-- Lower cabinets row -->
+                <path d="M110 140L300 140L300 205L110 205Z" fill="#E8DEC8" stroke="#B89B6C" stroke-width="1.5"/>
+                <line x1="175" y1="140" x2="175" y2="205" stroke="#B89B6C" stroke-width="1"/>
+                <line x1="240" y1="140" x2="240" y2="205" stroke="#B89B6C" stroke-width="1"/>
+                <!-- Refrigerator column -->
+                <rect x="300" y="75" width="45" height="130" fill="#D4C4A8" stroke="#B89B6C" stroke-width="1.5"/>
+                <line x1="300" y1="125" x2="345" y2="125" stroke="#B89B6C" stroke-width="1"/>
+                <!-- Upper cabinets -->
+                <rect x="110" y="75" width="190" height="45" fill="#F0EAE1" stroke="#B89B6C" stroke-width="1.5"/>
+                <line x1="175" y1="75" x2="175" y2="120" stroke="#B89B6C" stroke-width="1"/>
+                <line x1="240" y1="75" x2="240" y2="120" stroke="#B89B6C" stroke-width="1"/>
+                <!-- Dimension Arrow 1: Main wall length -->
+                <g id="arrowDim1">
+                  <line x1="110" y1="52" x2="345" y2="52" stroke="#C8A87A" stroke-width="2.5"/>
+                  <polygon points="110,52 119,48 119,56" fill="#C8A87A"/>
+                  <polygon points="345,52 336,48 336,56" fill="#C8A87A"/>
+                  <rect x="180" y="40" width="86" height="24" rx="4" fill="#0E0D0B"/>
+                  <text x="223" y="56" fill="#F3DFBF" font-size="11" font-weight="700" text-anchor="middle" font-family="sans-serif">Размер 1</text>
+                </g>
+                <!-- Dimension Arrow 2: Corner wall length -->
+                <g id="arrowDim2">
+                  <line x1="82" y1="80" x2="82" y2="200" stroke="#C8A87A" stroke-width="2.5"/>
+                  <polygon points="82,80 78,89 86,89" fill="#C8A87A"/>
+                  <polygon points="82,200 78,191 86,191" fill="#C8A87A"/>
+                  <rect x="38" y="128" width="88" height="24" rx="4" fill="#0E0D0B"/>
+                  <text x="82" y="144" fill="#F3DFBF" font-size="11" font-weight="700" text-anchor="middle" font-family="sans-serif">Размер 2</text>
+                </g>
+              </svg>
+            </div>
+
+            <div class="kz-dims-inputs">
+              <div class="kz-dim-field">
+                <label for="kzDim1">Основная стена (Размер 1)</label>
+                <div class="kz-dim-row">
+                  <input type="text" id="kzDim1" name="dim1" placeholder="например, 280" value="280">
+                  <span>см</span>
+                </div>
+              </div>
+              <div class="kz-dim-field" id="kzDim2Field">
+                <label for="kzDim2">Поворот / вторая стена (Размер 2)</label>
+                <div class="kz-dim-row">
+                  <input type="text" id="kzDim2" name="dim2" placeholder="например, 160" value="160">
+                  <span>см</span>
+                </div>
+              </div>
+              <button type="button" class="lnk" id="kzNoDims" style="text-align:left; font-size:12.5px; color:var(--clay-dark); padding:4px 0;">
+                Не знаю точных размеров &mdash; замерщик снимет бесплатно
+              </button>
             </div>
           </div>
+        </div>
 
-          <div class="qz__q" data-q="2">
-            <h3 class="qz__h">Какие фасады ближе?</h3>
-            <p class="qz__hint">Подберём материалы и фурнитуру по образцам в салоне</p>
-            <div class="qz__opts">
-              <button type="button" class="qo"><i>01</i><b>ЛДСП &mdash; бюджетно и практично</b></button>
-              <button type="button" class="qo"><i>02</i><b>Плёнка МДФ &mdash; фрезеровка, мат</b></button>
-              <button type="button" class="qo"><i>03</i><b>Эмаль &mdash; любой цвет RAL</b></button>
-              <button type="button" class="qo"><i>04</i><b>Пластик Eterno или AGT супермат</b></button>
+        <!-- Step 4: Final Screen with WhatsApp Preview -->
+        <div class="kz-step" data-step="3">
+          <div class="kz-finish-grid">
+            <!-- Left: Realistic Messenger Screen -->
+            <div>
+              <div style="font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-3); margin-bottom:10px;">
+                Пример сметы в мессенджере после заявки:
+              </div>
+              <div class="wa-mock">
+                <div class="wa-mock__header">
+                  <div class="wa-mock__avatar">МБ</div>
+                  <div>
+                    <div class="wa-mock__name">Мебельный Бутик 48</div>
+                    <div class="wa-mock__status">онлайн &bull; дизайнер на связи</div>
+                  </div>
+                </div>
+                <div class="wa-mock__body">
+                  <div class="wa-bubble">
+                    <p style="margin-bottom:6px;"><b>Благодарим за обращение! 👋</b></p>
+                    <p style="margin-bottom:6px;">Вы указали параметры для расчёта:</p>
+                    <ul style="list-style:none; padding:0; margin:0 0 8px 0; font-size:12px; line-height:1.45;">
+                      <li>&bull; Форма: <b id="waShape">Прямая</b></li>
+                      <li>&bull; Техника: <b id="waApp">Холодильник отдельный, вытяжка встроенная</b></li>
+                      <li>&bull; Размеры: <b id="waDims">280 см</b></li>
+                    </ul>
+                    <p style="margin-bottom:6px; color:#1b5e20;"><b>Мы подготовили 3 варианта сметы:</b></p>
+                    <p style="font-size:11.5px; line-height:1.4; margin:0;">
+                      1️⃣ <b>Стандарт</b> (ЛДСП Egger) &mdash; от 98 000 ₽<br>
+                      2️⃣ <b>Комфорт</b> (МДФ плёнка) &mdash; от 138 000 ₽<br>
+                      3️⃣ <b>Премиум</b> (Эмаль / Eterno) &mdash; от 177 000 ₽<br>
+                    </p>
+                    <p style="margin-top:6px; font-size:11px; color:#666;"><i>3D-тур, эскизы и чек-листы прикрепляем в диалог 👇</i></p>
+                    <div class="wa-bubble__time">только что &check;&check;</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Contact submission form -->
+            <div class="kz-lead-form">
+              <div>
+                <h3 class="kz-step__title" style="margin-bottom:4px;">Благодарим за ответы!</h3>
+                <p class="kz-step__hint" style="margin-bottom:16px;">Мы вышлем 3 варианта проекта и точную смету в течение 10 минут:</p>
+              </div>
+
+              <div>
+                <div style="font-size:12px; font-weight:700; margin-bottom:8px; color:var(--ink-2);">1. Куда удобнее прислать расчёт?</div>
+                <div class="kz-messengers">
+                  <button type="button" class="kz-msg-btn on" data-msg="WhatsApp">
+                    <svg viewBox="0 0 24 24" fill="#25D366" width="18" height="18"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2z"/></svg>
+                    <span>WhatsApp</span>
+                  </button>
+                  <button type="button" class="kz-msg-btn" data-msg="Telegram">
+                    <svg viewBox="0 0 24 24" fill="#0088cc" width="18" height="18"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 0 0-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
+                    <span>Telegram</span>
+                  </button>
+                  <button type="button" class="kz-msg-btn" data-msg="Телефон">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    <span>Звонок</span>
+                  </button>
+                </div>
+              </div>
+
+              <div>
+                <div style="font-size:12px; font-weight:700; margin-bottom:8px; color:var(--ink-2);">2. Ваш номер телефона</div>
+                <div class="kz-phone-wrap">
+                  <input type="tel" class="kz-phone-input" id="kzPhone" name="phone" placeholder="+7 (___) ___-__-__" autocomplete="tel">
+                </div>
+              </div>
+
+              <button type="submit" class="b b--paper b--full" id="kzSubmit" style="min-height:54px; font-size:14.5px; font-weight:700; text-transform:uppercase; letter-spacing:.04em; background:linear-gradient(135deg, #F3DFBF 0%, #C8A87A 50%, #9B7846 100%) !important; color:#0E0D0B !important;">
+                Получить проект, цены и материалы &rarr;
+              </button>
+
+              <div class="kz-badges-row">
+                <div class="kz-badge-item">&check; 3 сметы под ключ</div>
+                <div class="kz-badge-item">&check; 3D-тур по кухне</div>
+                <div class="kz-badge-item">&check; Гайд по ремонту</div>
+                <div class="kz-badge-item">&check; Без навязчивых звонков</div>
+              </div>
             </div>
           </div>
+        </div>
 
-          <div class="qz__q" data-q="3">
-            <h3 class="qz__h">Когда нужна установка?</h3>
-            <p class="qz__hint">Под срок подберём свободное окно в цеху</p>
-            <div class="qz__opts">
-              <button type="button" class="qo"><i>01</i><b>В&nbsp;течение месяца</b></button>
-              <button type="button" class="qo"><i>02</i><b>Через 1&ndash;2&nbsp;месяца</b></button>
-              <button type="button" class="qo"><i>03</i><b>Через 3&nbsp;месяца и&nbsp;позже</b></button>
-              <button type="button" class="qo"><i>04</i><b>Сравниваю цены</b></button>
-            </div>
-          </div>
+        <!-- Success confirmation state -->
+        <div class="done" id="kzDone">
+          <div class="done__i"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+          <b>Спасибо! Ваши ответы приняты</b>
+          <span>Дизайнер Елена уже готовит 3 варианта сметы под ваши размеры. Мы отправим расчёт и бонусные материалы в выбранный мессенджер в течение 10 минут.</span>
+        </div>
 
-          <div class="qz__q" data-q="4">
-            <h3 class="qz__h">Ориентир по бюджету</h3>
-            <p class="qz__hint">Чтобы предложить материалы, а не угадывать</p>
-            <div class="qz__opts">
-              <button type="button" class="qo"><i>01</i><b>До 150&nbsp;000&nbsp;₽</b></button>
-              <button type="button" class="qo"><i>02</i><b>150&ndash;250&nbsp;000&nbsp;₽</b></button>
-              <button type="button" class="qo"><i>03</i><b>250&ndash;400&nbsp;000&nbsp;₽</b></button>
-              <button type="button" class="qo"><i>04</i><b>От 400&nbsp;000&nbsp;₽</b></button>
-            </div>
-          </div>
-
-          <div class="qz__q" data-q="5">
-            <h3 class="qz__h">Куда прислать варианты и&nbsp;смету?</h3>
-            <p class="qz__hint">Никаких звонков без вашего согласия</p>
-            <div class="frm">
-              <label class="inp"><input type="text" name="name" placeholder="Имя" autocomplete="name"></label>
-              <label class="inp"><input type="tel" name="phone" placeholder="Телефон" autocomplete="tel"></label>
-              <label class="inp inp--full"><input type="text" name="comment" placeholder="Комментарий: город, размеры, пожелания"></label>
-              <label class="cns"><input type="checkbox" name="consent"><span>Согласен на&nbsp;обработку персональных данных и&nbsp;с&nbsp;политикой конфиденциальности</span></label>
-            </div>
-          </div>
-
-          <div class="done" id="quizDone">
-            <div class="done__i"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
-            <b>Спасибо! Заявка принята</b>
-            <span>Дизайнер свяжется в&nbsp;течение рабочего дня и&nbsp;пришлёт 3&nbsp;варианта со&nbsp;сметой.</span>
-          </div>
-
-          <div class="qz__nav" id="quizNav">
-            <button type="button" class="lnk" id="qBack" hidden>&larr; Назад</button>
-            <span class="sm" id="qNote">Выберите вариант</span>
-            <button type="submit" class="b b--ink b--sm" id="qNext">Далее <span class="ar">&rarr;</span></button>
-          </div>
-        </form>
-      </div>
+        <!-- Nav buttons -->
+        <div class="qz__nav" id="kzNav" style="margin-top:24px; padding-top:16px;">
+          <button type="button" class="lnk" id="kzBack" hidden>&larr; Назад</button>
+          <span class="sm" id="kzNote" style="font-weight:600; color:var(--ink-2);">Шаг 1 из 4</span>
+          <button type="button" class="b b--ink b--sm" id="kzNext">Далее <span class="ar">&rarr;</span></button>
+        </div>
+      </form>
     </div>
   </div>
 </section>
@@ -2316,230 +2605,261 @@ function money(n){return fmt(n)+NB+"\u20BD";}
   }
 })();
 
-/* ---------- 7. calculator ---------- */
-var calcSummary="";
+/* ---------- 7. kitchen prices sliders & interactive actions ---------- */
 (function(){
-  var K={facade:{ldsp:26000,film:34000,agt:42000,enamel:48000,eterno:52000},
-         top:{post:4500,compact:25000,stone:40000},
-         layout:{line:1,corner:1.10,u:1.18,island:1.25}};
-  var Wd={facade:{ldsp:26000,film:34000,agt:42000,enamel:46000,eterno:50000},
-          wtype:{swing:1,sliding:1.15,walkin:0.92},
-          height:{h22:1,h27:1.15,h28:1.25}};
-  var Bd={
-    bedtype:{bed:72000,bed_tables:98000,bed_set:148000,master:225000},
-    bedsize:{s140:0.94,s160:1,s180:1.08,s200:1.16},
-    fabric:{velur:0,boucle:10000,leather:16000},
-    facadeMult:{ldsp:1,film:1.06,agt:1.12,enamel:1.16,eterno:1.18}
-  };
-  var names={
-    ldsp:"ЛДСП Egger/Kastamonu",film:"Плёнка МДФ",eterno:"Пластик Eterno",agt:"Фасады AGT",enamel:"Эмаль RAL",
-    post:"Постформинг",compact:"Компакт-плита",stone:"Иск. камень",
-    line:"Прямая",corner:"Угловая",u:"П-образная",island:"С островом",
-    swing:"Распашной",sliding:"Купе",walkin:"Гардеробная система",
-    h22:"до 2,2 м",h27:"до 2,7 м",h28:"до потолка",
-    bed:"Кровать с ПМ",bed_tables:"Кровать + 2 парящие тумбы",bed_set:"Спальный гарнитур (со столиком)",master:"Мастер-спальня со шкафом",
-    s140:"140×200 см",s160:"160×200 см",s180:"180×200 см",s200:"200×200 см",
-    velur:"Велюр/рогожка",boucle:"Букле/Teddy",leather:"Экокожа/замша"
-  };
-  var st={prod:"kitchen",layout:"line",wtype:"swing",bedtype:"bed",bedsize:"s160",fabric:"velur",
-          facade:"film",top:"post",height:"h22",len:3,
-          light:false,blum:false,org:false,radius:false};
-  var tabs=$("#calcTabs"), lenEl=$("#len"), lenVal=$("#lenVal"), lenLabel=$("#lenLabel"),
-      sumEl=$("#sum"), perEl=$("#perM"), rowsEl=$("#rows"), insEl=$("#instal"),
-      optLight=$("#optLight"), optOrg=$("#optOrg"), optRadiusLabel=$("#optRadiusLabel");
-  if(!tabs||!sumEl) return;
+  ['kpCard1', 'kpCard2'].forEach(function(cardId){
+    var card = $('#' + cardId);
+    if(!card) return;
+    var slides = $$('.kp-slide', card);
+    var tabs = $$('.kp-slider__tab', card);
+    var prevBtn = $('.kp-slider__btn.prev', card);
+    var nextBtn = $('.kp-slider__btn.next', card);
+    var cur = 0;
 
-  function r1000(v){ return Math.max(1000, Math.round(v/1000)*1000); }
-
-  function calc(){
-    var L=st.len, base=0, rows=[];
-    if(st.prod==="kitchen"){
-      var f=(K.facade[st.facade]||34000)*L, t=(K.top[st.top]||4500)*L, lm=K.layout[st.layout]||1;
-      base=(f+t)*lm;
-      rows.push(["Корпус и фасады · "+(names[st.facade]||st.facade), money(f*lm)]);
-      rows.push(["Столешница · "+(names[st.top]||st.top), money(t*lm)]);
-      rows.push(["Конфигурация · "+(names[st.layout]||st.layout), "в расчёте"]);
-    } else if(st.prod==="wardrobe"){
-      var fw=(Wd.facade[st.facade]||26000)*L*(Wd.height[st.height]||1)*(Wd.wtype[st.wtype]||1);
-      base=fw;
-      rows.push(["Корпус и фасады · "+(names[st.facade]||st.facade), money(fw)]);
-      rows.push(["Тип и высота · "+(names[st.wtype]||st.wtype)+", "+(names[st.height]||st.height), "в цене"]);
-    } else { // bedroom
-      var bBase=(Bd.bedtype[st.bedtype]||52000)*(Bd.bedsize[st.bedsize]||1)*(Bd.facadeMult[st.facade]||1);
-      var fCost=Bd.fabric[st.fabric]||0;
-      base=bBase+fCost;
-      rows.push(["Спальная группа · "+(names[st.bedtype]||st.bedtype), money(bBase)]);
-      rows.push(["Размер и ткань · "+(names[st.bedsize]||st.bedsize)+", "+(names[st.fabric]||st.fabric), fCost>0?money(fCost):"в базовой цене"]);
-      rows.push(["Материал отделки/тумб · "+(names[st.facade]||st.facade), "учтено"]);
+    function showSlide(idx){
+      cur = (idx + slides.length) % slides.length;
+      slides.forEach(function(s, i){ s.classList.toggle('on', i === cur); });
+      tabs.forEach(function(t, i){ t.classList.toggle('on', i === cur); });
     }
-    var mult=1+(st.blum?0.20:0)+(st.radius?0.15:0);
-    var flatLight=(st.light?(st.prod==="kitchen"?12000:(st.prod==="bedroom"?9000:8000)):0);
-    var flatOrg=(st.org?(st.prod==="kitchen"?16000:(st.prod==="bedroom"?10000:12000)):0);
-    var flat=flatLight+flatOrg;
-    var extra=base*(mult-1)+flat;
-    rows.push(["Фурнитура и опции", extra>0?money(extra):"—"]);
-    rows.push(["Замер, 3D-проект и монтаж", "включено"]);
 
-    var total=base*mult+flat;
-    var low=r1000(total*0.93), high=r1000(total*1.07), mid=(low+high)/2;
-
-    sumEl.textContent=fmt(low)+" — "+fmt(high)+NB+"₽";
-    if(st.prod==="kitchen"){
-      perEl.textContent="≈ "+money(mid/L)+" за метр погонный";
-    } else if(st.prod==="wardrobe"){
-      perEl.textContent="≈ "+money(mid/L)+" за метр ширины";
-    } else {
-      perEl.textContent="Комплекс под ключ с гарантией 1 год";
-    }
-    rowsEl.innerHTML=rows.map(function(r){
-      return "<div><span>"+r[0]+"</span><b>"+r[1]+"</b></div>";
-    }).join("");
-    if(insEl) insEl.textContent="от "+money(low/6)+"/мес";
-
-    var optsList = [];
-    if(st.light) optsList.push("LED");
-    if(st.blum) optsList.push("Blum");
-    if(st.org) optsList.push("системы хранения");
-    if(st.radius) optsList.push(st.prod==="bedroom" ? "мягкие панели" : "радиусные фасады");
-    var optsStr = optsList.length ? (" (" + optsList.join(", ") + ")") : "";
-
-    calcSummary=(st.prod==="kitchen"
-      ? "Кухня, "+names[st.layout]+", "+L.toFixed(1).replace(".",",")+" м.п., "+names[st.facade]+", столешница: "+names[st.top]
-      : (st.prod==="wardrobe"
-        ? "Шкаф, "+names[st.wtype]+", "+L.toFixed(1).replace(".",",")+" м, "+names[st.facade]+", "+names[st.height]
-        : "Спальня, "+names[st.bedtype]+", "+names[st.bedsize]+", "+names[st.fabric]+", "+names[st.facade]))
-      +optsStr+" — расчёт "+fmt(low)+"–"+fmt(high)+NB+"₽";
-  }
-
-  function syncProd(){
-    $$("[data-only]").forEach(function(el){
-      var allowed = el.getAttribute("data-only").split(",");
-      var show = allowed.indexOf(st.prod) !== -1;
-      if(show) el.removeAttribute("hidden"); else el.setAttribute("hidden","");
-    });
-    if(lenLabel){
-      lenLabel.textContent = st.prod==="kitchen" ? "Длина кухни" : "Ширина шкафа";
-      if(st.prod==="wardrobe" && st.len > 5){
-        st.len = 2.4;
-        lenEl.value = 2.4;
-        lenVal.textContent = "2,4";
-      }
-    }
-    if(optLight) optLight.textContent="+"+money(st.prod==="kitchen"?12000:(st.prod==="bedroom"?9000:8000));
-    if(optOrg) optOrg.textContent="+"+money(st.prod==="kitchen"?16000:(st.prod==="bedroom"?10000:12000));
-    if(optRadiusLabel) optRadiusLabel.innerHTML = st.prod==="bedroom" ? "Мягкие стеновые панели<span>+15% к стоимости</span>" : "Радиусные элементы<span>+15% к стоимости</span>";
-  }
-
-  $$("button", tabs).forEach(function(b){
-    b.addEventListener("click", function(){
-      $$("button", tabs).forEach(function(x){x.classList.remove("on");});
-      b.classList.add("on");
-      st.prod=b.getAttribute("data-prod");
-      syncProd(); calc();
+    if(prevBtn) prevBtn.addEventListener('click', function(e){ e.stopPropagation(); showSlide(cur - 1); });
+    if(nextBtn) nextBtn.addEventListener('click', function(e){ e.stopPropagation(); showSlide(cur + 1); });
+    tabs.forEach(function(t, i){
+      t.addEventListener('click', function(e){ e.stopPropagation(); showSlide(i); });
     });
   });
-
-  $$(".chs").forEach(function(g){
-    var key=g.getAttribute("data-group");
-    $$(".ch", g).forEach(function(b){
-      b.addEventListener("click", function(){
-        $$(".ch", g).forEach(function(x){x.classList.remove("on");});
-        b.classList.add("on");
-        st[key]=b.getAttribute("data-v");
-        calc();
-      });
-    });
-  });
-
-  if(lenEl){
-    lenEl.addEventListener("input", function(){
-      st.len=parseFloat(lenEl.value);
-      lenVal.textContent=st.len.toFixed(1).replace(".",",");
-      calc();
-    });
-  }
-
-  $$("[data-opt]").forEach(function(c){
-    c.addEventListener("change", function(){
-      st[c.getAttribute("data-opt")]=c.checked;
-      calc();
-    });
-  });
-
-  calc();
 })();
 
+// Global helper to prefill quiz from project card
+window.prefillKitchenQuiz = function(shape, fridge, hood, len){
+  var quiz = $('#quiz');
+  if(quiz){
+    quiz.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  $$('.kz-shape').forEach(function(btn){
+    var val = btn.getAttribute('data-val');
+    btn.classList.toggle('on', val === shape);
+  });
+  $$('.kz-app-opt[data-grp="fridge"]').forEach(function(btn){
+    var val = btn.getAttribute('data-v');
+    btn.classList.toggle('on', val === fridge);
+  });
+  $$('.kz-app-opt[data-grp="hood"]').forEach(function(btn){
+    var val = btn.getAttribute('data-v');
+    btn.classList.toggle('on', val === hood);
+  });
+  var d1 = $('#kzDim1');
+  if(d1 && len) d1.value = len;
 
-/* ---------- 8. quiz ---------- */
+  if(window.updateKitchenQuizPreview){
+    window.updateKitchenQuizPreview();
+  }
+};
+
+/* ---------- 8. modern kitchen quiz with whatsapp preview ---------- */
 (function(){
-  var form=$("#quizForm");
+  var form = $('#kitchenQuizForm');
   if(!form) return;
-  var steps=$$(".qz__q", form), cur=0,
-      now=$("#qNow"), prog=$("#qProg"), gift=$("#qGift"),
-      back=$("#qBack"), next=$("#qNext"), note=$("#qNote"),
-      nav=$("#quizNav"), done=$("#quizDone");
-  var GIFT=[0,2,3,5,6,7], answers=[];
+
+  var steps = $$('.kz-step', form);
+  var cur = 0;
+  var stepBadge = $('#kzStepBadge');
+  var bar = $('#kzBar');
+  var backBtn = $('#kzBack');
+  var nextBtn = $('#kzNext');
+  var note = $('#kzNote');
+  var nav = $('#kzNav');
+  var done = $('#kzDone');
+
+  // Preview elements inside the WhatsApp mockup
+  var waShape = $('#waShape');
+  var waApp = $('#waApp');
+  var waDims = $('#waDims');
+
+  // Form inputs
+  var dim1Input = $('#kzDim1');
+  var dim2Input = $('#kzDim2');
+  var dim2Field = $('#kzDim2Field');
+  var noDimsBtn = $('#kzNoDims');
+  var phoneInput = $('#kzPhone');
+
+  // State
+  var state = {
+    shape: 'Прямая',
+    fridge: 'Отдельный',
+    hood: 'Встроенная в шкаф',
+    dw: 'Да, 60 см',
+    dim1: '280',
+    dim2: '160',
+    noDims: false,
+    messenger: 'WhatsApp',
+    phone: ''
+  };
+
+  function updatePreview(){
+    var activeShape = $('.kz-shape.on');
+    state.shape = activeShape ? activeShape.getAttribute('data-val') : 'Прямая';
+    if(waShape) waShape.textContent = state.shape;
+
+    var isCorner = state.shape.indexOf('Углов') !== -1 || state.shape.indexOf('П-образ') !== -1;
+    if(dim2Field){
+      dim2Field.style.display = isCorner ? 'flex' : 'none';
+    }
+
+    var activeFridge = $('.kz-app-opt.on[data-grp="fridge"]');
+    var activeHood = $('.kz-app-opt.on[data-grp="hood"]');
+    var activeDw = $('.kz-app-opt.on[data-grp="dw"]');
+
+    state.fridge = activeFridge ? activeFridge.getAttribute('data-v') : 'Отдельный';
+    state.hood = activeHood ? activeHood.getAttribute('data-v') : 'Встроенная в шкаф';
+    state.dw = activeDw ? activeDw.getAttribute('data-v') : 'Да, 60 см';
+
+    var appParts = [];
+    if(state.fridge) appParts.push(state.fridge.toLowerCase());
+    if(state.hood) appParts.push(state.hood.toLowerCase());
+    if(state.dw && state.dw !== 'Без посудомойки') appParts.push('ПММ ' + state.dw);
+    if(waApp) waApp.textContent = appParts.join(', ') || 'Стандартная комплектация';
+
+    if(state.noDims){
+      if(waDims) waDims.textContent = 'размеры снимет замерщик';
+    } else {
+      var d1 = (dim1Input && dim1Input.value.trim()) ? dim1Input.value.trim() : '280';
+      var d2 = (dim2Input && dim2Input.value.trim()) ? dim2Input.value.trim() : '160';
+      if(isCorner && d2){
+        if(waDims) waDims.textContent = d1 + ' × ' + d2 + ' см';
+      } else {
+        if(waDims) waDims.textContent = d1 + ' см';
+      }
+    }
+  }
+  window.updateKitchenQuizPreview = updatePreview;
 
   function render(){
-    steps.forEach(function(s,i){ s.classList.toggle("on", i===cur); });
-    now.textContent=("0"+(cur+1)).slice(-2);
-    prog.style.width=((cur+1)/steps.length*100)+"%";
-    gift.textContent=GIFT[cur];
-    back.hidden = cur===0;
-    next.innerHTML = (cur===steps.length-1)
-      ? "\u041f\u043e\u043b\u0443\u0447\u0438\u0442\u044c \u0432\u0430\u0440\u0438\u0430\u043d\u0442\u044b <span class=\"ar\">\u2192</span>"
-      : "\u0414\u0430\u043b\u0435\u0435 <span class=\"ar\">\u2192</span>";
-    note.textContent = (cur===steps.length-1)
-      ? "\u0421\u043a\u0438\u0434\u043a\u0430 "+GIFT[cur]+"% \u0437\u0430\u043a\u0440\u0435\u043f\u043b\u0435\u043d\u0430 \u0437\u0430 \u0432\u0430\u043c\u0438"
-      : "\u0428\u0430\u0433 "+(cur+1)+" \u0438\u0437 "+steps.length;
+    steps.forEach(function(s, i){ s.classList.toggle('on', i === cur); });
+    if(stepBadge) stepBadge.textContent = 'Шаг ' + (cur + 1) + ' из ' + steps.length;
+    if(bar) bar.style.width = ((cur + 1) / steps.length * 100) + '%';
+    if(backBtn) backBtn.hidden = cur === 0;
+
+    if(cur === steps.length - 1){
+      if(nextBtn) nextBtn.style.display = 'none';
+      if(note) note.textContent = 'Скидка 7% и бонусы закреплены';
+    } else {
+      if(nextBtn){
+        nextBtn.style.display = 'inline-flex';
+        nextBtn.innerHTML = 'Далее <span class="ar">&rarr;</span>';
+      }
+      if(note) note.textContent = 'Шаг ' + (cur + 1) + ' из ' + steps.length;
+    }
+    updatePreview();
   }
 
-  $$(".qo", form).forEach(function(o){
-    o.addEventListener("click", function(){
-      var parent=o.closest(".qz__q");
-      $$(".qo", parent).forEach(function(x){x.classList.remove("on");});
-      o.classList.add("on");
-      var idx=steps.indexOf(parent);
-      answers[idx]=($("b", o)||o).textContent.trim();
-      if(idx<steps.length-1){
-        setTimeout(function(){ if(cur===idx){ cur=idx+1; render(); } }, 280);
+  $$('.kz-shape').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      $$('.kz-shape').forEach(function(b){ b.classList.remove('on'); });
+      btn.classList.add('on');
+      updatePreview();
+      setTimeout(function(){
+        if(cur === 0){ cur = 1; render(); }
+      }, 250);
+    });
+  });
+
+  $$('.kz-app-opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var grp = btn.getAttribute('data-grp');
+      $$('.kz-app-opt[data-grp="' + grp + '"]').forEach(function(b){ b.classList.remove('on'); });
+      btn.classList.add('on');
+      updatePreview();
+    });
+  });
+
+  if(dim1Input) dim1Input.addEventListener('input', updatePreview);
+  if(dim2Input) dim2Input.addEventListener('input', updatePreview);
+  if(noDimsBtn){
+    noDimsBtn.addEventListener('click', function(){
+      state.noDims = true;
+      if(dim1Input) dim1Input.value = '';
+      if(dim2Input) dim2Input.value = '';
+      updatePreview();
+      cur = 3;
+      render();
+    });
+  }
+
+  $$('.kz-msg-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      $$('.kz-msg-btn').forEach(function(b){ b.classList.remove('on'); });
+      btn.classList.add('on');
+      state.messenger = btn.getAttribute('data-msg');
+    });
+  });
+
+  if(phoneInput){
+    phoneInput.addEventListener('input', function(e){
+      var v = phoneInput.value.replace(/\D/g, '');
+      if(v.startsWith('7') || v.startsWith('8')) v = v.substring(1);
+      var res = '+7 (';
+      if(v.length > 0) res += v.substring(0, 3);
+      if(v.length >= 3) res += ') ' + v.substring(3, 6);
+      if(v.length >= 6) res += '-' + v.substring(6, 8);
+      if(v.length >= 8) res += '-' + v.substring(8, 10);
+      phoneInput.value = v.length ? res : '';
+      phoneInput.classList.remove('err');
+    });
+  }
+
+  if(nextBtn){
+    nextBtn.addEventListener('click', function(e){
+      e.preventDefault();
+      if(cur < steps.length - 1){
+        cur++;
+        render();
       }
     });
-  });
+  }
 
-  back.addEventListener("click", function(){ if(cur>0){ cur--; render(); } });
-
-  form.addEventListener("submit", function(e){
-    e.preventDefault();
-    if(cur<steps.length-1){
-      if(!answers[cur]){ note.textContent="\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0430\u0440\u0438\u0430\u043d\u0442, \u0447\u0442\u043e\u0431\u044b \u043f\u0440\u043e\u0434\u043e\u043b\u0436\u0438\u0442\u044c"; return; }
-      cur++; render(); return;
-    }
-    var last=steps[steps.length-1],
-        nm=$("input[name=name]", last), ph=$("input[name=phone]", last), cs=$("input[name=consent]", last),
-        ok=true;
-    [nm,ph].forEach(function(f){
-      var bad=!f.value.trim() || (f.type==="tel" && f.value.replace(/\D/g,"").length<10);
-      f.classList.toggle("err", bad);
-      if(bad) ok=false;
+  if(backBtn){
+    backBtn.addEventListener('click', function(e){
+      e.preventDefault();
+      if(cur > 0){
+        cur--;
+        render();
+      }
     });
-    if(!cs.checked){ ok=false; note.textContent="\u041f\u043e\u0434\u0442\u0432\u0435\u0440\u0434\u0438\u0442\u0435 \u0441\u043e\u0433\u043b\u0430\u0441\u0438\u0435 \u043d\u0430 \u043e\u0431\u0440\u0430\u0431\u043e\u0442\u043a\u0443 \u0434\u0430\u043d\u043d\u044b\u0445"; }
-    else if(!ok){ note.textContent="\u0417\u0430\u043f\u043e\u043b\u043d\u0438\u0442\u0435 \u0438\u043c\u044f \u0438 \u0442\u0435\u043b\u0435\u0444\u043e\u043d"; }
-    if(!ok) return;
+  }
 
-    var mainComment=$("#mainForm textarea[name=comment]");
-    if(mainComment && !mainComment.value){
-      mainComment.value=answers.filter(Boolean).join("; ");
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if(cur < steps.length - 1){
+      cur++;
+      render();
+      return;
     }
-    steps.forEach(function(s){ s.classList.remove("on"); });
-    nav.style.display="none";
-    done.classList.add("on");
-    prog.style.width="100%";
-    now.textContent="06";
-  });
 
-  $$(".inp input", form).forEach(function(f){
-    f.addEventListener("input", function(){ f.classList.remove("err"); });
+    var phoneDigits = phoneInput ? phoneInput.value.replace(/\D/g, '') : '';
+    if(phoneDigits.length < 10){
+      if(phoneInput){
+        phoneInput.classList.add('err');
+        phoneInput.focus();
+      }
+      return;
+    }
+
+    var leadText = 'Заявка на расчёт кухни:\n' +
+      '• Форма: ' + state.shape + '\n' +
+      '• Техника: ' + state.fridge + ', ' + state.hood + ', ' + state.dw + '\n' +
+      '• Размеры: ' + (state.noDims ? 'нужен замер' : (state.dim1 + ' × ' + state.dim2 + ' см')) + '\n' +
+      '• Мессенджер: ' + state.messenger + '\n' +
+      '• Телефон: ' + (phoneInput ? phoneInput.value : '');
+
+    var mainComment = $("#mainForm textarea[name=comment]");
+    if(mainComment) mainComment.value = leadText;
+
+    steps.forEach(function(s){ s.classList.remove('on'); });
+    if(nav) nav.style.display = 'none';
+    if(done) done.classList.add('on');
+    if(bar) bar.style.width = '100%';
+    if(stepBadge) stepBadge.textContent = 'Готово';
   });
 
   render();
