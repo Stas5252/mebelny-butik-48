@@ -32,7 +32,7 @@ class AuditFixTests(unittest.TestCase):
   self.assertIn('Согласие',self.page.locator('h1').inner_text())
  def test_contact_form_never_claims_unconfirmed_delivery(self):
   self.assertEqual(self.page.locator('#mainDone').count(),0)
-  self.assertFalse(self.page.locator('#mainForm').is_visible())
+  self.assertTrue(self.page.locator('#mainForm').is_visible())
   self.page.evaluate('window.contactSettings.email="audit@example.test";window.refreshContactMode();')
   self.page.locator('#mainForm [name="name"]').fill('Тест аудита')
   self.page.locator('#mainForm [name="phone"]').fill('+7 (900) 000-00-00')
@@ -47,6 +47,26 @@ class AuditFixTests(unittest.TestCase):
   body=parse_qs(urlparse(draft).query)['body'][0]
   self.assertIn('Тест аудита',body);self.assertIn('+7 (900) 000-00-00',body);self.assertIn('Согласие',body)
   self.assertNotIn('Заявка отправлена',self.page.locator('#mainFormStatus').inner_text())
+ def test_placeholder_email_prepares_local_draft_without_transmission(self):
+  from pathlib import Path
+  self.assertTrue(self.page.locator('#mainForm').is_visible())
+  self.assertIn('не настроен',self.page.locator('#contactEmailHelp').inner_text())
+  self.page.evaluate('()=>{window.auditDraftCalls=0;window.openContactDraft=()=>{window.auditDraftCalls++;};}')
+  self.page.locator('#mainForm [name="name"]').fill('Локальный черновик')
+  self.page.locator('#mainForm [name="phone"]').fill('+7 (900) 000-00-00')
+  self.page.locator('#mainForm [name="comment"]').fill('Шкаф под лестницей')
+  self.page.locator('#mainForm [name="consent"]').check()
+  self.page.locator('#mainForm button[type="submit"]').click()
+  self.assertIn('не отправлена',self.page.locator('#mainFormStatus').inner_text())
+  with self.page.expect_download() as result:self.page.locator('#downloadContactDraft').click()
+  content=Path(result.value.path()).read_text()
+  self.assertIn('Локальный черновик',content)
+  self.assertIn('Шкаф под лестницей',content)
+  self.assertIn('+7 (900) 000-00-00',content)
+  self.assertEqual(self.page.evaluate('window.auditDraftCalls'),0)
+  self.assertEqual(self.context.cookies(),[])
+  self.assertEqual(self.page.evaluate('localStorage.length+sessionStorage.length'),0)
+
  def test_quiz_carries_selection_into_email_form(self):
   for _ in range(3):self.page.locator('#kzNext').click()
   self.page.locator('[data-msg="MAX"]').click()
@@ -79,6 +99,17 @@ class AuditFixTests(unittest.TestCase):
   content=Path(download.path()).read_text()
   self.assertIn('Подбор кухни:',content)
   self.assertNotIn('Телефон:',content)
+ def test_configurator_stops_rendering_when_idle_and_updates_on_change(self):
+  self.page.goto('http://localhost:3000/configurator.html',wait_until='networkidle')
+  self.page.evaluate('()=>{window.auditRenderCount=0;const raf=window.requestAnimationFrame;window.requestAnimationFrame=function(callback){window.auditRenderCount++;return raf.call(window,callback);};}')
+  self.page.wait_for_timeout(1500)
+  self.page.evaluate('window.auditRenderCount=0')
+  self.page.wait_for_timeout(600)
+  self.assertEqual(self.page.evaluate('window.auditRenderCount'),0,'Idle scene keeps consuming GPU/CPU')
+  self.page.locator('#frameSwatches [data-v="champagne"]').click()
+  self.page.wait_for_function('window.auditRenderCount>0')
+  self.assertGreater(self.page.locator('#viewport canvas').count(),0)
+
  def test_configurator_passes_accurate_cost_and_russian_labels(self):
   self.page.goto('http://localhost:3000/configurator.html')
   self.page.locator('#frameSwatches [data-v="champagne"]').click()

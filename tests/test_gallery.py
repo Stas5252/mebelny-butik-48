@@ -40,7 +40,7 @@ class GalleryTests(unittest.TestCase):
   self.assertEqual(self.visible_count(),9)
  def test_project_angles_and_keyboard_navigation(self):
   self.page.locator('#flt [data-f="wardrobe"]').click()
-  card=self.page.locator('#gw .wk[data-photos]').filter(has=self.page.locator('img[src$="client_work_01.jpg"]')).first
+  card=self.page.locator('#gw .wk[data-photos*="client_work_01.jpg"]').first
   self.assertEqual(card.count(),1,'Actual wardrobe photos are missing')
   card.click()
   self.assertTrue(self.page.locator('#lb').is_visible())

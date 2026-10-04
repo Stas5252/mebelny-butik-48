@@ -15,8 +15,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Мебельный бутик 48">
-<script src="js/three.min.js"></script>
-<script src="js/OrbitControls.js"></script>
+<script defer src="js/three.min.js"></script>
+<script defer src="js/OrbitControls.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -291,7 +291,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;heigh
 <div class="toast" id="toast" role="status" aria-live="polite">Спецификация скопирована!</div>
 
 <script>
-(function(){
+document.addEventListener("DOMContentLoaded", function(){
 "use strict";
 
 /* ========== HELPERS ========== */
@@ -356,7 +356,7 @@ camera.position.set(1.5, 2.2, 4.5);
 
 var renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: "high-performance" });
 renderer.setSize(vpRect.width, vpRect.height);
-renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, window.matchMedia("(max-width:720px)").matches ? 1.5 : 2));
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -381,7 +381,9 @@ function makeFrameMat(){
 }
 var chromeMat = new THREE.MeshStandardMaterial({ color: 0xe0e6ed, roughness: 0.12, metalness: 0.96 });
 
+var woodTextureCache={};
 function makeWoodTexture(key){
+  if(woodTextureCache[key]) return woodTextureCache[key];
   var cv = document.createElement("canvas"); cv.width = 512; cv.height = 512;
   var cx = cv.getContext("2d");
   var pal = shelfPalettes[key];
@@ -399,6 +401,7 @@ function makeWoodTexture(key){
   var tex = new THREE.CanvasTexture(cv);
   tex.wrapS = THREE.RepeatWrapping; tex.wrapT = THREE.RepeatWrapping;
   tex.repeat.set(2,1);
+  woodTextureCache[key]=tex;
   return tex;
 }
 
@@ -547,8 +550,9 @@ scene.add(ambLight);
 var keyLight = new THREE.DirectionalLight(0xfff3e3, 1.2);
 keyLight.position.set(4, 6, 5);
 keyLight.castShadow = true;
-keyLight.shadow.mapSize.width = 2048;
-keyLight.shadow.mapSize.height = 2048;
+var shadowSize=window.matchMedia("(max-width:720px)").matches ? 1024 : 2048;
+keyLight.shadow.mapSize.width = shadowSize;
+keyLight.shadow.mapSize.height = shadowSize;
 keyLight.shadow.camera.near = 0.5;
 keyLight.shadow.camera.far = 20;
 keyLight.shadow.camera.left = -6;
@@ -1194,6 +1198,7 @@ renderer.domElement.addEventListener("mousemove", function(e){
 
   if(state.placementMode && state.ghostMesh){
     moveGhost();
+    requestRender();
   }
 });
 
@@ -1325,14 +1330,26 @@ window.addEventListener("resize", function(){
   camera.aspect = rect.width / rect.height;
   camera.updateProjectionMatrix();
   renderer.setSize(rect.width, rect.height);
+  requestRender();
 });
 
-/* ========== ANIMATION LOOP ========== */
-function animate(){
-  requestAnimationFrame(animate);
-  controls.update();
-  renderer.render(scene, camera);
+/* Render only when the camera or scene changes. OrbitControls change events
+   keep damping smooth, then stop scheduling frames once movement settles. */
+var renderRequested=false;
+function requestRender(){
+  if(renderRequested || document.hidden) return;
+  renderRequested=true;
+  requestAnimationFrame(function(){
+    renderRequested=false;
+    controls.update();
+    renderer.render(scene,camera);
+  });
 }
+controls.addEventListener("change",requestRender);
+["click","input","keydown"].forEach(function(eventName){
+  document.addEventListener(eventName,requestRender);
+});
+document.addEventListener("visibilitychange",requestRender);
 
 /* ========== INIT ========== */
 buildRoom();
@@ -1340,7 +1357,7 @@ buildSpots();
 updateCost();
 /* Auto-apply "family" preset for first-time demo */
 applyPreset("family");
-animate();
+requestRender();
 
 /* Hide hint after 5 seconds */
 setTimeout(function(){
@@ -1348,7 +1365,7 @@ setTimeout(function(){
   if(hint) hint.classList.add("hidden");
 }, 5000);
 
-})();
+});
 </script>
 </body>
 </html>
