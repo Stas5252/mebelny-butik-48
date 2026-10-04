@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Мебельный бутик 48 — кухни, шкафы и спальни на заказ в Липецке</title>
-<meta name="description" content="Мебельный бутик 48: кухни, шкафы, гардеробные, спальни и детские по индивидуальным размерам в Липецке. Собственное производство, дизайн-проект, выезд на замер, гарантия 1 год.">
+<meta name="description" content="Мебельный бутик 48: кухни, шкафы, гардеробные, спальни, детские, мебель для ванной и под лестницу по индивидуальным размерам в Липецке. Собственное производство, дизайн-проект, выезд на замер, гарантия 1 год.">
 <link rel="canonical" href="https://stas5252.github.io/mebelny-butik-48/">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 
@@ -527,6 +527,7 @@ p,.lead,.hero__sub,.st__c,.cd__d{
 .cd--a{grid-column:span 7; aspect-ratio:16/12}
 .cd--b{grid-column:span 5; aspect-ratio:16/12}
 .cd--c{grid-column:span 4; aspect-ratio:5/4}
+.cd--extra{grid-column:span 6; aspect-ratio:16/10}
 .cd img{
   position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
   transform:scale(1.12);
@@ -692,13 +693,13 @@ p,.lead,.hero__sub,.st__c,.cd__d{
 .kz-dim-row input:focus{border-color:var(--clay); box-shadow:0 0 0 3px var(--clay-soft)}
 .kz-dim-row span{font-size:14px; color:var(--ink-3); font-weight:600}
 
-/* Finish Step with WhatsApp split layout */
+/* Finish step with MAX preview */
 .kz-finish-grid{display:grid; grid-template-columns:1fr 1.15fr; gap:clamp(20px, 3.5vw, 44px); align-items:start}
 @media (max-width: 860px){ .kz-finish-grid{grid-template-columns:1fr; gap:28px} }
 
-/* WhatsApp Mockup */
+/* MAX conversation preview */
 .wa-mock{background:#EFEAE2; border-radius:12px; border:1px solid #D1D7DB; overflow:hidden; box-shadow:0 12px 30px rgba(0,0,0,.08); max-width:380px; margin:0 auto; width:100%}
-.wa-mock__header{background:#075E54; padding:10px 14px; display:flex; align-items:center; gap:10px; color:#fff}
+.wa-mock__header{background:#2366F5; padding:10px 14px; display:flex; align-items:center; gap:10px; color:#fff}
 .wa-mock__avatar{width:36px; height:36px; border-radius:50%; background:#C8A87A; display:grid; place-items:center; font-weight:700; color:#0E0D0B; font-size:13px}
 .wa-mock__name{font-weight:600; font-size:13.5px; line-height:1.2}
 .wa-mock__status{font-size:11px; opacity:.85}
@@ -707,7 +708,8 @@ p,.lead,.hero__sub,.st__c,.cd__d{
 .wa-bubble__time{font-size:10px; color:#667781; text-align:right; margin-top:4px}
 
 /* Lead form right side */
-.kz-lead-form{display:flex; flex-direction:column; gap:16px}
+.kz-lead-form{display:flex; flex-direction:column; gap:16px; min-width:0}
+.kz-lead-form .b{white-space:normal; text-align:center}
 .kz-messengers{display:flex; gap:8px}
 .kz-msg-btn{flex:1; padding:10px 8px; border-radius:8px; border:1.5px solid var(--line); background:#fff; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px; font-size:13px; font-weight:600; transition:all .25s}
 .kz-msg-btn:hover{border-color:var(--clay)}
@@ -901,6 +903,17 @@ p,.lead,.hero__sub,.st__c,.cd__d{
 .lb img{max-width:100%; max-height:82vh; object-fit:contain}
 .lb__c{position:absolute; left:0; right:0; bottom:clamp(16px,3vw,34px); text-align:center; color:rgba(244,241,235,.8); font-size:14px}
 .lb__x{position:absolute; top:clamp(16px,3vw,30px); right:clamp(16px,3vw,30px); width:48px; height:48px; border-radius:999px; border:1px solid rgba(244,241,235,.3); background:none; color:var(--paper); cursor:pointer; font-size:20px; line-height:1}
+
+.wk__views{position:absolute; left:12px; top:12px; padding:6px 10px; border-radius:999px; background:rgba(255,255,255,.94); color:var(--ink); font-size:12px}
+.works-bottom{display:flex; flex-direction:column; align-items:center; gap:18px; margin-top:32px; text-align:center}
+.works-count{margin:0; font-size:13px; color:var(--ink-3)}
+.works-more[hidden],.lb__nav[hidden],.lb__count[hidden]{display:none !important}
+.lb__nav{position:absolute; top:50%; transform:translateY(-50%); width:44px; height:44px; border-radius:50%; border:1px solid rgba(255,255,255,.35); background:rgba(12,11,10,.8); color:#fff; display:grid; place-items:center; cursor:pointer}
+.lb__nav--prev{left:clamp(8px,2vw,30px)}
+.lb__nav--next{right:clamp(8px,2vw,30px)}
+.lb__count{position:absolute; left:16px; top:28px; color:#fff; font-size:13px}
+.lb__c{padding:0 20px}
+@media(max-width:720px){.lb img{max-height:74vh}.works-bottom .lnk{font-size:13px}}
 
 /* ========== 13. production ========== */
 .pr{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:clamp(26px,4vw,80px); align-items:center}
@@ -1203,6 +1216,24 @@ p,.lead,.hero__sub,.st__c,.cd__d{
 }
 .sp.in .w > i{transform:none; opacity:1; filter:blur(0)}
 
+/* Partner stores */
+.partner-grid{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:clamp(18px,2vw,30px); margin-top:clamp(28px,3vw,44px)}
+.partner-card{display:flex; flex-direction:column; min-width:0; padding:clamp(24px,3vw,42px); border:1px solid var(--line); border-radius:6px; background:var(--paper-2)}
+.partner-card__logo{height:62px; display:flex; align-items:center; margin-bottom:28px}
+.partner-card__logo img{width:220px; max-width:100%; height:62px; object-fit:contain; object-position:left center}
+.partner-card__label{font:500 10.5px/1.5 var(--sans); letter-spacing:.16em; text-transform:uppercase; color:var(--ink-3); margin-bottom:10px}
+.partner-card h3{font:400 clamp(25px,2.5vw,34px)/1.2 var(--serif); letter-spacing:-.02em; margin:0 0 14px}
+.partner-card p{font-size:15px; line-height:1.65; color:var(--ink-2); margin:0 0 22px}
+.partner-card__links{display:flex; flex-wrap:wrap; gap:10px; margin:0 0 30px}
+.partner-card__links a{display:block; padding:9px 14px; border:1px solid var(--line); border-radius:999px; color:var(--ink-2); text-decoration:none; font-size:13px; transition:border-color .25s,color .25s}
+.partner-card__links a:hover{border-color:var(--clay); color:var(--ink)}
+.partner-card .b{margin-top:auto; align-self:flex-start; max-width:100%; white-space:normal; text-align:center}
+.partner-note{margin:24px 0 0; font-size:13px; line-height:1.7; color:var(--ink-3); max-width:86ch}
+.partner-note a{color:var(--ink-2); text-underline-offset:3px}
+@media(min-width:1701px){.hd__in{gap:24px}.hd .lg{flex-direction:column; align-items:flex-start; gap:5px}.hd .nv{gap:12px}}
+@media(max-width:1700px){.nv,.hd__r{display:none}.bg{display:block}}
+@media(max-width:720px){.partner-grid{grid-template-columns:1fr}.partner-card .b{width:100%; justify-content:center}.partner-card__logo{margin-bottom:22px}}
+
 /* ========== 20. responsive ========== */
 @media (max-width:1180px){
   .cl,.qz,.pr,.ct,.fc{grid-template-columns:1fr}
@@ -1249,7 +1280,7 @@ p,.lead,.hero__sub,.st__c,.cd__d{
   .yabar .b{width:100%; justify-content:center}
   .soc{flex-direction:column; width:100%}
   .soc .b{width:100%; justify-content:center}
-  .cd--a,.cd--b,.cd--c{grid-column:span 12; aspect-ratio:4/3}
+  .cd--a,.cd--b,.cd--c,.cd--extra{grid-column:span 12; aspect-ratio:4/3}
   .wk,.wk--w{grid-column:span 12}
   .st{grid-template-columns:1fr}
   .mt{grid-template-columns:1fr}
@@ -1309,6 +1340,7 @@ p,.lead,.hero__sub,.st__c,.cd__d{
       <a href="#works">Работы</a>
       <a href="#prod">Цех</a>
       <a href="#process">Материалы</a>
+      <a href="#partners">Техника и&nbsp;мойки</a>
       <a href="#reviews">Отзывы</a>
       <a href="#contacts">Контакты</a>
     </nav>
@@ -1328,8 +1360,9 @@ p,.lead,.hero__sub,.st__c,.cd__d{
   <a href="#works"><i>05</i>Работы</a>
   <a href="#prod"><i>06</i>Своё производство</a>
   <a href="#process"><i>07</i>Материалы</a>
-  <a href="#reviews"><i>08</i>Отзывы</a>
-  <a href="#contacts"><i>09</i>Контакты</a>
+  <a href="#partners"><i>08</i>Техника и&nbsp;мойки</a>
+  <a href="#reviews"><i>09</i>Отзывы</a>
+  <a href="#contacts"><i>10</i>Контакты</a>
   <div class="mm__b">
     <a class="b b--paper b--full" href="#cta">Заказать замер <span class="ar">&rarr;</span></a>
     <a class="b b--lined b--full" href="tel:+79042822376">+7 (904) 282-23-76</a>
@@ -1460,9 +1493,9 @@ p,.lead,.hero__sub,.st__c,.cd__d{
     <div class="head-row">
       <div>
         <span class="lab r"><b>02</b> Направления</span>
-        <h2 class="d2 r" style="--d:.06s">Кухни, шкафы, спальни и&nbsp;детские<br>в&nbsp;едином стиле вашего дома.</h2>
+        <h2 class="d2 r" style="--d:.06s">Мебель для&nbsp;каждой комнаты<br>в&nbsp;едином стиле вашего дома.</h2>
       </div>
-      <p class="lead r" style="--d:.12s">Изготавливаем корпусную и&nbsp;мягкую мебель на&nbsp;собственном производстве: кухни, гардеробные, мягкие кровати, детские и&nbsp;прихожие из&nbsp;одной партии материалов.</p>
+      <p class="lead r" style="--d:.12s">Изготавливаем корпусную и&nbsp;мягкую мебель на&nbsp;собственном производстве: кухни, гардеробные, мягкие кровати, детские и&nbsp;прихожие. Также проектируем мебель для&nbsp;ванной и&nbsp;системы хранения под&nbsp;лестницей — по&nbsp;размерам вашего помещения.</p>
     </div>
 
     <div class="cg">
@@ -1478,7 +1511,7 @@ p,.lead,.hero__sub,.st__c,.cd__d{
         </span>
       </a>
       <a class="cd cd--b r" style="--d:.12s" href="#quiz">
-        <img src="images/cat_wardrobe.jpg" alt="Шкафы и гардеробные на заказ">
+        <img src="images/idea_dressing_room.jpg" alt="Гардеробная с подсветкой и туалетным столиком" loading="lazy">
         <span class="cd__in">
           <span class="cd__meta">
             <span class="cd__n">02 / второе направление</span>
@@ -1499,7 +1532,7 @@ p,.lead,.hero__sub,.st__c,.cd__d{
         </span>
       </a>
       <a class="cd cd--c r" style="--d:.1s" href="#cta">
-        <img src="images/cat_kids.jpg" alt="Детская мебель на заказ">
+        <img src="images/idea_kids_clouds.jpg" alt="Детская со шкафом, рабочим столом и кроватью" loading="lazy">
         <span class="cd__in">
           <span class="cd__meta">
             <span class="cd__n">04</span>
@@ -1516,6 +1549,28 @@ p,.lead,.hero__sub,.st__c,.cd__d{
             <span class="cd__t">Прихожие и&nbsp;входные группы</span>
           </span>
           <span class="cd__ar cd__ar--sm" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
+        </span>
+      </a>
+      <a class="cd cd--extra r" href="#cta">
+        <img src="images/idea_under_stairs.jpg" alt="Система хранения под лестницей со шкафом, скамьёй и открытыми полками" loading="lazy">
+        <span class="cd__in">
+          <span class="cd__meta">
+            <span class="cd__n">06</span>
+            <span class="cd__t">Мебель под&nbsp;лестницу</span>
+            <span class="cd__d">Шкафы, выдвижные ящики, полки и&nbsp;зона отдыха — используем пространство под&nbsp;каждой ступенью.</span>
+          </span>
+          <span class="cd__ar" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
+        </span>
+      </a>
+      <a class="cd cd--extra r" href="#cta">
+        <img src="images/idea_bathroom_beige.jpg" alt="Подвесная тумба под раковину и встроенный шкаф в ванной" loading="lazy">
+        <span class="cd__in">
+          <span class="cd__meta">
+            <span class="cd__n">07</span>
+            <span class="cd__t">Мебель для&nbsp;ванной</span>
+            <span class="cd__d">Тумбы под&nbsp;раковину, пеналы и&nbsp;встроенные шкафы — с&nbsp;учётом размеров и&nbsp;коммуникаций.</span>
+          </span>
+          <span class="cd__ar" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
         </span>
       </a>
     </div>
@@ -1984,13 +2039,13 @@ p,.lead,.hero__sub,.st__c,.cd__d{
           </div>
         </div>
 
-        <!-- Step 4: Final Screen with WhatsApp Preview -->
+        <!-- Step 4: Final screen with MAX preview -->
         <div class="kz-step" data-step="3">
           <div class="kz-finish-grid">
             <!-- Left: Realistic Messenger Screen -->
             <div>
               <div style="font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-3); margin-bottom:10px;">
-                Пример сметы в мессенджере после заявки:
+                Пример расчёта в MAX после заявки:
               </div>
               <div class="wa-mock">
                 <div class="wa-mock__header">
@@ -2026,22 +2081,18 @@ p,.lead,.hero__sub,.st__c,.cd__d{
             <div class="kz-lead-form">
               <div>
                 <h3 class="kz-step__title" style="margin-bottom:4px;">Благодарим за ответы!</h3>
-                <p class="kz-step__hint" style="margin-bottom:16px;">Мы вышлем 3 варианта проекта и точную смету в течение 10 минут:</p>
+                <p class="kz-step__hint" style="margin-bottom:16px;">Подготовим 3 варианта проекта и точную смету в течение 10 минут. Выберите удобный способ связи:</p>
               </div>
 
               <div>
-                <div style="font-size:12px; font-weight:700; margin-bottom:8px; color:var(--ink-2);">1. Куда удобнее прислать расчёт?</div>
-                <div class="kz-messengers">
-                  <button type="button" class="kz-msg-btn on" data-msg="WhatsApp">
-                    <svg viewBox="0 0 24 24" fill="#25D366" width="18" height="18"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2z"/></svg>
-                    <span>WhatsApp</span>
+                <div style="font-size:12px; font-weight:700; margin-bottom:8px; color:var(--ink-2);">1. Как удобнее с&nbsp;вами связаться?</div>
+                <div class="kz-messengers" role="group" aria-label="Способ связи">
+                  <button type="button" class="kz-msg-btn on" data-msg="MAX" aria-pressed="true">
+                    <svg viewBox="0 0 24 24" fill="none" width="18" height="18" aria-hidden="true"><rect width="24" height="24" rx="7" fill="#2366F5"/><path d="M18 11.5a6 6 0 0 1-6 6H6v-6a6 6 0 1 1 12 0Z" fill="#fff"/><circle cx="12" cy="11.5" r="3.3" fill="#2366F5"/></svg>
+                    <span>MAX</span>
                   </button>
-                  <button type="button" class="kz-msg-btn" data-msg="Telegram">
-                    <svg viewBox="0 0 24 24" fill="#0088cc" width="18" height="18"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 0 0-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
-                    <span>Telegram</span>
-                  </button>
-                  <button type="button" class="kz-msg-btn" data-msg="Телефон">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                  <button type="button" class="kz-msg-btn" data-msg="Звонок" aria-pressed="false">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
                     <span>Звонок</span>
                   </button>
                 </div>
@@ -2072,7 +2123,7 @@ p,.lead,.hero__sub,.st__c,.cd__d{
         <div class="done" id="kzDone">
           <div class="done__i"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
           <b>Спасибо! Ваши ответы приняты</b>
-          <span>Дизайнер Елена уже готовит 3 варианта сметы под ваши размеры. Мы отправим расчёт и бонусные материалы в выбранный мессенджер в течение 10 минут.</span>
+          <span>Дизайнер Елена уже готовит 3 варианта сметы под ваши размеры. Мы отправим расчёт и бонусные материалы в MAX в течение 10 минут.</span>
         </div>
 
         <!-- Nav buttons -->
@@ -2091,66 +2142,243 @@ p,.lead,.hero__sub,.st__c,.cd__d{
     <div class="head-row">
       <div>
         <span class="lab r"><b>05</b> Работы</span>
-        <h2 class="d2 r" style="--d:.06s">Проекты, сделанные<br>на&nbsp;своём производстве</h2>
+        <h2 class="d2 r" style="--d:.06s">Наши работы и&nbsp;идеи<br>для&nbsp;вашего дома</h2>
       </div>
-      <p class="lead r" style="--d:.12s">Каждый проект &mdash; под&nbsp;конкретное помещение и&nbsp;задачи семьи. Нажмите, чтобы&nbsp;увеличить.</p>
+      <p class="lead r" style="--d:.12s">Мебель под&nbsp;конкретное помещение и&nbsp;задачи семьи. Реальные фотографии наших работ и&nbsp;идеи для&nbsp;будущих проектов — они отмечены в&nbsp;подписях. Нажмите на&nbsp;фото, чтобы&nbsp;увеличить и&nbsp;посмотреть другие ракурсы.</p>
     </div>
 
     <div class="flt r" id="flt">
-      <button type="button" class="on" data-f="all">Все проекты</button>
+      <button type="button" class="on" data-f="all">Все</button>
       <button type="button" data-f="kitchen">Кухни</button>
       <button type="button" data-f="wardrobe">Шкафы и&nbsp;гардеробные</button>
-      <button type="button" data-f="other">Спальни и&nbsp;детские</button>
+      <button type="button" data-f="other">Спальни и&nbsp;гостиные</button>
+      <button type="button" data-f="kids">Детские</button>
+      <button type="button" data-f="stairs">Под&nbsp;лестницей</button>
+      <button type="button" data-f="bathroom">Ванные</button>
     </div>
 
     <div class="gw" id="gw">
-      <button type="button" class="wk wk--w ir" data-cat="kitchen" data-cap="Кухня с островом, 4,2 м.п. &mdash; эмаль, каменная столешница">
-        <span class="wk__ph"><img src="images/port_kitchen_island.jpg" alt="Кухня с островом и мрамором"><span class="wk__zoom"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4M7 5v4M5 7h4"/></svg></span></span>
-        <span class="wk__m"><span class="wk__t">Кухня с&nbsp;островом, 4,2&nbsp;м.п.</span><span class="wk__c">Эмаль</span></span>
-        <span class="wk__d">Каменная столешница, фурнитура Blum, скрытая подсветка</span>
+      <button type="button" class="wk ir" data-cat="kitchen" data-cap="Кухня у окна" data-photos="[{&quot;src&quot;: &quot;images/client_work_24.jpg&quot;, &quot;alt&quot;: &quot;Кухня у окна&quot;}]">
+        <span class="wk__ph"><img src="images/client_work_24.jpg" alt="Кухня у окна" loading="lazy"><span class="wk__zoom"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4M7 5v4M5 7h4"/></svg></span></span>
+        <span class="wk__m"><span class="wk__t">Кухня у окна</span><span class="wk__c">Работа</span></span>
+        <span class="wk__d">Светлые фасады, тёмная мойка и рабочая зона у окна</span>
       </button>
 
-      <button type="button" class="wk ir" style="--d:.06s" data-cat="kitchen" data-cap="Угловая кухня, 2,6 м &mdash; плёнка МДФ с фрезеровкой">
-        <span class="wk__ph"><img src="images/port_kitchen_corner.jpg" alt="Угловая кухня с фрезеровкой"><span class="wk__zoom"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4M7 5v4M5 7h4"/></svg></span></span>
-        <span class="wk__m"><span class="wk__t">Угловая кухня, 2,6&nbsp;м</span><span class="wk__c">Плёнка</span></span>
-        <span class="wk__d">Фрезеровка, встроенная техника, барная зона</span>
+      <button type="button" class="wk ir" data-cat="wardrobe" data-cap="Гардеробная с открытыми секциями" data-photos="[{&quot;src&quot;: &quot;images/client_work_01.jpg&quot;, &quot;alt&quot;: &quot;Гардеробная с открытыми секциями — ракурс 1&quot;}, {&quot;src&quot;: &quot;images/client_work_02.jpg&quot;, &quot;alt&quot;: &quot;Гардеробная с открытыми секциями — ракурс 2&quot;}]">
+        <span class="wk__ph"><img src="images/client_work_01.jpg" alt="Гардеробная с открытыми секциями — ракурс 1" loading="lazy"><span class="wk__views">2 фото</span><span class="wk__zoom"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4M7 5v4M5 7h4"/></svg></span></span>
+        <span class="wk__m"><span class="wk__t">Гардеробная с открытыми секциями</span><span class="wk__c">Работа</span></span>
+        <span class="wk__d">Полки, штанги и выдвижные ящики</span>
       </button>
 
-      <button type="button" class="wk ir" style="--d:.12s" data-cat="kitchen" data-cap="Прямая кухня с пеналами, 3,6 м &mdash; пластик Eterno древесный и графит">
-        <span class="wk__ph"><img src="images/port_kitchen_tall.jpg" alt="Прямая кухня с пеналами до потолка"><span class="wk__zoom"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4M7 5v4M5 7h4"/></svg></span></span>
-        <span class="wk__m"><span class="wk__t">Прямая кухня, 3,6&nbsp;м</span><span class="wk__c">Eterno</span></span>
-        <span class="wk__d">Серия пеналов до&nbsp;потолка, скрытые ручки</span>
+      <button type="button" class="wk ir" data-cat="wardrobe" data-cap="Шкаф с рифлёными фасадами" data-photos="[{&quot;src&quot;: &quot;images/client_work_40.jpg&quot;, &quot;alt&quot;: &quot;Шкаф с рифлёными фасадами&quot;}]">
+        <span class="wk__ph"><img src="images/client_work_40.jpg" alt="Шкаф с рифлёными фасадами" loading="lazy"><span class="wk__zoom"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4M7 5v4M5 7h4"/></svg></span></span>
+        <span class="wk__m"><span class="wk__t">Шкаф с рифлёными фасадами</span><span class="wk__c">Работа</span></span>
+        <span class="wk__d">Шкаф до потолка и подвесная тумба</span>
       </button>
 
-      <button type="button" class="wk ir" data-cat="wardrobe" data-cap="Гардеробная 4 м² &mdash; подсветка полок и штанг">
-        <span class="wk__ph"><img src="images/port_wardrobe.jpg" alt="Гардеробная комната с подсветкой"><span class="wk__zoom"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4M7 5v4M5 7h4"/></svg></span></span>
-        <span class="wk__m"><span class="wk__t">Гардеробная 4&nbsp;м²</span><span class="wk__c">Гардеробная</span></span>
-        <span class="wk__d">Подсветка полок, брючницы, ящики с&nbsp;доводчиками</span>
+      <button type="button" class="wk ir" data-cat="kids" data-cap="Детская с рабочим местом у окна" data-photos="[{&quot;src&quot;: &quot;images/client_work_08.jpg&quot;, &quot;alt&quot;: &quot;Детская с рабочим местом у окна — ракурс 1&quot;}, {&quot;src&quot;: &quot;images/client_work_04.jpg&quot;, &quot;alt&quot;: &quot;Детская с рабочим местом у окна — ракурс 2&quot;}, {&quot;src&quot;: &quot;images/client_work_10.jpg&quot;, &quot;alt&quot;: &quot;Детская с рабочим местом у окна — ракурс 3&quot;}]">
+        <span class="wk__ph"><img src="images/client_work_08.jpg" alt="Детская с рабочим местом у окна — ракурс 1" loading="lazy"><span class="wk__views">3 фото</span><span class="wk__zoom"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4M7 5v4M5 7h4"/></svg></span></span>
+        <span class="wk__m"><span class="wk__t">Детская с рабочим местом у окна</span><span class="wk__c">Работа</span></span>
+        <span class="wk__d">Рабочий стол, шкаф и открытые полки</span>
       </button>
 
-      <button type="button" class="wk ir" style="--d:.06s" data-cat="wardrobe" data-cap="Прихожая со шкафом до потолка &mdash; скамья и открытая вешалка">
-        <span class="wk__ph"><img src="images/port_hallway_unit.jpg" alt="Входная группа со шкафом и скамьей"><span class="wk__zoom"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4M7 5v4M5 7h4"/></svg></span></span>
-        <span class="wk__m"><span class="wk__t">Прихожая со&nbsp;шкафом</span><span class="wk__c">Шкаф</span></span>
-        <span class="wk__d">Шкаф до&nbsp;потолка, скамья, место для&nbsp;пылесоса</span>
+      <button type="button" class="wk ir" data-cat="kids" data-cap="Детская для двоих" data-photos="[{&quot;src&quot;: &quot;images/client_work_05.jpg&quot;, &quot;alt&quot;: &quot;Детская для двоих — ракурс 1&quot;}, {&quot;src&quot;: &quot;images/client_work_15.jpg&quot;, &quot;alt&quot;: &quot;Детская для двоих — ракурс 2&quot;}]">
+        <span class="wk__ph"><img src="images/client_work_05.jpg" alt="Детская для двоих — ракурс 1" loading="lazy"><span class="wk__views">2 фото</span><span class="wk__zoom"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4M7 5v4M5 7h4"/></svg></span></span>
+        <span class="wk__m"><span class="wk__t">Детская для двоих</span><span class="wk__c">Работа</span></span>
+        <span class="wk__d">Две кровати и встроенное хранение</span>
       </button>
 
-      <button type="button" class="wk ir" style="--d:.12s" data-cat="other" data-cap="Шкаф во всю стену в спальне &mdash; матовые фасады">
-        <span class="wk__ph"><img src="images/port_bedroom_wall.jpg" alt="Мастер-спальня с парящей кроватью"><span class="wk__zoom"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4M7 5v4M5 7h4"/></svg></span></span>
-        <span class="wk__m"><span class="wk__t">Шкаф во&nbsp;всю стену</span><span class="wk__c">Спальня</span></span>
-        <span class="wk__d">Матовые фасады без&nbsp;ручек, ниша под&nbsp;телевизор</span>
+      <button type="button" class="wk ir" data-cat="bathroom" data-cap="Тумба с рифлёными фасадами" data-photos="[{&quot;src&quot;: &quot;images/client_work_13.jpg&quot;, &quot;alt&quot;: &quot;Тумба с рифлёными фасадами — ракурс 1&quot;}, {&quot;src&quot;: &quot;images/client_work_18.jpg&quot;, &quot;alt&quot;: &quot;Тумба с рифлёными фасадами — ракурс 2&quot;}]">
+        <span class="wk__ph"><img src="images/client_work_13.jpg" alt="Тумба с рифлёными фасадами — ракурс 1" loading="lazy"><span class="wk__views">2 фото</span><span class="wk__zoom"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4M7 5v4M5 7h4"/></svg></span></span>
+        <span class="wk__m"><span class="wk__t">Тумба с рифлёными фасадами</span><span class="wk__c">Работа</span></span>
+        <span class="wk__d">Тумба под раковину и место для стиральной машины</span>
       </button>
 
-      <button type="button" class="wk wk--w ir" data-cat="other" data-cap="Детская с рабочим местом &mdash; безопасные кромки и материалы E0,5">
-        <span class="wk__ph"><img src="images/port_kids_desk.jpg" alt="Детская комната с рабочим местом у окна"><span class="wk__zoom"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4M7 5v4M5 7h4"/></svg></span></span>
-        <span class="wk__m"><span class="wk__t">Детская с&nbsp;рабочим местом</span><span class="wk__c">Детская</span></span>
-        <span class="wk__d">Скруглённые кромки, материалы класса E0,5, ростовая столешница</span>
+      <button type="button" class="wk ir" data-cat="bathroom" data-cap="Ванная в графитовых тонах" data-photos="[{&quot;src&quot;: &quot;images/client_work_20.jpg&quot;, &quot;alt&quot;: &quot;Ванная в графитовых тонах&quot;}]">
+        <span class="wk__ph"><img src="images/client_work_20.jpg" alt="Ванная в графитовых тонах" loading="lazy"><span class="wk__zoom"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4M7 5v4M5 7h4"/></svg></span></span>
+        <span class="wk__m"><span class="wk__t">Ванная в графитовых тонах</span><span class="wk__c">Работа</span></span>
+        <span class="wk__d">Подвесная тумба и шкаф с открытыми нишами</span>
       </button>
 
-      <button type="button" class="wk ir" style="--d:.06s" data-cat="kitchen" data-cap="Свой цех: раскрой, присадка и кромление деталей">
-        <span class="wk__ph"><img src="images/port_production.jpg" alt="Собственное производство в Липецке"><span class="wk__zoom"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4M7 5v4M5 7h4"/></svg></span></span>
-        <span class="wk__m"><span class="wk__t">Цех: раскрой и&nbsp;присадка</span><span class="wk__c">Производство</span></span>
-        <span class="wk__d">Все детали делаем сами &mdash; без&nbsp;субподряда</span>
+      <button type="button" class="wk ir" data-cat="other" data-cap="Спальня с реечной отделкой" data-photos="[{&quot;src&quot;: &quot;images/client_work_32.png&quot;, &quot;alt&quot;: &quot;Спальня с реечной отделкой — ракурс 1&quot;}, {&quot;src&quot;: &quot;images/client_work_35.png&quot;, &quot;alt&quot;: &quot;Спальня с реечной отделкой — ракурс 2&quot;}]">
+        <span class="wk__ph"><img src="images/client_work_32.png" alt="Спальня с реечной отделкой — ракурс 1" loading="lazy"><span class="wk__views">2 фото</span><span class="wk__zoom"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4M7 5v4M5 7h4"/></svg></span></span>
+        <span class="wk__m"><span class="wk__t">Спальня с реечной отделкой</span><span class="wk__c">Работа</span></span>
+        <span class="wk__d">Изголовье кровати и подвесные прикроватные тумбы</span>
       </button>
+
+      <button type="button" class="wk ir" data-cat="wardrobe" data-cap="Прихожая с зеркальными фасадами" data-photos="[{&quot;src&quot;: &quot;images/client_work_22.jpg&quot;, &quot;alt&quot;: &quot;Прихожая с зеркальными фасадами — ракурс 1&quot;}, {&quot;src&quot;: &quot;images/client_work_26.jpg&quot;, &quot;alt&quot;: &quot;Прихожая с зеркальными фасадами — ракурс 2&quot;}, {&quot;src&quot;: &quot;images/client_work_37.jpg&quot;, &quot;alt&quot;: &quot;Прихожая с зеркальными фасадами — ракурс 3&quot;}]">
+        <span class="wk__ph"><img src="images/client_work_22.jpg" alt="Прихожая с зеркальными фасадами — ракурс 1" loading="lazy"><span class="wk__views">3 фото</span><span class="wk__zoom"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4M7 5v4M5 7h4"/></svg></span></span>
+        <span class="wk__m"><span class="wk__t">Прихожая с зеркальными фасадами</span><span class="wk__c">Работа</span></span>
+        <span class="wk__d">Зеркальное хранение и входная зона в древесных тонах</span>
+      </button>
+
+      <button type="button" class="wk ir" data-cat="kids" data-cap="Детская со шкафом и столом" data-photos="[{&quot;src&quot;: &quot;images/client_work_03.jpg&quot;, &quot;alt&quot;: &quot;Детская со шкафом и столом — ракурс 1&quot;}, {&quot;src&quot;: &quot;images/client_work_12.jpg&quot;, &quot;alt&quot;: &quot;Детская со шкафом и столом — ракурс 2&quot;}]">
+        <span class="wk__ph"><img src="images/client_work_03.jpg" alt="Детская со шкафом и столом — ракурс 1" loading="lazy"><span class="wk__views">2 фото</span><span class="wk__zoom"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4M7 5v4M5 7h4"/></svg></span></span>
+        <span class="wk__m"><span class="wk__t">Детская со шкафом и столом</span><span class="wk__c">Работа</span></span>
+        <span class="wk__d">Шкаф, полки и рабочее место у окна</span>
+      </button>
+
+      <button type="button" class="wk ir" data-cat="kids" data-cap="Угловое рабочее место" data-photos="[{&quot;src&quot;: &quot;images/client_work_06.jpg&quot;, &quot;alt&quot;: &quot;Угловое рабочее место&quot;}]">
+        <span class="wk__ph"><img src="images/client_work_06.jpg" alt="Угловое рабочее место" loading="lazy"><span class="wk__zoom"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4M7 5v4M5 7h4"/></svg></span></span>
+        <span class="wk__m"><span class="wk__t">Угловое рабочее место</span><span class="wk__c">Работа</span></span>
+        <span class="wk__d">Длинная столешница, тумбы и открытый стеллаж</span>
+      </button>
+
+      <button type="button" class="wk ir" data-cat="kids" data-cap="Светлая детская" data-photos="[{&quot;src&quot;: &quot;images/client_work_09.jpg&quot;, &quot;alt&quot;: &quot;Светлая детская&quot;}]">
+        <span class="wk__ph"><img src="images/client_work_09.jpg" alt="Светлая детская" loading="lazy"><span class="wk__zoom"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4M7 5v4M5 7h4"/></svg></span></span>
+        <span class="wk__m"><span class="wk__t">Светлая детская</span><span class="wk__c">Работа</span></span>
+        <span class="wk__d">Стол у окна, настенные полки и распашной шкаф</span>
+      </button>
+
+      <button type="button" class="wk ir" data-cat="kids" data-cap="Детская с двухцветным шкафом" data-photos="[{&quot;src&quot;: &quot;images/client_work_11.jpg&quot;, &quot;alt&quot;: &quot;Детская с двухцветным шкафом&quot;}]">
+        <span class="wk__ph"><img src="images/client_work_11.jpg" alt="Детская с двухцветным шкафом" loading="lazy"><span class="wk__zoom"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4M7 5v4M5 7h4"/></svg></span></span>
+        <span class="wk__m"><span class="wk__t">Детская с двухцветным шкафом</span><span class="wk__c">Работа</span></span>
+        <span class="wk__d">Геометрические фасады и рабочее место</span>
+      </button>
+
+      <button type="button" class="wk ir" data-cat="kids" data-cap="Рабочая зона в серых тонах" data-photos="[{&quot;src&quot;: &quot;images/client_work_38.jpg&quot;, &quot;alt&quot;: &quot;Рабочая зона в серых тонах&quot;}]">
+        <span class="wk__ph"><img src="images/client_work_38.jpg" alt="Рабочая зона в серых тонах" loading="lazy"><span class="wk__zoom"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4M7 5v4M5 7h4"/></svg></span></span>
+        <span class="wk__m"><span class="wk__t">Рабочая зона в серых тонах</span><span class="wk__c">Работа</span></span>
+        <span class="wk__d">Подвесной стол и стеллаж с открытыми полками</span>
+      </button>
+
+      <button type="button" class="wk ir" data-cat="other" data-cap="Мягкий диван" data-photos="[{&quot;src&quot;: &quot;images/client_work_07.jpg&quot;, &quot;alt&quot;: &quot;Мягкий диван&quot;}]">
+        <span class="wk__ph"><img src="images/client_work_07.jpg" alt="Мягкий диван" loading="lazy"><span class="wk__zoom"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4M7 5v4M5 7h4"/></svg></span></span>
+        <span class="wk__m"><span class="wk__t">Мягкий диван</span><span class="wk__c">Работа</span></span>
+        <span class="wk__d">Диван в синих тонах с мягкими боковинами</span>
+      </button>
+
+      <button type="button" class="wk ir" data-cat="bathroom" data-cap="Подвесная тумба в ванной" data-photos="[{&quot;src&quot;: &quot;images/client_work_14.jpg&quot;, &quot;alt&quot;: &quot;Подвесная тумба в ванной&quot;}]">
+        <span class="wk__ph"><img src="images/client_work_14.jpg" alt="Подвесная тумба в ванной" loading="lazy"><span class="wk__zoom"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4M7 5v4M5 7h4"/></svg></span></span>
+        <span class="wk__m"><span class="wk__t">Подвесная тумба в ванной</span><span class="wk__c">Работа</span></span>
+        <span class="wk__d">Тумба под раковину и зеркало с подсветкой</span>
+      </button>
+
+      <button type="button" class="wk ir" data-cat="bathroom" data-cap="Мебель для ванной со стиральной машиной" data-photos="[{&quot;src&quot;: &quot;images/client_work_16.jpg&quot;, &quot;alt&quot;: &quot;Мебель для ванной со стиральной машиной&quot;}]">
+        <span class="wk__ph"><img src="images/client_work_16.jpg" alt="Мебель для ванной со стиральной машиной" loading="lazy"><span class="wk__zoom"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4M7 5v4M5 7h4"/></svg></span></span>
+        <span class="wk__m"><span class="wk__t">Мебель для ванной со стиральной машиной</span><span class="wk__c">Работа</span></span>
+        <span class="wk__d">Тумба, ящики и открытые полки у зеркала</span>
+      </button>
+
+      <button type="button" class="wk ir" data-cat="bathroom" data-cap="Хранение в ванной" data-photos="[{&quot;src&quot;: &quot;images/client_work_17.jpg&quot;, &quot;alt&quot;: &quot;Хранение в ванной&quot;}]">
+        <span class="wk__ph"><img src="images/client_work_17.jpg" alt="Хранение в ванной" loading="lazy"><span class="wk__zoom"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4M7 5v4M5 7h4"/></svg></span></span>
+        <span class="wk__m"><span class="wk__t">Хранение в ванной</span><span class="wk__c">Работа</span></span>
+        <span class="wk__d">Шкаф над стиральной и сушильной машинами</span>
+      </button>
+
+      <button type="button" class="wk ir" data-cat="bathroom" data-cap="Шкаф с подсвеченной нишей" data-photos="[{&quot;src&quot;: &quot;images/client_work_19.jpg&quot;, &quot;alt&quot;: &quot;Шкаф с подсвеченной нишей&quot;}]">
+        <span class="wk__ph"><img src="images/client_work_19.jpg" alt="Шкаф с подсвеченной нишей" loading="lazy"><span class="wk__zoom"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4M7 5v4M5 7h4"/></svg></span></span>
+        <span class="wk__m"><span class="wk__t">Шкаф с подсвеченной нишей</span><span class="wk__c">Работа</span></span>
+        <span class="wk__d">Закрытые секции и открытые полки</span>
+      </button>
+
+      <button type="button" class="wk ir" data-cat="bathroom" data-cap="Ниша в ванной с подсветкой" data-photos="[{&quot;src&quot;: &quot;images/client_work_31.jpg&quot;, &quot;alt&quot;: &quot;Ниша в ванной с подсветкой&quot;}]">
+        <span class="wk__ph"><img src="images/client_work_31.jpg" alt="Ниша в ванной с подсветкой" loading="lazy"><span class="wk__zoom"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4M7 5v4M5 7h4"/></svg></span></span>
+        <span class="wk__m"><span class="wk__t">Ниша в ванной с подсветкой</span><span class="wk__c">Работа</span></span>
+        <span class="wk__d">Встроенная ниша и светлая отделка</span>
+      </button>
+
+      <button type="button" class="wk ir" data-cat="wardrobe" data-cap="Шкаф и туалетный столик" data-photos="[{&quot;src&quot;: &quot;images/client_work_21.jpg&quot;, &quot;alt&quot;: &quot;Шкаф и туалетный столик&quot;}]">
+        <span class="wk__ph"><img src="images/client_work_21.jpg" alt="Шкаф и туалетный столик" loading="lazy"><span class="wk__zoom"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4M7 5v4M5 7h4"/></svg></span></span>
+        <span class="wk__m"><span class="wk__t">Шкаф и туалетный столик</span><span class="wk__c">Работа</span></span>
+        <span class="wk__d">Светлые фасады и зеркало с подсветкой</span>
+      </button>
+
+      <button type="button" class="wk ir" data-cat="wardrobe" data-cap="Шкаф-купе во всю стену" data-photos="[{&quot;src&quot;: &quot;images/client_work_23.jpg&quot;, &quot;alt&quot;: &quot;Шкаф-купе во всю стену&quot;}]">
+        <span class="wk__ph"><img src="images/client_work_23.jpg" alt="Шкаф-купе во всю стену" loading="lazy"><span class="wk__zoom"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4M7 5v4M5 7h4"/></svg></span></span>
+        <span class="wk__m"><span class="wk__t">Шкаф-купе во всю стену</span><span class="wk__c">Работа</span></span>
+        <span class="wk__d">Раздвижные фасады с горизонтальными вставками</span>
+      </button>
+
+      <button type="button" class="wk ir" data-cat="wardrobe" data-cap="Гардеробная под скосом" data-photos="[{&quot;src&quot;: &quot;images/client_work_25.png&quot;, &quot;alt&quot;: &quot;Гардеробная под скосом — ракурс 1&quot;}, {&quot;src&quot;: &quot;images/client_work_28.png&quot;, &quot;alt&quot;: &quot;Гардеробная под скосом — ракурс 2&quot;}, {&quot;src&quot;: &quot;images/client_work_30.png&quot;, &quot;alt&quot;: &quot;Гардеробная под скосом — ракурс 3&quot;}]">
+        <span class="wk__ph"><img src="images/client_work_25.png" alt="Гардеробная под скосом — ракурс 1" loading="lazy"><span class="wk__views">3 фото</span><span class="wk__zoom"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4M7 5v4M5 7h4"/></svg></span></span>
+        <span class="wk__m"><span class="wk__t">Гардеробная под скосом</span><span class="wk__c">Работа</span></span>
+        <span class="wk__d">Шкафы и открытые секции под наклонным потолком</span>
+      </button>
+
+      <button type="button" class="wk ir" data-cat="wardrobe" data-cap="Шкаф с открытым стеллажом" data-photos="[{&quot;src&quot;: &quot;images/client_work_27.jpg&quot;, &quot;alt&quot;: &quot;Шкаф с открытым стеллажом&quot;}]">
+        <span class="wk__ph"><img src="images/client_work_27.jpg" alt="Шкаф с открытым стеллажом" loading="lazy"><span class="wk__zoom"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4M7 5v4M5 7h4"/></svg></span></span>
+        <span class="wk__m"><span class="wk__t">Шкаф с открытым стеллажом</span><span class="wk__c">Работа</span></span>
+        <span class="wk__d">Белые фасады и контрастные открытые полки</span>
+      </button>
+
+      <button type="button" class="wk ir" data-cat="wardrobe" data-cap="Шкаф-купе со стеллажом" data-photos="[{&quot;src&quot;: &quot;images/client_work_29.jpg&quot;, &quot;alt&quot;: &quot;Шкаф-купе со стеллажом&quot;}]">
+        <span class="wk__ph"><img src="images/client_work_29.jpg" alt="Шкаф-купе со стеллажом" loading="lazy"><span class="wk__zoom"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4M7 5v4M5 7h4"/></svg></span></span>
+        <span class="wk__m"><span class="wk__t">Шкаф-купе со стеллажом</span><span class="wk__c">Работа</span></span>
+        <span class="wk__d">Раздвижные фасады и боковые открытые секции</span>
+      </button>
+
+      <button type="button" class="wk ir" data-cat="wardrobe" data-cap="Шкаф в белых и чёрных тонах" data-photos="[{&quot;src&quot;: &quot;images/client_work_33.jpg&quot;, &quot;alt&quot;: &quot;Шкаф в белых и чёрных тонах&quot;}]">
+        <span class="wk__ph"><img src="images/client_work_33.jpg" alt="Шкаф в белых и чёрных тонах" loading="lazy"><span class="wk__zoom"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4M7 5v4M5 7h4"/></svg></span></span>
+        <span class="wk__m"><span class="wk__t">Шкаф в белых и чёрных тонах</span><span class="wk__c">Работа</span></span>
+        <span class="wk__d">Открытые полки и нижние ящики</span>
+      </button>
+
+      <button type="button" class="wk ir" data-cat="wardrobe" data-cap="Прихожая с зеркалом" data-photos="[{&quot;src&quot;: &quot;images/client_work_34.jpg&quot;, &quot;alt&quot;: &quot;Прихожая с зеркалом&quot;}]">
+        <span class="wk__ph"><img src="images/client_work_34.jpg" alt="Прихожая с зеркалом" loading="lazy"><span class="wk__zoom"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4M7 5v4M5 7h4"/></svg></span></span>
+        <span class="wk__m"><span class="wk__t">Прихожая с зеркалом</span><span class="wk__c">Работа</span></span>
+        <span class="wk__d">Распашной шкаф и встроенная зеркальная зона</span>
+      </button>
+
+      <button type="button" class="wk ir" data-cat="wardrobe" data-cap="Серый распашной шкаф" data-photos="[{&quot;src&quot;: &quot;images/client_work_36.jpg&quot;, &quot;alt&quot;: &quot;Серый распашной шкаф&quot;}]">
+        <span class="wk__ph"><img src="images/client_work_36.jpg" alt="Серый распашной шкаф" loading="lazy"><span class="wk__zoom"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4M7 5v4M5 7h4"/></svg></span></span>
+        <span class="wk__m"><span class="wk__t">Серый распашной шкаф</span><span class="wk__c">Работа</span></span>
+        <span class="wk__d">Высокие фасады и лаконичные ручки</span>
+      </button>
+
+      <button type="button" class="wk ir" data-cat="other" data-cap="ТВ-зона в древесных тонах" data-photos="[{&quot;src&quot;: &quot;images/client_work_39.jpg&quot;, &quot;alt&quot;: &quot;ТВ-зона в древесных тонах&quot;}]">
+        <span class="wk__ph"><img src="images/client_work_39.jpg" alt="ТВ-зона в древесных тонах" loading="lazy"><span class="wk__zoom"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4M7 5v4M5 7h4"/></svg></span></span>
+        <span class="wk__m"><span class="wk__t">ТВ-зона в древесных тонах</span><span class="wk__c">Работа</span></span>
+        <span class="wk__d">Реечная панель и подвесная тумба под телевизор</span>
+      </button>
+
+      <button type="button" class="wk ir" data-cat="kids" data-cap="Идея для проекта: детская со шкафом, столом и кроватью, подсветка в форме облаков">
+        <span class="wk__ph"><img src="images/idea_kids_clouds.jpg" alt="Детская со шкафом, столом и кроватью, подсветка в форме облаков" loading="lazy"><span class="wk__zoom"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4M7 5v4M5 7h4"/></svg></span></span>
+        <span class="wk__m"><span class="wk__t">Детская с&nbsp;подсветкой</span><span class="wk__c">Идея</span></span>
+        <span class="wk__d">Шкаф до&nbsp;потолка, рабочее место и&nbsp;кровать с&nbsp;ящиками</span>
+      </button>
+
+      <button type="button" class="wk ir" data-cat="kids" data-cap="Идея для проекта: детская в натуральных тонах со столом у окна и шкафом">
+        <span class="wk__ph"><img src="images/idea_kids_natural.jpg" alt="Детская в натуральных тонах со столом у окна и шкафом" loading="lazy"><span class="wk__zoom"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4M7 5v4M5 7h4"/></svg></span></span>
+        <span class="wk__m"><span class="wk__t">Детская в&nbsp;натуральных тонах</span><span class="wk__c">Идея</span></span>
+        <span class="wk__d">Стол у&nbsp;окна, открытые полки и&nbsp;вместительный шкаф</span>
+      </button>
+
+      <button type="button" class="wk ir" data-cat="kids" data-cap="Идея для проекта: детская в пудровых оттенках со шкафом и рабочим столом">
+        <span class="wk__ph"><img src="images/idea_kids_rose.jpg" alt="Детская в пудровых оттенках со шкафом и рабочим столом" loading="lazy"><span class="wk__zoom"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4M7 5v4M5 7h4"/></svg></span></span>
+        <span class="wk__m"><span class="wk__t">Детская в&nbsp;пудровых оттенках</span><span class="wk__c">Идея</span></span>
+        <span class="wk__d">Рабочая зона, шкаф и&nbsp;скамья у&nbsp;окна</span>
+      </button>
+
+      <button type="button" class="wk ir" data-cat="wardrobe" data-cap="Идея для проекта: гардеробная с туалетным столиком и зеркалом с подсветкой">
+        <span class="wk__ph"><img src="images/idea_dressing_room.jpg" alt="Гардеробная с туалетным столиком и зеркалом с подсветкой" loading="lazy"><span class="wk__zoom"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4M7 5v4M5 7h4"/></svg></span></span>
+        <span class="wk__m"><span class="wk__t">Гардеробная с&nbsp;туалетным столиком</span><span class="wk__c">Идея</span></span>
+        <span class="wk__d">Открытые секции, витрины и&nbsp;ящики для&nbsp;хранения</span>
+      </button>
+
+      <button type="button" class="wk ir" data-cat="stairs" data-cap="Идея для проекта: встроенный шкаф, скамья и полки под лестницей">
+        <span class="wk__ph"><img src="images/idea_under_stairs.jpg" alt="Встроенный шкаф, скамья и полки под лестницей" loading="lazy"><span class="wk__zoom"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4M7 5v4M5 7h4"/></svg></span></span>
+        <span class="wk__m"><span class="wk__t">Пространство под&nbsp;лестницей</span><span class="wk__c">Идея</span></span>
+        <span class="wk__d">Хранение по&nbsp;форме лестницы и&nbsp;уютная зона отдыха</span>
+      </button>
+
+      <button type="button" class="wk ir" data-cat="bathroom" data-cap="Идея для проекта: подвесная тумба и высокий встроенный шкаф в бежевой ванной">
+        <span class="wk__ph"><img src="images/idea_bathroom_beige.jpg" alt="Подвесная тумба и высокий встроенный шкаф в бежевой ванной" loading="lazy"><span class="wk__zoom"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4M7 5v4M5 7h4"/></svg></span></span>
+        <span class="wk__m"><span class="wk__t">Ванная в&nbsp;тёплых тонах</span><span class="wk__c">Идея</span></span>
+        <span class="wk__d">Тумба под&nbsp;раковину, пенал и&nbsp;открытые ниши</span>
+      </button>
+
+      <button type="button" class="wk ir" data-cat="bathroom" data-cap="Идея для проекта: оливковая мебель для ванной с деревянными нишами и подсветкой">
+        <span class="wk__ph"><img src="images/idea_bathroom_sage.jpg" alt="Оливковая мебель для ванной с деревянными нишами и подсветкой" loading="lazy"><span class="wk__zoom"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4M7 5v4M5 7h4"/></svg></span></span>
+        <span class="wk__m"><span class="wk__t">Ванная в&nbsp;оливковых тонах</span><span class="wk__c">Идея</span></span>
+        <span class="wk__d">Шкафы, подвесная тумба и&nbsp;полки с&nbsp;подсветкой</span>
+      </button>
+
+    </div>
+    <div class="works-bottom">
+      <p class="works-count" id="worksCount" role="status" aria-live="polite"></p>
+      <button type="button" class="b b--ink works-more" id="worksMore" aria-controls="gw" hidden>Показать ещё</button>
+      <a class="lnk" href="https://disk.yandex.ru/a/hJpJUmev1jN2sw" target="_blank" rel="noopener noreferrer">Все 40 фото работ на Яндекс Диске <span aria-hidden="true">&rarr;</span></a>
     </div>
   </div>
 </section>
@@ -2215,9 +2443,9 @@ p,.lead,.hero__sub,.st__c,.cd__d{
         <div class="mat-card__title">Акрил</div>
       </div>
       <div class="mat-card r">
-        <div class="mat-card__thumb"><img src="images/mat_veneer.jpg" alt="Шпон" loading="lazy"></div>
+        <div class="mat-card__thumb"><img src="images/mat_veneer.jpg" alt="АГТ" loading="lazy"></div>
         <div class="mat-card__count">25+</div>
-        <div class="mat-card__title">Шпон</div>
+        <div class="mat-card__title">АГТ</div>
       </div>
       <div class="mat-card r">
         <div class="mat-card__thumb"><img src="images/mat_compact.jpg" alt="Столешницы компакт" loading="lazy"></div>
@@ -2256,6 +2484,48 @@ p,.lead,.hero__sub,.st__c,.cd__d{
     </ul>
   </div>
 </section>
+<!-- ============ PARTNER STORES ============ -->
+<section class="sec" id="partners" aria-labelledby="partnersTitle">
+  <div class="wrap">
+    <div class="head-row">
+      <div>
+        <span class="lab r"><b>Партнёры</b> Техника и&nbsp;мойки</span>
+        <h2 class="d2 r" id="partnersTitle" style="--d:.06s">Техника и&nbsp;мойки<br>для&nbsp;готовой кухни</h2>
+      </div>
+      <p class="lead r" style="--d:.12s">Сотрудничаем с&nbsp;Kitchen Solution и&nbsp;GRANULA. Выберите технику, мойку и&nbsp;смеситель в&nbsp;их&nbsp;каталогах и&nbsp;оформите покупку на&nbsp;сайте партнёра.</p>
+    </div>
+    <div class="partner-grid">
+      <article class="partner-card r">
+        <div class="partner-card__logo"><img src="images/partner_kitchen_solution.svg" alt="Kitchen Solution" loading="lazy" width="220" height="62"></div>
+        <span class="partner-card__label">Кухонная бытовая техника</span>
+        <h3>Техника для&nbsp;вашей кухни</h3>
+        <p>Духовые шкафы, варочные панели, посудомоечные машины, вытяжки и&nbsp;холодильники. Выберите модели под&nbsp;планировку и&nbsp;задачи вашей кухни.</p>
+        <div class="partner-card__links" aria-label="Категории техники Kitchen Solution">
+          <a href="https://kitchensolution.ru/catalog/dukhovye-shkafy/" target="_blank" rel="noopener noreferrer">Духовые шкафы <span aria-hidden="true"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" focusable="false"><path d="M4 12l8-8M4 4h8v8"/></svg></span></a>
+          <a href="https://kitchensolution.ru/catalog/varochnye-paneli/" target="_blank" rel="noopener noreferrer">Варочные панели <span aria-hidden="true"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" focusable="false"><path d="M4 12l8-8M4 4h8v8"/></svg></span></a>
+          <a href="https://kitchensolution.ru/catalog/posudomoechnye-mashiny/" target="_blank" rel="noopener noreferrer">Посудомоечные машины <span aria-hidden="true"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" focusable="false"><path d="M4 12l8-8M4 4h8v8"/></svg></span></a>
+          <a href="https://kitchensolution.ru/catalog/kukhonnye-vytyazhki/" target="_blank" rel="noopener noreferrer">Вытяжки <span aria-hidden="true"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" focusable="false"><path d="M4 12l8-8M4 4h8v8"/></svg></span></a>
+        </div>
+        <a class="b b--ink" href="https://kitchensolution.ru/catalog/" target="_blank" rel="noopener noreferrer">Выбрать и&nbsp;купить технику <span class="ar" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" focusable="false"><path d="M4 12l8-8M4 4h8v8"/></svg></span></a>
+      </article>
+      <article class="partner-card r" style="--d:.12s">
+        <div class="partner-card__logo"><img src="images/partner_granula.png" alt="GRANULA" loading="lazy" width="220" height="62"></div>
+        <span class="partner-card__label">Мойки, смесители и&nbsp;аксессуары</span>
+        <h3>Мойки и&nbsp;смесители GRANULA</h3>
+        <p>Кухонные мойки, смесители, измельчители и&nbsp;аксессуары. Подберите форму, цвет и&nbsp;размер под&nbsp;столешницу и&nbsp;стиль вашей кухни.</p>
+        <div class="partner-card__links" aria-label="Категории GRANULA">
+          <a href="https://granula-td.ru/catalog/moyki/" target="_blank" rel="noopener noreferrer">Мойки <span aria-hidden="true"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" focusable="false"><path d="M4 12l8-8M4 4h8v8"/></svg></span></a>
+          <a href="https://granula-td.ru/catalog/smesiteli/" target="_blank" rel="noopener noreferrer">Смесители <span aria-hidden="true"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" focusable="false"><path d="M4 12l8-8M4 4h8v8"/></svg></span></a>
+          <a href="https://granula-td.ru/catalog/izmelchiteli/" target="_blank" rel="noopener noreferrer">Измельчители <span aria-hidden="true"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" focusable="false"><path d="M4 12l8-8M4 4h8v8"/></svg></span></a>
+          <a href="https://granula-td.ru/catalog/aksessuary/" target="_blank" rel="noopener noreferrer">Аксессуары <span aria-hidden="true"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" focusable="false"><path d="M4 12l8-8M4 4h8v8"/></svg></span></a>
+        </div>
+        <a class="b b--ink" href="https://granula-td.ru/catalog/moyki/" target="_blank" rel="noopener noreferrer">Выбрать и&nbsp;купить мойку <span class="ar" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" focusable="false"><path d="M4 12l8-8M4 4h8v8"/></svg></span></a>
+      </article>
+    </div>
+    <p class="partner-note r">Каталоги открываются в&nbsp;новой вкладке. Цены, наличие, оплата и&nbsp;доставка — на&nbsp;сайтах партнёров. Перед покупкой можно <a href="tel:+79042822376">согласовать с&nbsp;нами размеры техники и&nbsp;мойки</a>, чтобы&nbsp;учесть их&nbsp;в&nbsp;проекте мебели.</p>
+  </div>
+</section>
+
 <!-- ============ REVIEWS ============ -->
 <section class="sec" id="reviews">
   <div class="wrap">
@@ -2457,6 +2727,7 @@ p,.lead,.hero__sub,.st__c,.cd__d{
         <a href="#quiz">Подбор кухни</a>
         <a href="#works">Работы</a>
         <a href="#process">Материалы</a>
+        <a href="#partners">Техника и&nbsp;мойки</a>
       </div>
       <div class="ft__c">
         <b>Что делаем</b>
@@ -2464,6 +2735,8 @@ p,.lead,.hero__sub,.st__c,.cd__d{
         <a href="#cats">Шкафы и&nbsp;гардеробные</a>
         <a href="#cats">Спальни и&nbsp;детские</a>
         <a href="#cats">Прихожие</a>
+        <a href="#cats">Мебель под&nbsp;лестницу</a>
+        <a href="#cats">Мебель для&nbsp;ванной</a>
       </div>
       <div class="ft__c">
         <b>Контакты</b>
@@ -2497,6 +2770,9 @@ p,.lead,.hero__sub,.st__c,.cd__d{
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Просмотр проекта">
   <button type="button" class="lb__x" id="lbX" aria-label="Закрыть">&times;</button>
   <img id="lbImg" src="" alt="">
+  <span class="lb__count" id="lbCount" aria-live="polite" hidden></span>
+  <button type="button" class="lb__nav lb__nav--prev" id="lbPrev" aria-label="Предыдущий ракурс" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button>
+  <button type="button" class="lb__nav lb__nav--next" id="lbNext" aria-label="Следующий ракурс" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>
   <div class="lb__c" id="lbCap"></div>
 </div>
 
@@ -2857,6 +3133,11 @@ function money(n){return fmt(n)+NB+"\u20BD";}
           var lbImg = $('#lbImg');
           var lbCap = $('#lbCap');
           if(lb && lbImg){
+            lb.removeAttribute('data-gallery');
+            ['lbPrev', 'lbNext', 'lbCount'].forEach(function(id){
+              var control = $('#' + id);
+              if(control) control.hidden = true;
+            });
             lbImg.src = img.src;
             lbImg.alt = img.alt;
             if(lbCap) lbCap.textContent = img.alt;
@@ -2897,7 +3178,7 @@ window.prefillKitchenQuiz = function(shape, fridge, hood, len){
   }
 };
 
-/* ---------- 8. modern kitchen quiz with whatsapp preview ---------- */
+/* ---------- 8. modern kitchen quiz with MAX preview ---------- */
 (function(){
   var form = $('#kitchenQuizForm');
   if(!form) return;
@@ -2912,7 +3193,7 @@ window.prefillKitchenQuiz = function(shape, fridge, hood, len){
   var nav = $('#kzNav');
   var done = $('#kzDone');
 
-  // Preview elements inside the WhatsApp mockup
+  // Preview elements inside the MAX mockup
   var waShape = $('#waShape');
   var waApp = $('#waApp');
   var waDims = $('#waDims');
@@ -2933,7 +3214,7 @@ window.prefillKitchenQuiz = function(shape, fridge, hood, len){
     dim1: '280',
     dim2: '160',
     noDims: false,
-    messenger: 'WhatsApp',
+    messenger: 'MAX',
     phone: ''
   };
 
@@ -3029,8 +3310,12 @@ window.prefillKitchenQuiz = function(shape, fridge, hood, len){
 
   $$('.kz-msg-btn').forEach(function(btn){
     btn.addEventListener('click', function(){
-      $$('.kz-msg-btn').forEach(function(b){ b.classList.remove('on'); });
+      $$('.kz-msg-btn').forEach(function(b){
+        b.classList.remove('on');
+        b.setAttribute('aria-pressed', 'false');
+      });
       btn.classList.add('on');
+      btn.setAttribute('aria-pressed', 'true');
       state.messenger = btn.getAttribute('data-msg');
     });
   });
@@ -3090,7 +3375,7 @@ window.prefillKitchenQuiz = function(shape, fridge, hood, len){
       '• Форма: ' + state.shape + '\n' +
       '• Техника: ' + state.fridge + ', ' + state.hood + ', ' + state.dw + '\n' +
       '• Размеры: ' + (state.noDims ? 'нужен замер' : (state.dim1 + ' × ' + state.dim2 + ' см')) + '\n' +
-      '• Мессенджер: ' + state.messenger + '\n' +
+      '• Способ связи: ' + state.messenger + '\n' +
       '• Телефон: ' + (phoneInput ? phoneInput.value : '');
 
     var mainComment = $("#mainForm textarea[name=comment]");
@@ -3098,7 +3383,13 @@ window.prefillKitchenQuiz = function(shape, fridge, hood, len){
 
     steps.forEach(function(s){ s.classList.remove('on'); });
     if(nav) nav.style.display = 'none';
-    if(done) done.classList.add('on');
+    if(done){
+      var confirmation = $('span', done);
+      if(confirmation) confirmation.textContent = state.messenger === 'Звонок'
+        ? 'Дизайнер Елена уже готовит 3 варианта сметы под ваши размеры. Мы позвоним вам в течение 10 минут, чтобы обсудить проект и расчёт.'
+        : 'Дизайнер Елена уже готовит 3 варианта сметы под ваши размеры. Мы отправим расчёт и бонусные материалы в MAX в течение 10 минут.';
+      done.classList.add('on');
+    }
     if(bar) bar.style.width = '100%';
     if(stepBadge) stepBadge.textContent = 'Готово';
   });
@@ -3109,35 +3400,81 @@ window.prefillKitchenQuiz = function(shape, fridge, hood, len){
 
 
 
-/* ---------- 9. works filter + lightbox ---------- */
+/* ---------- 9. works filter, batches and project photos ---------- */
 (function(){
-  var flt=$("#flt"), cards=$$(".wk"), lb=$("#lb"), lbImg=$("#lbImg"), lbCap=$("#lbCap"), lbX=$("#lbX");
+  var flt=$("#flt"), cards=$$("#gw .wk"), more=$("#worksMore"), count=$("#worksCount");
+  var filter="all", pageSize=9, visibleLimit=pageSize;
+  function renderCards(){
+    var matching=cards.filter(function(c){return filter==="all" || c.getAttribute("data-cat")===filter;});
+    cards.forEach(function(c){ c.classList.add("hide"); });
+    matching.slice(0, visibleLimit).forEach(function(c){c.classList.remove("hide"); c.classList.add("in");});
+    if(more) more.hidden=visibleLimit>=matching.length;
+    if(count) count.textContent="Показано " + Math.min(visibleLimit,matching.length) + " из " + matching.length;
+  }
   if(flt){
-    $$("button", flt).forEach(function(b){
-      b.addEventListener("click", function(){
-        $$("button", flt).forEach(function(x){x.classList.remove("on");});
-        b.classList.add("on");
-        var f=b.getAttribute("data-f");
-        cards.forEach(function(c){
-          c.classList.toggle("hide", !(f==="all" || c.getAttribute("data-cat")===f));
-        });
+    $$("button",flt).forEach(function(b){
+      b.setAttribute("aria-pressed", b.classList.contains("on") ? "true" : "false");
+      b.addEventListener("click",function(){
+        $$("button",flt).forEach(function(x){x.classList.remove("on"); x.setAttribute("aria-pressed","false");});
+        b.classList.add("on"); b.setAttribute("aria-pressed","true");
+        filter=b.getAttribute("data-f"); visibleLimit=pageSize; renderCards();
       });
     });
   }
+  if(more) more.addEventListener("click",function(){
+    visibleLimit+=pageSize;
+    renderCards();
+    if(more.hidden){var last=cards.filter(function(c){return !c.classList.contains("hide");}).pop(); if(last) last.focus({preventScroll:true});}
+  });
+  renderCards();
+  var lb=$("#lb"), lbImg=$("#lbImg"), lbCap=$("#lbCap"), lbX=$("#lbX");
+  var prev=$("#lbPrev"), next=$("#lbNext"), photoCount=$("#lbCount");
+  var activeCard=null, photos=[], photoIndex=0;
   if(!lb) return;
-  function open(card){
-    var img=$("img", card);
-    lbImg.src=img.getAttribute("src");
-    lbImg.alt=img.getAttribute("alt")||"";
-    lbCap.textContent=card.getAttribute("data-cap")||"";
-    lb.classList.add("on");
-    d.body.style.overflow="hidden";
+  function showPhoto(){
+    var photo=photos[photoIndex];
+    lbImg.src=photo.src; lbImg.alt=photo.alt;
+    lbCap.textContent=(activeCard.getAttribute("data-cap")||photo.alt) + (photos.length>1 ? " — ракурс " + (photoIndex+1) + " из " + photos.length : "");
+    if(prev) prev.hidden=photos.length<2;
+    if(next) next.hidden=photos.length<2;
+    if(photoCount){photoCount.hidden=photos.length<2; photoCount.textContent=(photoIndex+1) + " / " + photos.length;}
   }
-  function close(){ lb.classList.remove("on"); d.body.style.overflow=""; }
-  cards.forEach(function(c){ c.addEventListener("click", function(){ open(c); }); });
-  lbX.addEventListener("click", close);
-  lb.addEventListener("click", function(e){ if(e.target===lb || e.target===lbImg) close(); });
-  d.addEventListener("keydown", function(e){ if(e.key==="Escape") close(); });
+  function open(card){
+    activeCard=card; photoIndex=0;
+    var img=$("img",card), data=card.getAttribute("data-photos");
+    photos=data ? JSON.parse(data) : [{src:img.getAttribute("src"),alt:img.getAttribute("alt")||""}];
+    lb.setAttribute("data-gallery","true"); showPhoto();
+    lb.classList.add("on"); d.body.style.overflow="hidden"; lbX.focus({preventScroll:true});
+  }
+  function move(direction){
+    if(!lb.classList.contains("on") || !lb.hasAttribute("data-gallery") || photos.length<2) return;
+    photoIndex=(photoIndex+direction+photos.length)%photos.length; showPhoto();
+  }
+  function close(){
+    var restore=lb.classList.contains("on") && lb.hasAttribute("data-gallery");
+    lb.classList.remove("on"); lb.removeAttribute("data-gallery"); d.body.style.overflow="";
+    if(restore && activeCard) activeCard.focus({preventScroll:true});
+  }
+  cards.forEach(function(c){c.addEventListener("click",function(){open(c);});});
+  if(prev) prev.addEventListener("click",function(){move(-1);});
+  if(next) next.addEventListener("click",function(){move(1);});
+  lbX.addEventListener("click",close);
+  lb.addEventListener("click",function(e){if(e.target===lb) close();});
+  d.addEventListener("keydown",function(e){
+    if(!lb.classList.contains("on")) return;
+    if(e.key==="Escape") close();
+    if(e.key==="ArrowLeft"){e.preventDefault(); move(-1);}
+    if(e.key==="ArrowRight"){e.preventDefault(); move(1);}
+    if(e.key==="Tab"){
+      var controls=[lbX,prev,next].filter(function(c){return c && !c.hidden;});
+      var first=controls[0],last=controls[controls.length-1];
+      if(e.shiftKey && (d.activeElement===first || !lb.contains(d.activeElement))){e.preventDefault();last.focus();}
+      else if(!e.shiftKey && (d.activeElement===last || !lb.contains(d.activeElement))){e.preventDefault();first.focus();}
+    }
+  });
+  var touchX=null;
+  lbImg.addEventListener("touchstart",function(e){touchX=e.touches.length===1 ? e.touches[0].clientX : null;},{passive:true});
+  lbImg.addEventListener("touchend",function(e){if(touchX===null || !e.changedTouches.length) return;var delta=e.changedTouches[0].clientX-touchX;touchX=null;if(Math.abs(delta)>50) move(delta<0 ? 1 : -1);},{passive:true});
 })();
 
 /* ---------- 10. main form ---------- */
