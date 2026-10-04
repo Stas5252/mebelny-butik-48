@@ -2,6 +2,8 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="object-src 'none'; base-uri 'self'; form-action 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>3D-Конструктор гардеробных — Мебельный бутик 48</title>
 <meta name="description" content="Интерактивный 3D-конструктор шкафов и гардеробных систем в Липецке. Спроектируйте наполнение онлайн и рассчитайте стоимость.">
@@ -141,6 +143,9 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;heigh
   .sidebar__section{display:flex;gap:8px;flex-wrap:nowrap}
   .mod-btn{min-width:140px}
 }
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none !important;animation:none !important}}
+.room-ctrl__val{color:#DFBA84}.cost__btn:not(.cost__btn--ghost){background:#C8A87A;color:#0f0e0c}
 </style>
 </head>
 <body>
@@ -149,7 +154,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;heigh
   <header class="topbar">
     <a href="index.html" class="topbar__btn topbar__btn--back">← На сайт</a>
     <div class="topbar__sep"></div>
-    <div class="topbar__logo"><span>◆</span> 3D-Конструктор гардеробных</div>
+    <h1 class="topbar__logo" style="margin:0"><span aria-hidden="true">◆</span> 3D-конструктор гардеробных</h1>
     <div class="topbar__cam-group">
       <button class="topbar__cam on" data-cam="3d">3D Перспектива</button>
       <button class="topbar__cam" data-cam="front">Фронт</button>
@@ -162,22 +167,22 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;heigh
     </div>
   </header>
 
-  <div class="main">
+  <main class="main" id="main">
     <!-- LEFT SIDEBAR -->
     <aside class="sidebar">
       <div class="sidebar__title">Размеры комнаты</div>
       <div class="room-ctrl">
         <div class="room-ctrl__row">
           <div class="room-ctrl__label"><span>Ширина</span><span class="room-ctrl__val" id="roomWVal">3,0 м</span></div>
-          <input type="range" id="roomW" min="1.5" max="5" step="0.1" value="3.0">
+          <input type="range" id="roomW" aria-label="Ширина помещения, метры" aria-describedby="roomWVal" min="1.5" max="5" step="0.1" value="3.0">
         </div>
         <div class="room-ctrl__row">
           <div class="room-ctrl__label"><span>Глубина</span><span class="room-ctrl__val" id="roomDVal">2,0 м</span></div>
-          <input type="range" id="roomD" min="1.2" max="4" step="0.1" value="2.0">
+          <input type="range" id="roomD" aria-label="Глубина помещения, метры" aria-describedby="roomDVal" min="1.2" max="4" step="0.1" value="2.0">
         </div>
         <div class="room-ctrl__row">
           <div class="room-ctrl__label"><span>Высота</span><span class="room-ctrl__val" id="roomHVal">2,5 м</span></div>
-          <input type="range" id="roomH" min="2.2" max="3.0" step="0.05" value="2.5">
+          <input type="range" id="roomH" aria-label="Высота помещения, метры" aria-describedby="roomHVal" min="2.2" max="3.0" step="0.05" value="2.5">
         </div>
       </div>
 
@@ -262,7 +267,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;heigh
         </div>
       </div>
       <div class="panel__section">
-        <div class="panel__title">Пресеты (быстрая сборка)</div>
+        <div class="panel__title">Готовые варианты</div>
         <div style="display:flex;flex-direction:column;gap:6px">
           <button class="mod-btn" data-preset="family"><div class="mod-btn__icon">👨‍👩‍👦</div><div class="mod-btn__info"><span class="mod-btn__name">Для семейной пары</span><span class="mod-btn__desc">Штанги + корзины + полки</span></div></button>
           <button class="mod-btn" data-preset="max_hang"><div class="mod-btn__icon">👔</div><div class="mod-btn__info"><span class="mod-btn__name">Максимум вешалок</span><span class="mod-btn__desc">Двойные штанги в каждой секции</span></div></button>
@@ -274,16 +279,16 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;heigh
       <div class="cost" id="costPanel">
         <div class="panel__title">Расчёт стоимости</div>
         <div class="cost__price" id="costPrice">0 ₽</div>
-        <div class="cost__inst" id="costInst">Рассрочка 0% — от 0 ₽/мес</div>
+        <div class="cost__inst" id="costInst">Предварительная стоимость. Уточняем после замера.</div>
         <div class="cost__specs" id="costSpecs"></div>
         <button class="cost__btn" id="costOrder">Заказать замер с этим проектом →</button>
         <button class="cost__btn cost__btn--ghost" id="costCopy">Скопировать спецификацию</button>
       </div>
     </aside>
-  </div>
+  </main>
 </div>
 
-<div class="toast" id="toast">Спецификация скопирована!</div>
+<div class="toast" id="toast" role="status" aria-live="polite">Спецификация скопирована!</div>
 
 <script>
 (function(){
@@ -995,8 +1000,7 @@ function updateCost(){
   var high = Math.round((total * 1.08) / 1000) * 1000;
 
   $("#costPrice").textContent = (total > 0) ? (fmt(low) + " — " + fmt(high) + NB + "₽") : "0 ₽";
-  var inst = Math.round(low / 6);
-  $("#costInst").textContent = (total > 0) ? ("Рассрочка 0% — от " + fmt(inst) + NB + "₽/мес") : "";
+  $("#costInst").textContent = "Предварительная стоимость. Доставку и монтаж согласуем отдельно.";
 
   /* Specs */
   var specsHtml = "";
@@ -1014,17 +1018,20 @@ function getSpecText(){
     counts[m.type]++;
     total += (modulePrices[m.type] || 0);
   });
-  var low = Math.round((total * 0.94) / 1000) * 1000;
-  var high = Math.round((total * 1.08) / 1000) * 1000;
-
+  if(state.shelfColor === "walnut" || state.shelfColor === "graphite") total += 3000;
+  if(state.frameColor === "champagne") total += 4000;
+  var low=Math.round((total*0.94)/1000)*1000;
+  var high=Math.round((total*1.08)/1000)*1000;
+  var frameName=document.querySelector('#frameSwatches [data-v="'+state.frameColor+'"] .swatch__label');
+  var shelfName=document.querySelector('#shelfSwatches [data-v="'+state.shelfColor+'"] .swatch__label');
   var r = state.room;
   var text = "Гардеробная система (комната " + fmtDec(r.width) + "×" + fmtDec(r.depth) + "×" + fmtDec2(r.height) + " м). ";
-  text += "Каркас: " + state.frameColor + ", полки: " + state.shelfColor + ". ";
+  text += "Каркас: " + (frameName ? frameName.textContent : state.frameColor) + ", полки: " + (shelfName ? shelfName.textContent : state.shelfColor) + ". ";
   text += "Модули: ";
   Object.keys(counts).forEach(function(type){
     text += moduleLabels[type] + " " + counts[type] + " шт, ";
   });
-  text += "Расчёт: " + fmt(low) + "–" + fmt(high) + NB + "₽";
+  text += "Предварительный расчёт: " + fmt(low) + "–" + fmt(high) + NB + "₽";
   return text;
 }
 
@@ -1152,23 +1159,7 @@ $("#btnClearAll").addEventListener("click", function(){ clearAll(); });
 
 /* Order button */
 function doOrder(){
-  var text = getSpecText();
-  if(window.opener && window.opener.document){
-    var commentInput = window.opener.document.querySelector('textarea[name="comment"]');
-    if(commentInput){
-      commentInput.value = text;
-    }
-    var cta = window.opener.document.querySelector("#cta");
-    if(cta) cta.scrollIntoView({ behavior: "smooth" });
-    showToast("Проект передан на главную страницу!");
-  } else {
-    /* Fallback: copy to clipboard */
-    if(navigator.clipboard && navigator.clipboard.writeText){
-      navigator.clipboard.writeText(text).then(function(){
-        showToast("Спецификация скопирована! Вставьте в WhatsApp/Telegram");
-      });
-    }
-  }
+  window.location.href='index.html#project='+encodeURIComponent(getSpecText());
 }
 $("#btnOrder").addEventListener("click", doOrder);
 $("#costOrder").addEventListener("click", doOrder);
@@ -1179,7 +1170,7 @@ $("#costCopy").addEventListener("click", function(){
   if(navigator.clipboard && navigator.clipboard.writeText){
     navigator.clipboard.writeText(text).then(function(){
       showToast("Спецификация скопирована!");
-    });
+    }).catch(function(){showToast("Не удалось скопировать. Откройте описание проекта кнопкой заказа.");});
   }
 });
 
