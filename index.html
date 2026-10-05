@@ -2590,6 +2590,12 @@ p,.lead,.hero__sub,.st__c,.cd__d{
             </div>
           </div>
           <div class="ci__r">
+            <b>Email</b>
+            <div class="ci__v">
+              <a id="contactEmailLink" href="mailto:mebelbutik.48@yandex.ru">mebelbutik.48@yandex.ru</a>
+            </div>
+          </div>
+          <div class="ci__r">
             <b>Связаться</b>
             <div class="ci__v">
               <a href="tel:+79042822376">Позвонить</a>
@@ -2665,10 +2671,10 @@ p,.lead,.hero__sub,.st__c,.cd__d{
           <label class="inp"><span class="field-label">Имя</span><input type="text" name="name" aria-describedby="mainFormStatus" placeholder="Имя" autocomplete="name" required maxlength="100"></label>
           <label class="inp"><span class="field-label">Телефон</span><input type="tel" name="phone" aria-describedby="mainFormStatus" placeholder="+7 (___) ___-__-__" autocomplete="tel" required maxlength="30"></label>
           <label class="inp inp--full"><span class="field-label">Описание проекта</span><textarea name="comment" rows="3" placeholder="Кухня, шкаф, размеры, сроки" maxlength="4000"></textarea></label>
-          <label class="cns inp--full"><input type="checkbox" name="consent" aria-describedby="mainFormStatus" required><span><span id="contactConsentIntro">Ознакомился с </span><a id="contactConsentLink" href="consent.html" target="_blank" rel="noopener">проектом согласия на обработку персональных данных</a><span id="contactConsentPurpose">. Сейчас данные не отправляются.</span></span></label>
+          <label class="cns inp--full"><input type="checkbox" name="consent" aria-describedby="mainFormStatus" required><span><span id="contactConsentIntro">Даю </span><a id="contactConsentLink" href="consent.html" target="_blank" rel="noopener">согласие на обработку персональных данных</a><span id="contactConsentPurpose"> для ответа на моё обращение.</span></span></label>
           <p class="sm inp--full">Об обработке данных — в <a href="privacy.html" target="_blank" rel="noopener">политике конфиденциальности</a>.</p>
           <div class="inp--full"><button type="submit" class="b b--ink b--full">Открыть письмо с заявкой</button></div>
-          <p class="sm inp--full" id="contactEmailHelp">Приём заявок по email пока не настроен. Можно подготовить черновик на своём устройстве. Для заказа замера <a href="tel:+79042822376">позвоните нам</a>.</p>
+          <p class="sm inp--full" id="contactEmailHelp">Откроется ваше почтовое приложение с письмом на mebelbutik.48@yandex.ru. Нажмите «Отправить» в почте, чтобы направить заявку.</p>
           <p class="form-status inp--full" id="mainFormStatus" role="status" aria-live="polite"></p>
           <div class="inp--full"><button type="button" class="b b--line b--full" id="downloadContactDraft" hidden>Сохранить черновик заявки</button></div>
         </form>
@@ -3443,7 +3449,7 @@ window.prefillKitchenQuiz = function(shape, fridge, hood, len){
 })();
 })();
 </script>
-<script src="js/contact-settings.js"></script>
-<script src="js/contacts.js"></script>
+<script src="js/contact-settings.js?v=20261005-email"></script>
+<script src="js/contacts.js?v=20261005-email"></script>
 </body>
 </html>

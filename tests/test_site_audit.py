@@ -13,6 +13,16 @@ class AuditFixTests(unittest.TestCase):
   self.context=self.browser.new_context(viewport={'width':390,'height':844},reduced_motion='reduce')
   self.page=self.context.new_page();self.page.set_default_timeout(5000);self.page.goto('http://localhost:3000/',wait_until='domcontentloaded')
  def tearDown(self):self.context.close()
+ def open_request_draft(self):
+  self.page.evaluate('window.openContactDraft=(url)=>{window.auditDraft=url;};')
+  self.page.locator('#mainForm [name="name"]').fill('Проверка заявки')
+  self.page.locator('#mainForm [name="phone"]').fill('+7 (900) 000-00-00')
+  self.page.locator('#mainForm [name="consent"]').check()
+  self.page.locator('#mainForm button[type="submit"]').click()
+  from urllib.parse import parse_qs,urlparse
+  draft=urlparse(self.page.evaluate('window.auditDraft'))
+  self.assertEqual(draft.path,'mebelbutik.48@yandex.ru')
+  return parse_qs(draft.query)['body'][0]
  def test_map_load_requires_explicit_click(self):
   self.assertEqual(self.page.locator('#map iframe[src]').count(),0)
   self.page.locator('#loadMap').click()
@@ -33,22 +43,32 @@ class AuditFixTests(unittest.TestCase):
  def test_contact_form_never_claims_unconfirmed_delivery(self):
   self.assertEqual(self.page.locator('#mainDone').count(),0)
   self.assertTrue(self.page.locator('#mainForm').is_visible())
-  self.page.evaluate('window.contactSettings.email="audit@example.test";window.refreshContactMode();')
+  self.assertEqual(self.page.evaluate('window.contactSettings.email'),'mebelbutik.48@yandex.ru')
+  self.assertEqual(self.page.locator('#contactEmailLink').get_attribute('href'),'mailto:mebelbutik.48@yandex.ru')
   self.page.locator('#mainForm [name="name"]').fill('Тест аудита')
   self.page.locator('#mainForm [name="phone"]').fill('+7 (900) 000-00-00')
+  self.page.locator('#mainForm [name="comment"]').fill('Кухня & остров, 270 см')
   self.page.locator('#mainForm button[type="submit"]').click()
   self.assertIn('соглас',self.page.locator('#mainFormStatus').inner_text().lower())
   self.page.locator('#mainForm [name="consent"]').check()
-  self.page.evaluate('window.contactSettings.email="audit@example.test";window.openContactDraft=(url)=>{window.auditDraft=url;};')
+  self.page.evaluate('window.openContactDraft=(url)=>{window.auditDraft=url;};')
   self.page.locator('#mainForm button[type="submit"]').click()
   draft=self.page.evaluate('window.auditDraft')
-  self.assertTrue(draft.startswith('mailto:audit@example.test?'))
+  self.assertTrue(draft.startswith('mailto:mebelbutik.48@yandex.ru?'))
   from urllib.parse import parse_qs,urlparse
   body=parse_qs(urlparse(draft).query)['body'][0]
   self.assertIn('Тест аудита',body);self.assertIn('+7 (900) 000-00-00',body);self.assertIn('Согласие',body)
+  self.assertIn('Кухня & остров, 270 см',body)
+  self.assertEqual(parse_qs(urlparse(draft).query)['subject'][0],'Заявка — Мебельный Бутик 48')
+  with self.page.expect_download() as result:self.page.locator('#downloadContactDraft').click()
+  from pathlib import Path
+  saved=Path(result.value.path()).read_text()
+  self.assertIn('Кому: mebelbutik.48@yandex.ru',saved)
+  self.assertIn(body,saved)
   self.assertNotIn('Заявка отправлена',self.page.locator('#mainFormStatus').inner_text())
  def test_placeholder_email_prepares_local_draft_without_transmission(self):
   from pathlib import Path
+  self.page.evaluate('window.contactSettings.email="orders@example.invalid";window.refreshContactMode();')
   self.assertTrue(self.page.locator('#mainForm').is_visible())
   self.assertIn('не настроен',self.page.locator('#contactEmailHelp').inner_text())
   self.page.evaluate('()=>{window.auditDraftCalls=0;window.openContactDraft=()=>{window.auditDraftCalls++;};}')
@@ -76,6 +96,7 @@ class AuditFixTests(unittest.TestCase):
   self.assertIn('Способ связи: MAX',comment)
   self.assertEqual(self.page.locator('#kzPhone').count(),0)
   self.assertEqual(self.page.locator('#kzDone').count(),0)
+  self.assertIn(comment,self.open_request_draft())
  def test_closed_mobile_menu_is_not_keyboard_focusable(self):
   self.assertTrue(self.page.locator('#mm').evaluate('e=>e.inert'))
   self.page.locator('#bg').click()
@@ -120,5 +141,6 @@ class AuditFixTests(unittest.TestCase):
   self.assertIn('Шампань браш',text)
   import re
   self.assertEqual(re.findall(r'\d+',price),re.findall(r'\d+',text.split('Предварительный расчёт:')[1]))
+  self.assertIn(text,self.open_request_draft())
 
 if __name__=='__main__':unittest.main(verbosity=2)

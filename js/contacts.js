@@ -35,7 +35,13 @@
     scrollToContact();
   };
   function refreshContactMode(){
-    var enabled=!!contactEmail();
+    var email=contactEmail(),enabled=!!email;
+    var emailLink=document.getElementById('contactEmailLink');
+    if(emailLink){
+      emailLink.hidden=!enabled;
+      emailLink.textContent=email;
+      emailLink.href=enabled?'mailto:'+email:'';
+    }
     if(form){
       form.hidden=false;
       form.querySelector('[type="submit"]').textContent=enabled?'Открыть письмо с заявкой':'Подготовить заявку';
@@ -46,7 +52,7 @@
     document.getElementById('contactConsentPurpose').textContent=enabled?' для ответа на моё обращение.':'. Сейчас данные не отправляются.';
     var help=document.getElementById('contactEmailHelp');
     if(help) help.textContent=enabled?
-      'Откроется ваше почтовое приложение с заполненным письмом. Чтобы направить заявку, нажмите «Отправить» в почте. Если приложение не открылось, сохраните черновик и позвоните нам.':
+      'Откроется ваше почтовое приложение с заполненным письмом на '+email+'. Чтобы направить заявку, нажмите «Отправить» в почте. Если приложение не открылось, сохраните черновик и отправьте его на этот адрес через свою почту.':
       'Приём заявок по email пока не настроен. Здесь можно подготовить и сохранить черновик на своё устройство. Сайт не отправляет введённые данные. Для заказа замера позвоните нам.';
   }
   window.refreshContactMode=refreshContactMode;
@@ -69,7 +75,7 @@
         (email?'\n\nСогласие на обработку персональных данных для ответа на обращение: подтверждено.':'\n\nЛокальный черновик. Получатель не настроен; временные документы необходимо дополнить. Ознакомление с проектом согласия: отмечено.')+
         '\nРедакция согласия: '+settings.consentVersion+'.\nТекст: '+new URL('consent.html',location.href).href+
         '\nДата подготовки письма: '+new Date().toISOString();
-      contactDraft=body;
+      contactDraft=(email?'Кому: '+email+'\nТема: Заявка — Мебельный Бутик 48\n\n':'')+body;
       document.getElementById('downloadContactDraft').hidden=false;
       if(!email){
         status.textContent='Черновик подготовлен на вашем устройстве. Заявка не отправлена: email получателя пока не настроен. Сохраните черновик или позвоните нам.';
@@ -77,7 +83,7 @@
       }
       var url='mailto:'+email+'?subject='+encodeURIComponent('Заявка — Мебельный Бутик 48')+'&body='+encodeURIComponent(body);
       window.openContactDraft(url);
-      status.textContent='Письмо подготовлено. Отправьте его в вашем почтовом приложении. Если приложение не открылось, позвоните нам.';
+      status.textContent='Письмо подготовлено. Отправьте его в вашем почтовом приложении. Если приложение не открылось, сохраните черновик и отправьте его на '+email+' через свою почту.';
     });
     form.addEventListener('input',function(event){
       event.target.removeAttribute('aria-invalid');

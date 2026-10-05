@@ -1,7 +1,7 @@
 /* Public contact settings. Fill only with confirmed company details. */
 window.contactSettings = {
-  // Reserved placeholder: never used as a delivery address. Replace with the real email.
-  email: 'orders@example.invalid',
+  // Confirmed recipient for requests prepared in the visitor's mail application.
+  email: 'mebelbutik.48@yandex.ru',
   maxUrl: '',
   phone: '+79042822376',
   legalName: '',
