@@ -1,0 +1,6 @@
+# Internal plans and checks belong to the repository, not the public Pages site.
+exclude:
+  - docs
+  - tests
+  - README_HOSTING.md
+  - server.js
