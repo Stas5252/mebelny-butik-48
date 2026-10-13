@@ -57,6 +57,12 @@
       emailLink.textContent=email;
       emailLink.href=enabled?'mailto:'+email:'';
     }
+    document.querySelectorAll('[data-max-link]').forEach(function(link){
+      try{
+        var url=new URL(settings.maxUrl);
+        if(url.protocol==='https:' && url.hostname==='max.ru') link.href=url.href;
+      }catch(error){}
+    });
     if(form){
       form.hidden=false;
       form.querySelector('[type="submit"]').textContent=requestEndpoint()?'Отправить заявку':enabled?'Открыть письмо с заявкой':'Подготовить заявку';

@@ -4,7 +4,7 @@ window.contactSettings = {
   email: 'mebelbutik.48@yandex.ru',
   // PHP handler on your hosting. GitHub Pages keeps the mail application fallback.
   requestEndpoint: 'api/request.php',
-  maxUrl: '',
+  maxUrl: 'https://max.ru/u/f9LHodD0cOL9nvKpl2yfY2g-sgJwDp6mS9ZNbPY0Vynfl8oBHYOJvNeLnLU',
   phone: '+79042822376',
   legalName: 'Индивидуальный предприниматель Котлярова Татьяна Владимировна',
   inn: '482604150928',
