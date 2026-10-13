@@ -3,11 +3,12 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlsplit, unquote
 import json
+import re
 import unittest
 import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
-BASE = 'https://stas5252.github.io/mebelny-butik-48/'
+BASE = re.search(r'<link rel="canonical" href="([^"]+)">',(ROOT/'index.html').read_text()).group(1)
 PAGES = ('index.html', 'configurator.html', 'privacy.html', 'consent.html', 'details.html')
 
 class Page(HTMLParser):
@@ -92,5 +93,31 @@ class SEOTests(unittest.TestCase):
    self.assertEqual(p.values('meta',{'property':'og:url'},'content'),p.values('link',{'rel':'canonical'},'href'))
    images=p.values('meta',{'property':'og:image'},'content');self.assertEqual(len(images),1)
    self.assertTrue((ROOT/images[0].removeprefix(BASE)).is_file())
+
+ def test_service_entities_match_visible_directions_and_real_anchors(self):
+  home=self.pages['index.html'];graph=home.schemas[0]['@graph']
+  services=[node for node in graph if node['@type']=='Service']
+  names=[text for _,text in home.headings if text in [s['name'] for s in services]]
+  self.assertEqual([s['name'] for s in services],names)
+  self.assertEqual(len(services),7)
+  for service in services:
+   self.assertIn(urlsplit(service['url']).fragment,home.ids)
+   self.assertEqual(service['provider'],{'@id':BASE+'#business'})
+   self.assertEqual(service['areaServed']['name'],'Липецк')
+   self.assertNotIn('offers',service)
+  catalog=next(node for node in graph if node['@id']==BASE+'#services')
+  self.assertEqual(catalog['numberOfItems'],len(services))
+  self.assertEqual([x['item']['@id'] for x in catalog['itemListElement']],[s['@id'] for s in services])
+
+ def test_optional_verification_has_no_placeholders_or_unrequested_analytics(self):
+  for name,page in self.pages.items():
+   for service in ('google-site-verification','yandex-verification'):
+    values=page.values('meta',{'name':service},'content')
+    self.assertLessEqual(len(values),1,name)
+    for value in values:
+     self.assertRegex(value,r'^[A-Za-z0-9_=-]{8,256}$')
+     self.assertFalse(any(marker in value.lower() for marker in ('placeholder','unit-test','replace-me','your-token')),name)
+   scripts=page.values('script',{},'src')
+   self.assertFalse(any('mc.yandex.ru' in url or 'googletagmanager.com' in url for url in scripts),name)
 
 if __name__=='__main__':unittest.main()
