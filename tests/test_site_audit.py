@@ -12,8 +12,10 @@ class AuditFixTests(unittest.TestCase):
  def setUp(self):
   self.context=self.browser.new_context(viewport={'width':390,'height':844},reduced_motion='reduce')
   self.page=self.context.new_page();self.page.set_default_timeout(5000);self.page.goto('http://localhost:3000/',wait_until='domcontentloaded')
+  self.page.evaluate('window.contactSettings.requestEndpoint="";window.refreshContactMode();')
  def tearDown(self):self.context.close()
  def open_request_draft(self):
+  self.page.evaluate('window.contactSettings.requestEndpoint="";window.refreshContactMode();')
   self.page.evaluate('window.openContactDraft=(url)=>{window.auditDraft=url;};')
   self.page.locator('#mainForm [name="name"]').fill('Проверка заявки')
   self.page.locator('#mainForm [name="phone"]').fill('+7 (900) 000-00-00')
