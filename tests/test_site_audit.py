@@ -136,6 +136,28 @@ class AuditFixTests(unittest.TestCase):
   self.page.wait_for_function('window.auditRenderCount>0')
   self.assertGreater(self.page.locator('#viewport canvas').count(),0)
 
+ def test_configurator_without_webgl_keeps_a_working_contact_path(self):
+  errors=[]
+  self.page.on('pageerror',lambda error:errors.append(str(error)))
+  self.page.add_init_script("const original=HTMLCanvasElement.prototype.getContext;HTMLCanvasElement.prototype.getContext=function(type,...args){return /^webgl|experimental-webgl/.test(type)?null:original.call(this,type,...args);};")
+  self.page.goto('http://localhost:3000/configurator.html',wait_until='networkidle')
+  self.assertIn('3D-конструктор',self.page.get_by_role('alert').inner_text())
+  self.assertEqual(errors,[])
+  self.assertEqual(self.page.locator('#costPrice').inner_text(),'—')
+  self.assertTrue(self.page.locator('[data-module="shelf"]').is_disabled())
+  self.page.get_by_role('link',name='Обсудить проект').click()
+  self.page.wait_for_url('**/index.html#cta')
+  self.assertTrue(self.page.locator('#mainForm').is_visible())
+
+ def test_configurator_with_unavailable_library_keeps_order_navigation(self):
+  self.page.route('**/js/OrbitControls.js',lambda route:route.abort())
+  self.page.goto('http://localhost:3000/configurator.html',wait_until='networkidle')
+  self.assertTrue(self.page.get_by_role('alert').is_visible())
+  self.assertEqual(self.page.locator('#costPrice').inner_text(),'—')
+  self.page.locator('#btnOrder').click()
+  self.page.wait_for_url('**/index.html#cta')
+  self.assertTrue(self.page.locator('#mainForm').is_visible())
+
  def test_configurator_passes_accurate_cost_and_russian_labels(self):
   self.page.goto('http://localhost:3000/configurator.html')
   self.page.locator('#frameSwatches [data-v="champagne"]').click()

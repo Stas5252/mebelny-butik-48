@@ -4,3 +4,5 @@ exclude:
   - tests
   - README_HOSTING.md
   - server.js
+  # GitHub Pages cannot execute PHP; keep the handler in the hosting ZIP only.
+  - api

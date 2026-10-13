@@ -185,7 +185,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;heigh
 
   <main class="main" id="main">
     <!-- LEFT SIDEBAR -->
-    <aside class="sidebar">
+    <aside class="sidebar" aria-label="Параметры помещения и модули">
       <h2 class="sidebar__title">Размеры комнаты</h2>
       <div class="room-ctrl">
         <div class="room-ctrl__row">
@@ -263,7 +263,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;heigh
     </div>
 
     <!-- RIGHT PANEL -->
-    <aside class="panel">
+    <aside class="panel" aria-label="Материалы и стоимость">
       <div class="panel__section">
         <h2 class="panel__title">Цвет каркаса</h2>
         <div class="swatch-grid" id="frameSwatches">
@@ -356,8 +356,25 @@ var moduleHeights = {
 };
 
 /* ========== THREE.JS INIT ========== */
-if(!window.THREE){
-  document.body.innerHTML = "<h1 style='color:#fff;padding:40px'>Ошибка: Three.js не загружен. Проверьте файл js/three.min.js</h1>";
+function showConstructorUnavailable(){
+  var area=$("#viewport");
+  var message=document.createElement("p");
+  message.setAttribute("role","alert");
+  message.textContent="Не удалось открыть 3D-конструктор. Обновите страницу или попробуйте другой браузер. Мы можем обсудить проект без 3D.";
+  message.style.cssText="padding:24px;line-height:1.7;max-width:60ch";
+  var contact=document.createElement("a");
+  contact.href="index.html#cta";
+  contact.textContent="Обсудить проект";
+  contact.className="topbar__btn topbar__btn--accent";
+  contact.style.cssText="display:inline-block;margin:0 24px;text-decoration:none";
+  area.replaceChildren(message,contact);
+  $$(".mod-btn,.swatch,input[type=range],.topbar__cam,#btnResetCam,#btnClearAll,#costCopy").forEach(function(control){control.disabled=true;});
+  ["btnOrder","costOrder"].forEach(function(id){$("#"+id).addEventListener("click",function(){window.location.href="index.html#cta";});});
+  $("#costPrice").textContent="—";
+  $("#costInst").textContent="Расчёт обсудим с дизайнером.";
+}
+if(!window.THREE || typeof THREE.OrbitControls!=="function"){
+  showConstructorUnavailable();
   return;
 }
 
@@ -370,7 +387,13 @@ scene.background = new THREE.Color(0x0d0c0a);
 var camera = new THREE.PerspectiveCamera(50, vpRect.width / vpRect.height, 0.05, 50);
 camera.position.set(1.5, 2.2, 4.5);
 
-var renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: "high-performance" });
+var renderer;
+try{
+  renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: "high-performance" });
+}catch(error){
+  showConstructorUnavailable();
+  return;
+}
 renderer.setSize(vpRect.width, vpRect.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, window.matchMedia("(max-width:720px)").matches ? 1.5 : 2));
 renderer.shadowMap.enabled = true;
