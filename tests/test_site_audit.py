@@ -36,9 +36,12 @@ class AuditFixTests(unittest.TestCase):
   self.page.set_viewport_size({'width':320,'height':844})
   for _ in range(3):self.page.locator('#kzNext').click()
   self.assertLessEqual(self.page.evaluate('document.documentElement.scrollWidth'),320)
- def test_legal_documents_are_real_and_placeholder_identified(self):
+ def test_legal_documents_show_operator_and_pending_details(self):
   self.page.goto('http://localhost:3000/privacy.html')
-  self.assertIn('Реквизиты уточняются',self.page.locator('#legalOperator').inner_text())
+  self.assertIn('Котлярова Татьяна Владимировна',self.page.locator('#legalOperator').inner_text())
+  self.assertEqual(self.page.locator('[data-setting=inn]').inner_text(),'482604150928')
+  self.assertEqual(self.page.locator('[data-setting=registrationNumber]').inner_text(),'317482700012530')
+  self.assertIn('Временная редакция',self.page.locator('#legalNotice').inner_text())
   self.assertEqual(self.page.locator('h1').count(),1)
   self.page.goto('http://localhost:3000/consent.html')
   self.assertIn('Согласие',self.page.locator('h1').inner_text())
