@@ -1,0 +1,476 @@
+{
+  "date": "2026-10-22",
+  "site": "https://stas5252.github.io/mebelny-butik-48/",
+  "baseline_commit": "3838fae429c261c1b52cb4d0902cc832d214adb9",
+  "scope": {
+    "preserve_design": true,
+    "preserve_visible_text": true,
+    "search_accounts_connected": false,
+    "analytics_installed": false
+  },
+  "automated_tests": {
+    "command": "python -m unittest discover -s tests -v",
+    "passed": 40,
+    "failures": 0
+  },
+  "existing_pages": {
+    "index.html": {
+      "body_sha256_before": "d53411eec5f0296c0840f0003a0394d7b81e3cb9fe8dda46a906bb448c7a4dde",
+      "body_sha256_after": "d53411eec5f0296c0840f0003a0394d7b81e3cb9fe8dda46a906bb448c7a4dde",
+      "inline_styles_unchanged": true
+    },
+    "configurator.html": {
+      "body_sha256_before": "f68a4d5ff05fdc5c1e9a68fb159715ad26bf5e466d3c32a5574257b5de934d94",
+      "body_sha256_after": "f68a4d5ff05fdc5c1e9a68fb159715ad26bf5e466d3c32a5574257b5de934d94",
+      "inline_styles_unchanged": true
+    },
+    "privacy.html": {
+      "body_sha256_before": "3a6245399c0c9e7302610da49a7357c1c55ca1a00927f7662769254f1baf4502",
+      "body_sha256_after": "3a6245399c0c9e7302610da49a7357c1c55ca1a00927f7662769254f1baf4502",
+      "inline_styles_unchanged": true
+    },
+    "consent.html": {
+      "body_sha256_before": "c3895e850a8470a3e1d73520568e48789ec561cf76258c096a0681595eb8818f",
+      "body_sha256_after": "c3895e850a8470a3e1d73520568e48789ec561cf76258c096a0681595eb8818f",
+      "inline_styles_unchanged": true
+    },
+    "details.html": {
+      "body_sha256_before": "1d1149223075651732fede21e6def858bc2eb43697b39e4836fff8603f4b07c0",
+      "body_sha256_after": "1d1149223075651732fede21e6def858bc2eb43697b39e4836fff8603f4b07c0",
+      "inline_styles_unchanged": true
+    }
+  },
+  "lighthouse": {
+    "published_home_before": {
+      "url": "https://stas5252.github.io/mebelny-butik-48/",
+      "fetch_time": "2026-10-22T19:14:28.535Z",
+      "lighthouse_version": "13.5.0",
+      "form_factor": "mobile",
+      "throttling_method": "simulate",
+      "scores": {
+        "performance": 0.97,
+        "seo": 1
+      },
+      "metrics": {
+        "first-contentful-paint": 1951.145,
+        "largest-contentful-paint": 1963.645,
+        "total-blocking-time": 55.5,
+        "cumulative-layout-shift": 0
+      },
+      "warnings": []
+    },
+    "published_configurator_before": {
+      "url": "https://stas5252.github.io/mebelny-butik-48/configurator.html",
+      "fetch_time": "2026-10-22T19:16:04.914Z",
+      "lighthouse_version": "13.5.0",
+      "form_factor": "mobile",
+      "throttling_method": "simulate",
+      "scores": {
+        "performance": 0.66,
+        "seo": 1
+      },
+      "metrics": {
+        "first-contentful-paint": 1358.471,
+        "largest-contentful-paint": 2561.471,
+        "total-blocking-time": 3458.9999999999995,
+        "cumulative-layout-shift": 0
+      },
+      "warnings": []
+    },
+    "local_home_after": {
+      "url": "http://localhost:3000/",
+      "fetch_time": "2026-10-22T19:19:30.338Z",
+      "lighthouse_version": "13.5.0",
+      "form_factor": "mobile",
+      "throttling_method": "simulate",
+      "scores": {
+        "performance": 0.87,
+        "seo": 1
+      },
+      "metrics": {
+        "first-contentful-paint": 2002.89295,
+        "largest-contentful-paint": 2701.7859,
+        "total-blocking-time": 342,
+        "cumulative-layout-shift": 0
+      },
+      "warnings": []
+    }
+  },
+  "image_http": [
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/bedroom_client_reference.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_kitchen_black_backsplash_01.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_kitchen_blue_shelves_01.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_kitchen_blue_shelves_02.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_kitchen_compact_01.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_kitchen_green_01.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_kitchen_grey_green_01.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_kitchen_island_01.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_kitchen_island_02.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_kitchen_island_03.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_kitchen_island_04.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_kitchen_light_worktop_01.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_kitchen_warm_01.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_kitchen_white_corner_01.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_kitchen_white_corner_02.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_kitchen_wine_01.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_kitchen_wine_02.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_kitchen_wood_columns_01.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_kitchen_wood_columns_02.png",
+      "status": 200,
+      "content_type": "image/png"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_kitchen_wood_corner_01.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_kitchen_wood_niche_01.png",
+      "status": 200,
+      "content_type": "image/png"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_kitchen_wood_niche_02.png",
+      "status": 200,
+      "content_type": "image/png"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_kitchen_wood_niche_03.png",
+      "status": 200,
+      "content_type": "image/png"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_work_01.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_work_02.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_work_03.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_work_04.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_work_05.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_work_06.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_work_07.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_work_08.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_work_09.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_work_10.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_work_11.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_work_12.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_work_13.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_work_14.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_work_15.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_work_16.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_work_17.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_work_18.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_work_19.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_work_20.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_work_21.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_work_22.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_work_23.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_work_24.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_work_25.png",
+      "status": 200,
+      "content_type": "image/png"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_work_26.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_work_27.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_work_28.png",
+      "status": 200,
+      "content_type": "image/png"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_work_29.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_work_30.png",
+      "status": 200,
+      "content_type": "image/png"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_work_31.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_work_32.png",
+      "status": 200,
+      "content_type": "image/png"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_work_33.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_work_34.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_work_35.png",
+      "status": 200,
+      "content_type": "image/png"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_work_36.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_work_37.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_work_38.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_work_39.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/client_work_40.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/hero_bedroom_reference_853.webp",
+      "status": 200,
+      "content_type": "image/webp"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/hero_kitchen.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/idea_bedroom_glass_wardrobe.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/idea_bedroom_open_wardrobe.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/idea_kitchen_island_light.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/idea_studio_zoning.jpg",
+      "status": 200,
+      "content_type": "image/jpeg"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/previews/hallway_luxury_mirror.webp",
+      "status": 200,
+      "content_type": "image/webp"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/previews/idea_bathroom_beige.webp",
+      "status": 200,
+      "content_type": "image/webp"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/previews/idea_dressing_room.webp",
+      "status": 200,
+      "content_type": "image/webp"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/previews/idea_kids_clouds.webp",
+      "status": 200,
+      "content_type": "image/webp"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/previews/idea_kitchen_island_light.webp",
+      "status": 200,
+      "content_type": "image/webp"
+    },
+    {
+      "url": "https://stas5252.github.io/mebelny-butik-48/images/previews/idea_under_stairs.webp",
+      "status": 200,
+      "content_type": "image/webp"
+    }
+  ]
+}

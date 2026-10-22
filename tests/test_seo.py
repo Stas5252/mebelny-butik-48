@@ -56,6 +56,53 @@ class SEOTests(unittest.TestCase):
   ns={'s':'http://www.sitemaps.org/schemas/sitemap/0.9'}
   tree=ET.parse(ROOT/'sitemap.xml');locations=[node.text for node in tree.findall('s:url/s:loc',ns)]
   self.assertEqual(set(locations),expected);self.assertEqual(len(locations),len(expected))
+
+ def test_sitemap_exposes_original_gallery_images_and_service_photos(self):
+  home=self.pages['index.html'];expected=set()
+  for tag,attrs in home.tags:
+   if attrs.get('data-photos'):
+    expected.update(BASE+photo['src'] for photo in json.loads(attrs['data-photos']))
+  ns={'s':'http://www.sitemaps.org/schemas/sitemap/0.9','i':'http://www.google.com/schemas/sitemap-image/1.1'}
+  tree=ET.parse(ROOT/'sitemap.xml')
+  entry=next(node for node in tree.findall('s:url',ns) if node.findtext('s:loc',namespaces=ns)==BASE)
+  images=[node.text for node in entry.findall('i:image/i:loc',ns)]
+  self.assertTrue(expected)
+  self.assertTrue(expected.issubset(set(images)),f'{len(expected-set(images))} original gallery images are missing')
+  self.assertEqual(len(images),len(set(images)));self.assertLessEqual(len(images),1000)
+  for value in images:
+   self.assertTrue(value.startswith(BASE+'images/'))
+   self.assertTrue((ROOT/value.removeprefix(BASE)).is_file(),value)
+
+ def test_primary_image_metadata_matches_the_shared_preview(self):
+  for name in ('index.html','configurator.html'):
+   page=self.pages[name];url=page.values('meta',{'property':'og:image'},'content')[0]
+   labels=page.values('meta',{'name':'twitter:image:alt'},'content')
+   self.assertEqual(len(labels),1);self.assertTrue(labels[0])
+   self.assertEqual(page.values('meta',{'property':'og:image:type'},'content'),['image/jpeg'])
+   graph=page.schemas[0]['@graph'];webpage=next(n for n in graph if n['@type']=='WebPage')
+   photo=next(n for n in graph if n.get('@id')==webpage['primaryImageOfPage']['@id'])
+   self.assertEqual(photo['@type'],'ImageObject');self.assertEqual(photo['contentUrl'],url)
+   self.assertEqual(photo['width'],int(page.values('meta',{'property':'og:image:width'},'content')[0]))
+   self.assertEqual(photo['height'],int(page.values('meta',{'property':'og:image:height'},'content')[0]))
+
+ def test_hero_preload_selects_the_same_responsive_file_as_the_image(self):
+  home=self.pages['index.html'];hero=next(a for t,a in home.tags if t=='img' and a.get('fetchpriority')=='high')
+  preload=[a for t,a in home.tags if t=='link' and a.get('rel')=='preload' and a.get('as')=='image']
+  self.assertEqual(len(preload),1)
+  self.assertEqual(preload[0]['href'],hero['src'])
+  self.assertEqual(preload[0]['imagesrcset'],hero['srcset'])
+  self.assertEqual(preload[0]['imagesizes'],hero['sizes'])
+
+ def test_custom_error_page_is_not_indexed_and_navigation_survives_nested_urls(self):
+  from urllib.parse import urljoin
+  self.assertTrue((ROOT/'404.html').is_file(),'Missing custom error page')
+  page=Page(ROOT/'404.html')
+  self.assertEqual(page.values('meta',{'name':'robots'},'content'),['noindex,follow'])
+  self.assertEqual(page.values('base',{},'href'),[BASE])
+  self.assertEqual(page.values('link',{'rel':'canonical'},'href'),[])
+  links=page.values('a',{},'href')
+  self.assertEqual(urljoin(BASE,next(href for href in links if href=='./')),BASE)
+  self.assertTrue(any(urljoin(BASE,href)==BASE+'#contacts' for href in links))
  def test_internal_links_assets_and_fragments_resolve(self):
   for name,p in self.pages.items():
    for tag,attrs in p.tags:

@@ -14,7 +14,7 @@ from urllib.parse import urlsplit
 import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
-PAGES = ('index.html', 'configurator.html', 'privacy.html', 'consent.html', 'details.html')
+PAGES = ('index.html', 'configurator.html', 'privacy.html', 'consent.html', 'details.html', '404.html')
 
 
 def valid_token(value):

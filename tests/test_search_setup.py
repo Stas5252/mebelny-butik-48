@@ -34,7 +34,7 @@ class SearchSetupTests(unittest.TestCase):
  def test_domain_migration_keeps_body_and_consistent_technical_urls(self):
   previous='https://stas5252.github.io/mebelny-butik-48/'; destination='https://test.invalid/'
   changes=setup.prepare(self.root,base_url=destination)
-  self.assertEqual(len(changes),7)
+  self.assertEqual(len(changes),len(setup.PAGES)+2)
   for name in setup.PAGES:
    old=(self.root/name).read_text();new=changes[name]
    self.assertEqual(new.split('</head>',1)[1],old.split('</head>',1)[1])
@@ -43,6 +43,12 @@ class SearchSetupTests(unittest.TestCase):
    for payload in re.findall(r'<script type="application/ld\+json">(.*?)</script>',new,re.S):json.loads(payload)
   self.assertIn(destination+'sitemap.xml',changes['robots.txt'])
   self.assertNotIn(previous,changes['sitemap.xml'])
+
+ def test_domain_migration_updates_error_page_navigation_and_image_sitemap(self):
+  changes=setup.prepare(self.root,base_url='https://test.invalid/')
+  self.assertIn('404.html',list(changes))
+  self.assertIn('<base href="https://test.invalid/">',changes['404.html'])
+  self.assertIn('https://test.invalid/images/',changes['sitemap.xml'])
 
  def test_verification_update_preserves_existing_other_provider(self):
   first=setup.prepare(self.root,google='first-test-token')
