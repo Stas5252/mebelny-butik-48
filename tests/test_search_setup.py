@@ -32,7 +32,7 @@ class SearchSetupTests(unittest.TestCase):
   self.assertEqual(setup.prepare(self.root,google='unit-test-google-token',yandex='0123456789abcdef'),{})
 
  def test_domain_migration_keeps_body_and_consistent_technical_urls(self):
-  previous='https://stas5252.github.io/mebelny-butik-48/'; destination='https://test.invalid/'
+  previous=re.search(r'<link rel="canonical" href="([^"]+)">',(self.root/'index.html').read_text()).group(1); destination='https://test.invalid/'
   changes=setup.prepare(self.root,base_url=destination)
   self.assertEqual(len(changes),len(setup.PAGES)+2)
   for name in setup.PAGES:
