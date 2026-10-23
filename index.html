@@ -2681,7 +2681,8 @@ p,.lead,.hero__sub,.st__c,.cd__d{
         </div>
       </div>
 
-      <div class="map r" id="map" style="--d:.08s">
+      <div class="r" style="--d:.08s">
+      <div class="map" id="map">
         <div class="map-placeholder" id="mapPlaceholder">
           <p>Салон на Яндекс Картах</p>
           <button class="b b--paper" id="loadMap" type="button" aria-describedby="mapPrivacy">Разрешить и показать карту</button>
@@ -2689,6 +2690,8 @@ p,.lead,.hero__sub,.st__c,.cd__d{
           <a href="https://yandex.ru/maps/org/mebelny_butik_48/193848899924/" target="_blank" rel="noopener noreferrer">Открыть в Яндекс Картах &rarr;</a>
         </div>
 
+      </div>
+      <button class="b b--paper b--sm" id="unloadMap" type="button" hidden style="margin-top:12px">Отключить карту</button>
       </div>
     </div>
   </div>
@@ -2712,7 +2715,7 @@ p,.lead,.hero__sub,.st__c,.cd__d{
       <div class="fc__f r" style="--d:.1s">
         <div id="contactFallback">
           <h3 class="d3">Обсудим проект по телефону</h3>
-          <p class="sm" style="margin:12px 0 20px">Позвоните для расчёта стоимости и записи на замер.</p>
+          <p class="sm" style="margin:12px 0 20px">Онлайн-заявки временно недоступны. Позвоните для расчёта стоимости и записи на замер.</p>
           <a class="b b--ink b--full" href="tel:+79042822376">Позвонить: +7 (904) 282-23-76</a>
         </div>
           <div id="projectSummary" hidden>
@@ -3506,7 +3509,7 @@ window.prefillKitchenQuiz = function(shape, fridge, hood, len){
 })();
 })();
 </script>
-<script src="js/contact-settings.js?v=20261013-max"></script>
-<script src="js/contacts.js?v=20261013-max"></script>
+<script src="js/contact-settings.js?v=20261023-privacy"></script>
+<script src="js/contacts.js?v=20261023-privacy"></script>
 </body>
 </html>

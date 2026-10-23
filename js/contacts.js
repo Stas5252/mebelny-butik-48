@@ -13,6 +13,7 @@
     return emailPattern.test(email) && !/@(?:[^@]+\.)?invalid$/i.test(email) ? email : '';
   }
   function requestEndpoint(){
+    if(!settings || settings.requestsEnabled !== true) return '';
     if(location.protocol==='http:' && !/^(localhost|127\.0\.0\.1)$/.test(location.hostname)) return '';
     if(!contactEmail() || !settings.requestEndpoint || /(^|\.)github\.io$/i.test(location.hostname) || !/^https?:$/.test(location.protocol)) return '';
     try{var url=new URL(settings.requestEndpoint,location.href);return url.origin===location.origin?url.href:'';}catch(error){return '';}
@@ -64,10 +65,11 @@
       }catch(error){}
     });
     if(form){
-      form.hidden=false;
+      form.hidden=settings.requestsEnabled !== true;
+      Array.from(form.elements).forEach(function(field){field.disabled=settings.requestsEnabled !== true;});
       form.querySelector('[type="submit"]').textContent=requestEndpoint()?'Отправить заявку':enabled?'Открыть письмо с заявкой':'Подготовить заявку';
     }
-    if(fallback) fallback.hidden=enabled;
+    if(fallback) fallback.hidden=settings.requestsEnabled === true && enabled;
     document.getElementById('contactConsentIntro').textContent=enabled?'Даю ':'Ознакомился с ';
     document.getElementById('contactConsentLink').textContent=enabled?'согласие на обработку персональных данных':'проектом согласия на обработку персональных данных';
     document.getElementById('contactConsentPurpose').textContent=enabled?' для ответа на моё обращение.':'. Сейчас данные не отправляются.';
@@ -82,6 +84,7 @@
   if(form){
     form.addEventListener('submit',async function(event){
       event.preventDefault();
+      if(settings.requestsEnabled !== true) return;
       if(sending) return;
       var status=document.getElementById('mainFormStatus');
       function error(text,field){status.textContent=text;if(field){field.setAttribute('aria-invalid','true');field.focus();}}
@@ -151,13 +154,24 @@
     if(contactDraft) saveText(contactDraft,'mebelny-butik-48-request.txt');
   });
   var mapButton=document.getElementById('loadMap');
+  var mapOff=document.getElementById('unloadMap');
+  var mapPlaceholder=document.getElementById('mapPlaceholder');
   if(mapButton) mapButton.addEventListener('click',function(){
     var map=document.getElementById('map');
+    if(map.querySelector('iframe')) return;
     var frame=document.createElement('iframe');
     frame.src='https://yandex.ru/map-widget/v1/?ll=39.531049%2C52.615507&z=17&mode=search&oid=193848899924&ol=biz';
     frame.title='Карта проезда: Липецк, Универсальный проезд, 9а';
     frame.allowFullscreen=true;frame.referrerPolicy='strict-origin-when-cross-origin';
-    map.replaceChildren(frame);
+    mapPlaceholder.hidden=true;
+    map.appendChild(frame);
+    if(mapOff) mapOff.hidden=false;
+  });
+  if(mapOff) mapOff.addEventListener('click',function(){
+    document.querySelectorAll('#map iframe').forEach(function(frame){frame.remove();});
+    mapPlaceholder.hidden=false;
+    mapOff.hidden=true;
+    mapButton.focus();
   });
   if(location.hash.indexOf('#project=')===0){
     try{

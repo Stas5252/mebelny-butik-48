@@ -10,6 +10,7 @@ function valid_text($value, int $max): bool {
 }
 function handle_request(array $server, string $input, array $config, callable $send): array {
     if (($server['REQUEST_METHOD'] ?? '') !== 'POST') return result(405, 'Используйте форму заявки.');
+    if (($config['accept_requests'] ?? false) !== true) return result(503, 'Онлайн-заявки временно недоступны. Позвоните в салон: +7 (904) 282-23-76.');
     $origin = parse_url($server['HTTP_ORIGIN'] ?? '');
     $host = strtolower($server['HTTP_HOST'] ?? '');
     $originHost = is_array($origin) ? strtolower($origin['host'] ?? '') . (isset($origin['port']) ? ':'.$origin['port'] : '') : '';
@@ -26,11 +27,11 @@ function handle_request(array $server, string $input, array $config, callable $s
     $phone = preg_replace('/\D/', '', $data['phone']);
     if (!preg_match('/\A[78][0-9]{10}\z/', $phone)) return result(422, 'Укажите телефон РФ: 11 цифр, начиная с +7 или 8.');
     if (!valid_text($data['comment'] ?? '', 4000)) return result(422, 'Описание проекта слишком длинное.');
-    if (($data['consent'] ?? false) !== true || ($data['consentVersion'] ?? '') !== '2026-10-13') return result(422, 'Подтвердите согласие на обработку данных.');
+    if (($data['consent'] ?? false) !== true || ($data['consentVersion'] ?? '') !== '2026-10-23') return result(422, 'Подтвердите согласие на обработку данных.');
     if (!is_string($data['website'] ?? '') || ($data['website'] ?? '') !== '') return result(422, 'Не удалось отправить заявку.');
     $from = $config['mail_from'] ?? '';
     if (!filter_var($from, FILTER_VALIDATE_EMAIL) || preg_match('/[\r\n]/', $from)) return result(503, 'Отправка временно недоступна. Позвоните в салон.');
-    $clean = ['name'=>trim($data['name']), 'phone'=>'+7'.substr($phone,1), 'comment'=>trim($data['comment'] ?? ''), 'consentVersion'=>'2026-10-13'];
+    $clean = ['name'=>trim($data['name']), 'phone'=>'+7'.substr($phone,1), 'comment'=>trim($data['comment'] ?? ''), 'consentVersion'=>'2026-10-23'];
     $fingerprint = hash('sha256', json_encode($clean, JSON_UNESCAPED_UNICODE));
     $file = $config['state_file'];
     $directory = dirname($file);
@@ -56,7 +57,7 @@ function handle_request(array $server, string $input, array $config, callable $s
         if (count($attempts) >= ($config['rate_limit'] ?? 5)) return result(429, 'Слишком много попыток. Попробуйте позже или позвоните в салон.');
         if (count($state['requests']) >= 2000 || (count($state['limits']) >= 2000 && !isset($state['limits'][$ip]))) return result(503, 'Отправка временно недоступна. Позвоните в салон.');
         $attempts[] = $now; $state['limits'][$ip] = $attempts;
-        $body = "Заявка с сайта «Мебельный Бутик 48»\n\nИмя: {$clean['name']}\nТелефон: {$clean['phone']}\n\nОписание проекта:\n{$clean['comment']}\n\nСогласие на обработку данных: подтверждено.\nРедакция: 2026-10-13\nТекст: {$server['HTTP_ORIGIN']}/consent.html\nДата: ".gmdate('c')."\nНомер заявки: {$id}\n";
+        $body = "Заявка с сайта «Мебельный Бутик 48»\n\nИмя: {$clean['name']}\nТелефон: {$clean['phone']}\n\nОписание проекта:\n{$clean['comment']}\n\nСогласие на обработку данных: подтверждено.\nРедакция: 2026-10-23\nТекст: {$server['HTTP_ORIGIN']}/consent.html\nДата: ".gmdate('c')."\nНомер заявки: {$id}\n";
         try { $accepted = $send('mebelbutik.48@yandex.ru', 'Новая заявка на мебель', $body, $from) === true; }
         catch (\Throwable $e) { $accepted = false; }
         if ($accepted) $state['requests'][$key] = ['hash'=>$fingerprint, 'time'=>$now];

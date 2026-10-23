@@ -7,6 +7,7 @@ header('X-Content-Type-Options: nosniff');
 $host = strtolower((string)parse_url('http://'.($_SERVER['SERVER_NAME'] ?? ''), PHP_URL_HOST));
 $from = getenv('MB48_MAIL_FROM') ?: (strpos($host,'.') !== false && !filter_var($host,FILTER_VALIDATE_IP) ? 'no-reply@'.preg_replace('/^www\./','',$host) : '');
 $config = [
+    'accept_requests'=>false,
     'mail_from'=>$from,
     'state_file'=>rtrim(sys_get_temp_dir(), DIRECTORY_SEPARATOR).'/mb48-'.substr(hash('sha256',__DIR__),0,16).'/requests.json',
     'rate_limit'=>5,
@@ -23,7 +24,8 @@ $sender = function(string $to, string $subject, string $body, string $from): boo
     return @mail($to, '=?UTF-8?B?'.base64_encode($subject).'?=', chunk_split(base64_encode($body),76,"\r\n"), $headers);
 };
 try {
-    $input = file_get_contents('php://input', false, null, 0, 32769);
+    // Do not read submitted contact details while public collection is paused.
+    $input = $config['accept_requests'] ? file_get_contents('php://input', false, null, 0, 32769) : '';
     $response = \MB48Requests\handle_request($_SERVER, $input === false ? '' : $input, $config, $sender);
 } catch (Throwable $e) { $response = \MB48Requests\result(503, 'Отправка временно недоступна. Позвоните в салон.'); }
 http_response_code($response['status']);

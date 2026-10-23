@@ -13,6 +13,7 @@ class RequestFormTests(unittest.TestCase):
   self.context=self.browser.new_context(viewport={'width':390,'height':844},reduced_motion='reduce')
   self.page=self.context.new_page()
   self.page.goto('http://localhost:3000/',wait_until='domcontentloaded')
+  self.page.evaluate('window.contactSettings.requestsEnabled=true;window.refreshContactMode();')
   self.page.evaluate('()=>{window.openContactDraft=()=>{throw new Error("Automatic mode opened mailto");};}')
  def tearDown(self):self.context.close()
  def fill(self):
@@ -32,7 +33,7 @@ class RequestFormTests(unittest.TestCase):
   self.page.wait_for_function('document.getElementById("mainFormStatus").textContent.includes("Заявка отправлена")')
   self.assertEqual(len(sent),1);self.assertEqual(sent[0]['name'],'Татьяна')
   self.assertEqual(sent[0]['comment'],'Кухня & остров, 270 см')
-  self.assertTrue(sent[0]['consent']);self.assertEqual(sent[0]['consentVersion'],'2026-10-13')
+  self.assertTrue(sent[0]['consent']);self.assertEqual(sent[0]['consentVersion'],'2026-10-23')
  def test_mail_failure_keeps_fields_and_allows_retry_with_same_request_id(self):
   sent=[]
   def respond(route):
@@ -73,6 +74,7 @@ class RequestFormTests(unittest.TestCase):
    else:route.fulfill(status=404,body='not found')
   self.context.route('https://stas5252.github.io/mebelny-butik-48/**',local)
   self.page.goto('https://stas5252.github.io/mebelny-butik-48/',wait_until='domcontentloaded')
+  self.page.evaluate('window.contactSettings.requestsEnabled=true;window.refreshContactMode();')
   self.page.evaluate('()=>{window.openContactDraft=(url)=>{window.checkedDraft=url;};}')
   self.assertEqual(self.page.locator('#mainForm button[type=submit]').inner_text(),'Открыть письмо с заявкой')
   self.fill();self.page.locator('#mainForm button[type=submit]').click()
@@ -83,5 +85,16 @@ class RequestFormTests(unittest.TestCase):
   self.fill();self.page.locator('#mainForm [name=consent]').uncheck()
   self.page.locator('#mainForm button[type=submit]').click()
   self.assertIn('соглас',self.page.locator('#mainFormStatus').inner_text().lower());self.assertEqual(sent,[])
+
+ def test_paused_public_form_cannot_send_even_when_submit_is_forced(self):
+  self.page.reload(wait_until='domcontentloaded')
+  sent=[];self.page.route('**/api/request.php',lambda r:sent.append(r.request.method))
+  self.assertFalse(self.page.locator('#mainForm').is_visible())
+  self.assertTrue(self.page.locator('#contactFallback').is_visible())
+  self.assertTrue(self.page.locator('#mainForm [name=name]').is_disabled())
+  self.page.evaluate('document.getElementById("mainForm").dispatchEvent(new Event("submit",{bubbles:true,cancelable:true}))')
+  self.assertEqual(sent,[])
+  self.assertEqual(self.context.cookies(),[])
+  self.assertEqual(self.page.evaluate('localStorage.length+sessionStorage.length'),0)
 
 if __name__=='__main__':unittest.main(verbosity=2)

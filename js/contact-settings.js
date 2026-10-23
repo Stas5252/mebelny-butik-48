@@ -4,6 +4,8 @@ window.contactSettings = {
   email: 'mebelbutik.48@yandex.ru',
   // PHP handler on your hosting. GitHub Pages keeps the mail application fallback.
   requestEndpoint: 'api/request.php',
+  // Enable together with the server only after confirming the operator's documents.
+  requestsEnabled: false,
   maxUrl: 'https://max.ru/u/f9LHodD0cOL9nvKpl2yfY2g-sgJwDp6mS9ZNbPY0Vynfl8oBHYOJvNeLnLU',
   phone: '+79042822376',
   legalName: 'Индивидуальный предприниматель Котлярова Татьяна Владимировна',
@@ -11,7 +13,7 @@ window.contactSettings = {
   registrationNumber: '317482700012530',
   registrationAuthority: '',
   legalAddress: '',
-  privacyEmail: '',
+  privacyEmail: 'mebelbutik.48@yandex.ru',
   bankName: 'Алтайское отделение №8644 ПАО Сбербанк',
   bankAccount: '40802810135000010898',
   bankBik: '040173604',
@@ -20,5 +22,5 @@ window.contactSettings = {
   bankKpp: '482543001',
   bankAccountOpened: '05.06.2018',
   bankBranchAddress: 'г. Липецк, ул. Первомайская, д. 2',
-  consentVersion: '2026-10-13'
+  consentVersion: '2026-10-23'
 };

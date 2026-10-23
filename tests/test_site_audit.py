@@ -12,10 +12,10 @@ class AuditFixTests(unittest.TestCase):
  def setUp(self):
   self.context=self.browser.new_context(viewport={'width':390,'height':844},reduced_motion='reduce')
   self.page=self.context.new_page();self.page.set_default_timeout(5000);self.page.goto('http://localhost:3000/',wait_until='domcontentloaded')
-  self.page.evaluate('window.contactSettings.requestEndpoint="";window.refreshContactMode();')
+  self.page.evaluate('window.contactSettings.requestsEnabled=true;window.contactSettings.requestEndpoint="";window.refreshContactMode();')
  def tearDown(self):self.context.close()
  def open_request_draft(self):
-  self.page.evaluate('window.contactSettings.requestEndpoint="";window.refreshContactMode();')
+  self.page.evaluate('window.contactSettings.requestsEnabled=true;window.contactSettings.requestEndpoint="";window.refreshContactMode();')
   self.page.evaluate('window.openContactDraft=(url)=>{window.auditDraft=url;};')
   self.page.locator('#mainForm [name="name"]').fill('Проверка заявки')
   self.page.locator('#mainForm [name="phone"]').fill('+7 (900) 000-00-00')
@@ -29,6 +29,12 @@ class AuditFixTests(unittest.TestCase):
   self.assertEqual(self.page.locator('#map iframe[src]').count(),0)
   self.page.locator('#loadMap').click()
   self.assertIn('oid=193848899924',self.page.locator('#map iframe').get_attribute('src'))
+  self.assertTrue(self.page.locator('#unloadMap').is_visible())
+  self.page.locator('#unloadMap').click()
+  self.assertEqual(self.page.locator('#map iframe').count(),0)
+  self.assertTrue(self.page.locator('#loadMap').is_visible())
+  self.page.locator('#loadMap').click()
+  self.assertEqual(self.page.locator('#map iframe').count(),1)
  def test_mobile_page_and_quiz_do_not_overflow(self):
   for width in (320,390,768,1440):
    self.page.set_viewport_size({'width':width,'height':844})
@@ -147,7 +153,7 @@ class AuditFixTests(unittest.TestCase):
   self.assertTrue(self.page.locator('[data-module="shelf"]').is_disabled())
   self.page.get_by_role('link',name='Обсудить проект').click()
   self.page.wait_for_url('**/index.html#cta')
-  self.assertTrue(self.page.locator('#mainForm').is_visible())
+  self.assertTrue(self.page.locator('#contactFallback').is_visible())
 
  def test_configurator_with_unavailable_library_keeps_order_navigation(self):
   self.page.route('**/js/OrbitControls.js',lambda route:route.abort())
@@ -156,7 +162,7 @@ class AuditFixTests(unittest.TestCase):
   self.assertEqual(self.page.locator('#costPrice').inner_text(),'—')
   self.page.locator('#btnOrder').click()
   self.page.wait_for_url('**/index.html#cta')
-  self.assertTrue(self.page.locator('#mainForm').is_visible())
+  self.assertTrue(self.page.locator('#contactFallback').is_visible())
 
  def test_configurator_passes_accurate_cost_and_russian_labels(self):
   self.page.goto('http://localhost:3000/configurator.html')
